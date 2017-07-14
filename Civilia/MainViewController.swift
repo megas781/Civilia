@@ -36,6 +36,7 @@ class MainViewController: UITableViewController {
       super.viewDidLoad()
       
       self.navigationItem.leftBarButtonItem = editButtonItem
+      self.navigationItem.leftBarButtonItem!.tintColor = .white
       
       self.accounts = Account.getAccounts()
       
