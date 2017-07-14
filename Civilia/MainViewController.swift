@@ -35,49 +35,9 @@ class MainViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      if let fetchedAccounts = NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) as? [Account]
-      {
-         self.accounts = fetchedAccounts
-         
-         print("Извлек")
-         print("fetchedAccounts: \(accounts)")
-         
-      } else {
-         print("ничего не извлечено")
-         print("Так что сам запихиваю данные")
-         accounts =  [
-            
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
-            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
-            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
-            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13)
-            
-         ]
-      }
+      self.navigationItem.leftBarButtonItem = editButtonItem
       
+      self.accounts = Account.getAccounts()
       
    }
    
@@ -137,10 +97,9 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Navigation methods
    
-   
-   
-   
-   
+   @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
+      print("Вернулся к MainView")
+   }
    
    
    

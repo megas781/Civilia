@@ -16,9 +16,9 @@
             <objects>
                 <tableViewController id="EeV-2S-k1I" customClass="MainViewController" customModule="Civilia" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lhw-gO-iz2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99920219180000003" green="0.72569417950000004" blue="0.04327086359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x9I-n5-hcO">
                             <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,7 +75,7 @@
                                             </connections>
                                         </stepper>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="LHr-je-b5k" firstAttribute="leading" secondItem="djY-fS-3Yh" secondAttribute="leading" constant="8" id="0QW-9M-RZF"/>
                                         <constraint firstItem="wGO-Ne-Qwu" firstAttribute="top" secondItem="YcZ-Ux-E5O" secondAttribute="bottom" constant="2" id="119-Ho-21J"/>
@@ -91,7 +91,6 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="aHO-IR-abj" secondAttribute="trailing" id="znl-GW-qki"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="civilPointsLabel" destination="hIK-eh-KF9" id="dsV-cf-gBI"/>
                                     <outlet property="nameLabel" destination="YcZ-Ux-E5O" id="Kn3-mV-Sb6"/>
@@ -106,21 +105,67 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Civilmakers" id="L7m-pl-Az6">
-                        <barButtonItem key="rightBarButtonItem" title="Add CM" id="rkG-Ol-gWS"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add CM" id="rkG-Ol-gWS">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="2Y4-Lb-394" kind="presentation" id="WBs-HS-GVG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k73-EY-Kvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1276.875" y="139.43661971830986"/>
         </scene>
+        <!--New Civilmaker-->
+        <scene sceneID="kVO-Mm-6Ho">
+            <objects>
+                <viewController id="Yxc-nC-XsI" customClass="AddCMViewController" customModule="Civilia" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="53Q-bB-WVU"/>
+                        <viewControllerLayoutGuide type="bottom" id="r72-dT-Sma"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mwa-DO-auc">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTQ-gT-1QK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r72-dT-Sma" firstAttribute="top" secondItem="TTQ-gT-1QK" secondAttribute="bottom" id="0c1-73-ash"/>
+                            <constraint firstAttribute="trailing" secondItem="TTQ-gT-1QK" secondAttribute="trailing" id="8hP-12-tEj"/>
+                            <constraint firstItem="TTQ-gT-1QK" firstAttribute="leading" secondItem="Mwa-DO-auc" secondAttribute="leading" id="FPM-ol-r9L"/>
+                            <constraint firstItem="TTQ-gT-1QK" firstAttribute="top" secondItem="53Q-bB-WVU" secondAttribute="bottom" id="lms-Qj-qZ7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Civilmaker" id="E2z-Lo-SjN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cXM-Tu-RrM">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="0Yh-To-gcZ">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6he-S4-npo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3705" y="-92.957746478873247"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="KYg-YI-w4L">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="otP-up-xpu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sPg-n6-hlf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="sPg-n6-hlf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99931138750000004" green="0.67495765831240018" blue="0.0076188748623039013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -129,7 +174,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8J-1e-VJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="279.375" y="139.43661971830986"/>
+            <point key="canvasLocation" x="38" y="98"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="B2E-B9-ytd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Y4-Lb-394" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SXA-r1-Mq6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99931138750000004" green="0.67495765829999999" blue="0.0076188748620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yxc-nC-XsI" kind="relationship" relationship="rootViewController" id="UYD-i6-mye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q2o-72-Yw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728" y="-93"/>
         </scene>
     </scenes>
     <resources>

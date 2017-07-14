@@ -10,6 +10,8 @@ import UIKit
 
 class Account: NSObject, NSCoding {
    
+   
+   
    var fullName: String
    var civilPoints: Int
    
@@ -38,35 +40,20 @@ class Account: NSObject, NSCoding {
       
    }
    
+   
+   //MARK: Coding
    required init?(coder aDecoder: NSCoder) {
-      print("что-то в этом есть")
       
-      
-      guard let rawName = aDecoder.decodeObject(forKey: PropertyKey.fullName) else {
-         print("rawName")
+      guard let fullName = aDecoder.decodeObject(forKey: PropertyKey.fullName) as? String,
+      let civilPoints = aDecoder.decodeObject(forKey: PropertyKey.civilPoints) as? NSNumber
+      else {
          return nil
       }
       
-      guard let fullName = rawName as? String else {
-         print("cast of raw name")
-         return nil
-      }
-      
-      guard let rawPoints = aDecoder.decodeObject(forKey: PropertyKey.civilPoints) else {
-         print("rawPoints")
-         return nil
-      }
-      guard let civilPoints = rawPoints as? NSNumber else {
-         print("cast of civil points")
-         return nil
-      }
-      
-      print("инициализировал!")
       self.fullName = fullName
       self.civilPoints = Int(civilPoints)
       
    }
-   
    func encode(with aCoder: NSCoder) {
       
       aCoder.encode(fullName, forKey: PropertyKey.fullName)
