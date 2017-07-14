@@ -137,16 +137,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Kal-ZU-QIt" userLabel="FullNameEditField">
-                                                <rect key="frame" x="16" y="20" width="288.5" height="62"/>
+                                                <rect key="frame" x="16.5" y="20" width="288" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Full civilmaker's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBW-sd-XZX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDN-Xl-W6Z">
-                                                        <rect key="frame" x="0.0" y="32" width="288.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="32" width="288" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -157,16 +157,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9LS-V7-jhO" userLabel="CivilPointsEditField">
-                                                <rect key="frame" x="16" y="90" width="288.5" height="30"/>
+                                                <rect key="frame" x="16.5" y="90" width="288" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Initial civilpoints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inU-BF-xWG">
-                                                        <rect key="frame" x="0.0" y="5" width="143.5" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="5" width="143" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YRT-2V-KYP">
-                                                        <rect key="frame" x="145.5" y="0.0" width="143" height="30"/>
+                                                        <rect key="frame" x="145" y="0.0" width="143" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="ASCIICapableNumberPad"/>
@@ -178,10 +178,17 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77e-hO-hX5">
-                                                <rect key="frame" x="16" y="144" width="288.5" height="320"/>
+                                                <rect key="frame" x="16.5" y="136" width="288" height="328"/>
                                                 <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er2-IQ-FZp">
+                                                        <rect key="frame" x="47.5" y="8" width="192" height="29"/>
+                                                        <segments>
+                                                            <segment title="Library"/>
+                                                            <segment title="URL"/>
+                                                        </segments>
+                                                    </segmentedControl>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
-                                                        <rect key="frame" x="30.5" y="54" width="227.5" height="227"/>
+                                                        <rect key="frame" x="30" y="54" width="227" height="227.5"/>
                                                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="xLE-S1-DaF" secondAttribute="height" id="8NO-Wq-tDX"/>
@@ -191,13 +198,6 @@
                                                             <action selector="imageButtonTappedWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="QfL-eR-pqn"/>
                                                         </connections>
                                                     </button>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er2-IQ-FZp">
-                                                        <rect key="frame" x="48.5" y="8" width="192" height="29"/>
-                                                        <segments>
-                                                            <segment title="Library"/>
-                                                            <segment title="URL"/>
-                                                        </segments>
-                                                    </segmentedControl>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -205,6 +205,34 @@
                                                     <constraint firstItem="er2-IQ-FZp" firstAttribute="top" secondItem="77e-hO-hX5" secondAttribute="top" constant="8" id="Hlh-d6-Ec6"/>
                                                     <constraint firstItem="er2-IQ-FZp" firstAttribute="centerX" secondItem="77e-hO-hX5" secondAttribute="centerX" id="mWP-hZ-pEh"/>
                                                     <constraint firstItem="xLE-S1-DaF" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="18" id="x84-FL-RVi"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="xLE-S1-DaF"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-JR-DiC">
+                                                <rect key="frame" x="47" y="178" width="227" height="273"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ol-BD-PFq">
+                                                        <rect key="frame" x="17" y="8" width="192" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GMC-Q2-NuJ">
+                                                        <rect key="frame" x="0.0" y="46" width="227" height="227"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="GMC-Q2-NuJ" secondAttribute="height" multiplier="1:1" id="KdR-hY-dVC"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="GMC-Q2-NuJ" firstAttribute="centerX" secondItem="n2E-JR-DiC" secondAttribute="centerX" id="9I1-ca-j8V"/>
+                                                    <constraint firstItem="GMC-Q2-NuJ" firstAttribute="top" secondItem="6ol-BD-PFq" secondAttribute="bottom" constant="8" id="Rj5-L6-2Zs"/>
+                                                    <constraint firstAttribute="bottom" secondItem="GMC-Q2-NuJ" secondAttribute="bottom" id="cPu-0o-fNK"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -215,13 +243,20 @@
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="trailing" secondItem="Kal-ZU-QIt" secondAttribute="trailing" id="4um-a0-9YJ"/>
                                             <constraint firstItem="77e-hO-hX5" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="5Pp-Nt-N7j"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.9" id="8Kv-S5-72i"/>
+                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="14" id="GkY-Zn-R0E"/>
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="top" secondItem="Kal-ZU-QIt" secondAttribute="bottom" constant="8" id="L7M-M5-yop"/>
+                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="6" id="MJk-tf-acI"/>
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="leading" secondItem="Kal-ZU-QIt" secondAttribute="leading" id="P77-ly-oDo"/>
                                             <constraint firstItem="77e-hO-hX5" firstAttribute="trailing" secondItem="Kal-ZU-QIt" secondAttribute="trailing" id="RSW-4J-9PW"/>
-                                            <constraint firstItem="77e-hO-hX5" firstAttribute="top" secondItem="9LS-V7-jhO" secondAttribute="bottom" constant="24" id="TzF-tA-M9N"/>
+                                            <constraint firstItem="77e-hO-hX5" firstAttribute="top" secondItem="9LS-V7-jhO" secondAttribute="bottom" constant="16" id="TzF-tA-M9N"/>
+                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="WSA-4b-biO"/>
+                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="trailing" secondItem="er2-IQ-FZp" secondAttribute="trailing" id="Wca-cV-Pxe"/>
+                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="Zfn-0M-jWv"/>
                                             <constraint firstItem="er2-IQ-FZp" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.6" id="a0C-3c-heO"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="top" secondItem="Dgh-Gl-AO2" secondAttribute="top" constant="20" id="kZ6-oM-fZY"/>
+                                            <constraint firstItem="GMC-Q2-NuJ" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="ku5-4r-mOr"/>
                                             <constraint firstItem="xLE-S1-DaF" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="nTH-gK-Ldq"/>
+                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="leading" secondItem="er2-IQ-FZp" secondAttribute="leading" id="rh5-bv-cmO"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="y2U-yK-4sO"/>
                                         </constraints>
                                     </view>
