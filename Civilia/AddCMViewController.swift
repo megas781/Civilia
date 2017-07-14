@@ -80,17 +80,26 @@ class AddCMViewController: UIViewController {
       
       
       //Алгоритм вычисления выделения segmentedControl'a, так как после добавления tap gesture recognizer'a он утратил эту функцию
+      let segmentedControl = sender.view! as! UISegmentedControl /* Объявил перед do для последующего использования */
       do {
-         let segmentedControl = sender.view! as! UISegmentedControl
          if sender.location(in: segmentedControl).x < segmentedControl.frame.size.width/2 {
             segmentedControl.selectedSegmentIndex = 0
          } else {
             segmentedControl.selectedSegmentIndex = 1
          }
-         
       }
       
-      
+      switch segmentedControl.selectedSegmentIndex {
+      case 0:
+         
+         imageButton.isHidden = false
+         imageButton.isEnabled = true
+         
+      case 1:
+         print("сделай textField для URL")
+      default:
+         fatalError()
+      }
       
    }
    
