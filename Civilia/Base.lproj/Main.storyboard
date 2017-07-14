@@ -150,6 +150,9 @@
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="returnKeyTapped:" destination="Yxc-nC-XsI" eventType="primaryActionTriggered" id="Nah-JT-iSf"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -159,12 +162,19 @@
                                                     <segment title="Library"/>
                                                     <segment title="URL"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="segmentedControlTapped:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="lE3-wf-biB"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
                                                 <rect key="frame" x="46" y="145" width="228" height="214"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didNotTapTextFieldWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="vbd-5I-R0C"/>
+                                                    <action selector="imageButtonTappedWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="gxc-UM-WNL"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -209,12 +219,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="Dgh-Gl-AO2" id="fgQ-em-zJG"/>
+                        <outlet property="imageButton" destination="xLE-S1-DaF" id="O6n-l9-BlF"/>
+                        <outlet property="nameTextField" destination="uDN-Xl-W6Z" id="gfE-YZ-DxG"/>
+                        <outlet property="scrollView" destination="TTQ-gT-1QK" id="ohB-VD-drC"/>
+                        <outlet property="segmentedControl" destination="er2-IQ-FZp" id="PkX-Tm-kUc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6he-S4-npo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Sm7-Lf-IZp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3705" y="-92.957746478873247"/>
+            <point key="canvasLocation" x="2989" y="-94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KYg-YI-w4L">
@@ -236,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8J-1e-VJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="98"/>
+            <point key="canvasLocation" x="467" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B2E-B9-ytd">
@@ -258,7 +272,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2o-72-Yw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2728" y="-93"/>
+            <point key="canvasLocation" x="2158" y="-93"/>
         </scene>
     </scenes>
     <resources>
