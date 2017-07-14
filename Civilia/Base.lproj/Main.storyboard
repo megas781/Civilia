@@ -136,16 +136,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgh-Gl-AO2" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Kal-ZU-QIt">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Kal-ZU-QIt" userLabel="FullNameEditField">
                                                 <rect key="frame" x="16.5" y="20" width="288.5" height="62"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full civilmaker's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBW-sd-XZX">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Full civilmaker's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBW-sd-XZX">
                                                         <rect key="frame" x="0.0" y="0.0" width="288.5" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDN-Xl-W6Z">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDN-Xl-W6Z">
                                                         <rect key="frame" x="0.0" y="32" width="288.5" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -156,34 +156,65 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er2-IQ-FZp">
-                                                <rect key="frame" x="74" y="106" width="173" height="29"/>
-                                                <segments>
-                                                    <segment title="Library"/>
-                                                    <segment title="URL"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="segmentedControlTapped:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="lE3-wf-biB"/>
-                                                </connections>
-                                            </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
-                                                <rect key="frame" x="46" y="145" width="228" height="214"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="didNotTapTextFieldWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="vbd-5I-R0C"/>
-                                                    <action selector="imageButtonTappedWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="gxc-UM-WNL"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9LS-V7-jhO" userLabel="CivilPointsEditField">
+                                                <rect key="frame" x="16.5" y="90" width="288.5" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Initial civilpoints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inU-BF-xWG">
+                                                        <rect key="frame" x="0.0" y="5" width="143.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YRT-2V-KYP">
+                                                        <rect key="frame" x="145.5" y="0.0" width="143" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="returnKeyTapped:" destination="Yxc-nC-XsI" eventType="primaryActionTriggered" id="NAo-5F-xrU"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Tca-ED-Ckc">
+                                                <rect key="frame" x="46.5" y="132" width="227" height="266.5"/>
+                                                <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er2-IQ-FZp">
+                                                        <rect key="frame" x="17.5" y="0.0" width="192" height="29"/>
+                                                        <segments>
+                                                            <segment title="Library"/>
+                                                            <segment title="URL"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="segmentedControlTapped:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="lE3-wf-biB"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
+                                                        <rect key="frame" x="0.0" y="40" width="227" height="226.5"/>
+                                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="xLE-S1-DaF" secondAttribute="height" id="8NO-Wq-tDX"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didNotTapTextFieldWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="vbd-5I-R0C"/>
+                                                            <action selector="imageButtonTappedWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="gxc-UM-WNL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="er2-IQ-FZp" firstAttribute="width" secondItem="uDN-Xl-W6Z" secondAttribute="width" multiplier="0.6" id="70p-3Y-HzI"/>
+                                            <constraint firstItem="9LS-V7-jhO" firstAttribute="trailing" secondItem="Kal-ZU-QIt" secondAttribute="trailing" id="4um-a0-9YJ"/>
+                                            <constraint firstItem="er2-IQ-FZp" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.6" id="5B2-8J-1Li"/>
+                                            <constraint firstItem="Tca-ED-Ckc" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="6st-zw-ud4"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.9" id="8Kv-S5-72i"/>
-                                            <constraint firstItem="er2-IQ-FZp" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="KAe-7G-oYg"/>
+                                            <constraint firstItem="9LS-V7-jhO" firstAttribute="top" secondItem="Kal-ZU-QIt" secondAttribute="bottom" constant="8" id="L7M-M5-yop"/>
+                                            <constraint firstItem="9LS-V7-jhO" firstAttribute="leading" secondItem="Kal-ZU-QIt" secondAttribute="leading" id="P77-ly-oDo"/>
+                                            <constraint firstItem="xLE-S1-DaF" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="hk6-1F-vsY"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="top" secondItem="Dgh-Gl-AO2" secondAttribute="top" constant="20" id="kZ6-oM-fZY"/>
-                                            <constraint firstItem="er2-IQ-FZp" firstAttribute="top" secondItem="uDN-Xl-W6Z" secondAttribute="bottom" constant="24" id="qTk-EQ-l6f"/>
+                                            <constraint firstItem="Tca-ED-Ckc" firstAttribute="top" secondItem="9LS-V7-jhO" secondAttribute="bottom" constant="12" id="nsN-Zi-8mn"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="y2U-yK-4sO"/>
                                         </constraints>
                                     </view>
@@ -218,6 +249,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="civilpointsLabel" destination="YRT-2V-KYP" id="rSW-Cr-PJn"/>
                         <outlet property="contentView" destination="Dgh-Gl-AO2" id="fgQ-em-zJG"/>
                         <outlet property="imageButton" destination="xLE-S1-DaF" id="O6n-l9-BlF"/>
                         <outlet property="nameTextField" destination="uDN-Xl-W6Z" id="gfE-YZ-DxG"/>

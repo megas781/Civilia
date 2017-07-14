@@ -13,7 +13,7 @@ class Account: NSObject, NSCoding {
    
    
    var fullName: String
-   var civilPoints: Int
+   var civilpoints: Int
    
    struct PropertyKey {
       static let fullName = "fullName"
@@ -36,7 +36,7 @@ class Account: NSObject, NSCoding {
    init(fullName: String, civilPoints: Int) {
       
       self.fullName = fullName
-      self.civilPoints = civilPoints
+      self.civilpoints = civilPoints
       
    }
    
@@ -51,13 +51,13 @@ class Account: NSObject, NSCoding {
       }
       
       self.fullName = fullName
-      self.civilPoints = Int(civilPoints)
+      self.civilpoints = Int(civilPoints)
       
    }
    func encode(with aCoder: NSCoder) {
       
       aCoder.encode(fullName, forKey: PropertyKey.fullName)
-      aCoder.encode(NSNumber.init(value: civilPoints), forKey: PropertyKey.civilPoints)
+      aCoder.encode(NSNumber.init(value: civilpoints), forKey: PropertyKey.civilPoints)
       
    }
 

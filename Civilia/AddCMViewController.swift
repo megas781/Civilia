@@ -14,7 +14,11 @@ class AddCMViewController: UIViewController {
    
    @IBOutlet weak var scrollView: UIScrollView!
    @IBOutlet weak var contentView: UIView!
+   
    @IBOutlet weak var nameTextField: UITextField!
+   
+   @IBOutlet weak var civilpointsLabel: UITextField!
+   
    @IBOutlet weak var segmentedControl: UISegmentedControl!
    @IBOutlet weak var imageButton: UIButton!
    
