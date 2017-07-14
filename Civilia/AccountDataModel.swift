@@ -31,7 +31,12 @@ class Account: NSObject, NSCoding {
    }
    
    
-   
+   init(fullName: String, civilPoints: Int) {
+      
+      self.fullName = fullName
+      self.civilPoints = civilPoints
+      
+   }
    
    required init?(coder aDecoder: NSCoder) {
       

@@ -22,7 +22,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Properties
    
-   
+   var accounts: [Account] = []
    
    
    //MARK: +++ Computed Properties
@@ -32,7 +32,18 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Overrides of Appearance
    
-   
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      accounts =  [
+         
+         Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+         Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+         Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13)
+         
+      ]
+      
+   }
    
    
    //MARK: +++ Overrides of Superclass
@@ -52,6 +63,11 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
+   @IBAction func stepperValueChanged(_ stepper: UIStepper) {
+      
+      
+      
+   }
    
    
    

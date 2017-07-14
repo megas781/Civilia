@@ -10,6 +10,18 @@ import UIKit
 
 class GeneralTableViewCell: UITableViewCell {
    
+   var viewController: UIViewController!
+   var indexPath: IndexPath!
    
+   
+   //MARK: Outlets
+   
+   @IBOutlet weak var theImageView: UIImageView!
+   @IBOutlet weak var nameLabel: UILabel!
+   @IBOutlet weak var numberOfPointsLabel: UILabel!
+   
+   override func prepareForReuse() {
+      print("reuse with indexPath: \(indexPath)")
+   }
    
 }
