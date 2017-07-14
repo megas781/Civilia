@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E831F18F7F4004CC420 /* AppDelegate.swift */; };
+		ED191E861F18F7F4004CC420 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* ViewController.swift */; };
+		ED191E891F18F7F4004CC420 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E871F18F7F4004CC420 /* Main.storyboard */; };
+		ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */; };
+		ED191E8E1F18F7F4004CC420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8D1F18F7F4004CC420 /* Assets.xcassets */; };
+		ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ED191E801F18F7F4004CC420 /* Civilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Civilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED191E831F18F7F4004CC420 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED191E851F18F7F4004CC420 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED191E881F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Civilia.xcdatamodel; sourceTree = "<group>"; };
+		ED191E8D1F18F7F4004CC420 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED191E901F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED191E921F18F7F4004CC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED191E7D1F18F7F4004CC420 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED191E771F18F7F4004CC420 = {
+			isa = PBXGroup;
+			children = (
+				ED191E821F18F7F4004CC420 /* Civilia */,
+				ED191E811F18F7F4004CC420 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED191E811F18F7F4004CC420 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED191E801F18F7F4004CC420 /* Civilia.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED191E821F18F7F4004CC420 /* Civilia */ = {
+			isa = PBXGroup;
+			children = (
+				ED191E831F18F7F4004CC420 /* AppDelegate.swift */,
+				ED191E851F18F7F4004CC420 /* ViewController.swift */,
+				ED191E871F18F7F4004CC420 /* Main.storyboard */,
+				ED191E8D1F18F7F4004CC420 /* Assets.xcassets */,
+				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
+				ED191E921F18F7F4004CC420 /* Info.plist */,
+				ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */,
+			);
+			path = Civilia;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED191E7F1F18F7F4004CC420 /* Civilia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED191E951F18F7F4004CC420 /* Build configuration list for PBXNativeTarget "Civilia" */;
+			buildPhases = (
+				ED191E7C1F18F7F4004CC420 /* Sources */,
+				ED191E7D1F18F7F4004CC420 /* Frameworks */,
+				ED191E7E1F18F7F4004CC420 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Civilia;
+			productName = Civilia;
+			productReference = ED191E801F18F7F4004CC420 /* Civilia.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED191E781F18F7F4004CC420 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Gleb Kalachev";
+				TargetAttributes = {
+					ED191E7F1F18F7F4004CC420 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6WBATSU6B5;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ED191E7B1F18F7F4004CC420 /* Build configuration list for PBXProject "Civilia" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED191E771F18F7F4004CC420;
+			productRefGroup = ED191E811F18F7F4004CC420 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED191E7F1F18F7F4004CC420 /* Civilia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED191E7E1F18F7F4004CC420 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */,
+				ED191E8E1F18F7F4004CC420 /* Assets.xcassets in Resources */,
+				ED191E891F18F7F4004CC420 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED191E7C1F18F7F4004CC420 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */,
+				ED191E861F18F7F4004CC420 /* ViewController.swift in Sources */,
+				ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ED191E871F18F7F4004CC420 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED191E881F18F7F4004CC420 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED191E901F18F7F4004CC420 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED191E931F18F7F4004CC420 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED191E941F18F7F4004CC420 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED191E961F18F7F4004CC420 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6WBATSU6B5;
+				INFOPLIST_FILE = Civilia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GGhost.Civilia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		ED191E971F18F7F4004CC420 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6WBATSU6B5;
+				INFOPLIST_FILE = Civilia/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = GGhost.Civilia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED191E7B1F18F7F4004CC420 /* Build configuration list for PBXProject "Civilia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED191E931F18F7F4004CC420 /* Debug */,
+				ED191E941F18F7F4004CC420 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED191E951F18F7F4004CC420 /* Build configuration list for PBXNativeTarget "Civilia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED191E961F18F7F4004CC420 /* Debug */,
+				ED191E971F18F7F4004CC420 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */,
+			);
+			currentVersion = ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */;
+			path = Civilia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ED191E781F18F7F4004CC420 /* Project object */;
+}
