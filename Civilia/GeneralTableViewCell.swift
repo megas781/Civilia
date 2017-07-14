@@ -23,7 +23,7 @@ class GeneralTableViewCell: UITableViewCell {
    
    @IBAction func stepperValueChanged(_ stepper: UIStepper) {
       
-      viewController.accounts[indexPath.row].civilPoints = Int(stepper.value)
+      viewController.accounts[indexPath.row].civilpoints = Int(stepper.value)
       
 //      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
       Account.save(accounts: self.viewController.accounts)
@@ -35,8 +35,8 @@ class GeneralTableViewCell: UITableViewCell {
    //TODO: Загрузи image
    func updateUI(with account: Account) {
       self.nameLabel.text = account.fullName
-      self.civilPointsLabel.text = "\(account.civilPoints)"
-      self.stepper.value = Double(account.civilPoints)
+      self.civilPointsLabel.text = "\(account.civilpoints)"
+      self.stepper.value = Double(account.civilpoints)
    }
    
    
