@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E831F18F7F4004CC420 /* AppDelegate.swift */; };
-		ED191E861F18F7F4004CC420 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* ViewController.swift */; };
+		ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* MainViewController.swift */; };
 		ED191E891F18F7F4004CC420 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E871F18F7F4004CC420 /* Main.storyboard */; };
 		ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */; };
 		ED191E8E1F18F7F4004CC420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8D1F18F7F4004CC420 /* Assets.xcassets */; };
 		ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */; };
+		ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */; };
+		ED191E9C1F18FD87004CC420 /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9B1F18FD87004CC420 /* AccountDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED191E801F18F7F4004CC420 /* Civilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Civilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED191E831F18F7F4004CC420 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED191E851F18F7F4004CC420 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED191E851F18F7F4004CC420 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ED191E881F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Civilia.xcdatamodel; sourceTree = "<group>"; };
 		ED191E8D1F18F7F4004CC420 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED191E901F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED191E921F18F7F4004CC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTableViewCell.swift; sourceTree = "<group>"; };
+		ED191E9B1F18FD87004CC420 /* AccountDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +61,24 @@
 			isa = PBXGroup;
 			children = (
 				ED191E831F18F7F4004CC420 /* AppDelegate.swift */,
-				ED191E851F18F7F4004CC420 /* ViewController.swift */,
+				ED191E981F18F824004CC420 /* MainViewController */,
 				ED191E871F18F7F4004CC420 /* Main.storyboard */,
+				ED191E9B1F18FD87004CC420 /* AccountDataModel.swift */,
 				ED191E8D1F18F7F4004CC420 /* Assets.xcassets */,
 				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
 				ED191E921F18F7F4004CC420 /* Info.plist */,
 				ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */,
 			);
 			path = Civilia;
+			sourceTree = "<group>";
+		};
+		ED191E981F18F824004CC420 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ED191E851F18F7F4004CC420 /* MainViewController.swift */,
+				ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */,
+			);
+			name = MainViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +155,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */,
-				ED191E861F18F7F4004CC420 /* ViewController.swift in Sources */,
+				ED191E9C1F18FD87004CC420 /* AccountDataModel.swift in Sources */,
+				ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */,
+				ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */,
 				ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +322,7 @@
 				ED191E971F18F7F4004CC420 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
