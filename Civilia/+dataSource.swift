@@ -12,7 +12,7 @@ extension MainViewController {
    
    
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 3
+      return self.accounts.count
    }
    
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -23,8 +23,7 @@ extension MainViewController {
       
       let account = self.accounts[indexPath.row]
       
-      cell.nameLabel.text = account.fullName
-      cell.numberOfPointsLabel.text = "\(account.civilPoints)"
+      cell.updateUI(with: account)
       
       return cell
    }

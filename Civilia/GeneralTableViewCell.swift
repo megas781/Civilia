@@ -10,7 +10,7 @@ import UIKit
 
 class GeneralTableViewCell: UITableViewCell {
    
-   var viewController: UIViewController!
+   var viewController: MainViewController!
    var indexPath: IndexPath!
    
    
@@ -18,10 +18,25 @@ class GeneralTableViewCell: UITableViewCell {
    
    @IBOutlet weak var theImageView: UIImageView!
    @IBOutlet weak var nameLabel: UILabel!
-   @IBOutlet weak var numberOfPointsLabel: UILabel!
+   @IBOutlet weak var civilPointsLabel: UILabel!
+   @IBOutlet weak var stepper: UIStepper!
    
-   override func prepareForReuse() {
-      print("reuse with indexPath: \(indexPath)")
+   @IBAction func stepperValueChanged(_ stepper: UIStepper) {
+      
+      viewController.accounts[indexPath.row].civilPoints = Int(stepper.value)
+      
+      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
+      
+      viewController.tableView.reloadData()
+      
    }
+   
+   //TODO: Загрузи image
+   func updateUI(with account: Account) {
+      self.nameLabel.text = account.fullName
+      self.civilPointsLabel.text = "\(account.civilPoints)"
+      self.stepper.value = Double(account.civilPoints)
+   }
+   
    
 }
