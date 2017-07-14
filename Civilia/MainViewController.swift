@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal let archiveURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
+internal let archiveURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!.appendingPathComponent("accounts")
 
 class MainViewController: UITableViewController {
    
@@ -22,7 +22,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Properties
    
-   
+   var accounts: [Account] = []
    
    
    //MARK: +++ Computed Properties
@@ -32,7 +32,54 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Overrides of Appearance
    
-   
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      if let fetchedAccounts = NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) as? [Account]
+      {
+         self.accounts = fetchedAccounts
+         
+         print("Извлек")
+         print("fetchedAccounts: \(accounts)")
+         
+      } else {
+         print("ничего не извлечено")
+         print("Так что сам запихиваю данные")
+         accounts =  [
+            
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13),
+            Account.init(fullName: "Gleb Kalachev", civilPoints: 20),
+            Account.init(fullName: "Vadim Shemet", civilPoints: 43),
+            Account.init(fullName: "Ksenya Bondorenko", civilPoints: 13)
+            
+         ]
+      }
+      
+      
+   }
    
    
    //MARK: +++ Overrides of Superclass
@@ -52,6 +99,19 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
+   
+   @IBAction func checkButtonTapped(_ sender: UIButton) {
+      
+      if let fetchedAccounts = NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) {
+         
+         print("exists!")
+         print("fetchedAccounts: \(fetchedAccounts)")
+         
+      } else {
+         print("doesn't exist")
+      }
+      
+   }
    
    
    

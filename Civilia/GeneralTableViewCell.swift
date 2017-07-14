@@ -10,6 +10,33 @@ import UIKit
 
 class GeneralTableViewCell: UITableViewCell {
    
+   var viewController: MainViewController!
+   var indexPath: IndexPath!
+   
+   
+   //MARK: Outlets
+   
+   @IBOutlet weak var theImageView: UIImageView!
+   @IBOutlet weak var nameLabel: UILabel!
+   @IBOutlet weak var civilPointsLabel: UILabel!
+   @IBOutlet weak var stepper: UIStepper!
+   
+   @IBAction func stepperValueChanged(_ stepper: UIStepper) {
+      
+      viewController.accounts[indexPath.row].civilPoints = Int(stepper.value)
+      
+      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
+      
+      viewController.tableView.reloadData()
+      
+   }
+   
+   //TODO: Загрузи image
+   func updateUI(with account: Account) {
+      self.nameLabel.text = account.fullName
+      self.civilPointsLabel.text = "\(account.civilPoints)"
+      self.stepper.value = Double(account.civilPoints)
+   }
    
    
 }

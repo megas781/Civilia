@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="otP-up-xpu">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Civilmakers-->
         <scene sceneID="4VC-1s-l4c">
             <objects>
                 <tableViewController id="EeV-2S-k1I" customClass="MainViewController" customModule="Civilia" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,6 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x9I-n5-hcO">
+                            <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Check Button"/>
+                            <connections>
+                                <action selector="checkButtonTapped:" destination="EeV-2S-k1I" eventType="touchUpInside" id="iAL-yR-p0e"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="KM2-xJ-8UU" customClass="GeneralTableViewCell" customModule="Civilia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="80"/>
@@ -45,13 +53,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-Ne-Qwu">
                                             <rect key="frame" x="79" y="30" width="131" height="41"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIK-eh-KF9">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIK-eh-KF9">
                                                     <rect key="frame" x="0.0" y="0.0" width="131" height="32.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="civilpoints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8V-xA-Y41">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="civilpoints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8V-xA-Y41">
                                                     <rect key="frame" x="0.0" y="32.5" width="131" height="8.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="7"/>
                                                     <nil key="textColor"/>
@@ -59,9 +67,12 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-IR-abj">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-9.2233720368547758e+18" maximumValue="9.2233720368547758e+18" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-IR-abj">
                                             <rect key="frame" x="218" y="40" width="94" height="29"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="stepperValueChanged:" destination="KM2-xJ-8UU" eventType="valueChanged" id="Sct-4X-VYK"/>
+                                            </connections>
                                         </stepper>
                                     </subviews>
                                     <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,6 +92,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="civilPointsLabel" destination="hIK-eh-KF9" id="dsV-cf-gBI"/>
+                                    <outlet property="nameLabel" destination="YcZ-Ux-E5O" id="Kn3-mV-Sb6"/>
+                                    <outlet property="stepper" destination="aHO-IR-abj" id="2GS-h6-Fe2"/>
+                                    <outlet property="theImageView" destination="LHr-je-b5k" id="OVR-XR-zCt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -88,8 +105,29 @@
                             <outlet property="delegate" destination="EeV-2S-k1I" id="L7T-pz-mfO"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Civilmakers" id="L7m-pl-Az6">
+                        <barButtonItem key="rightBarButtonItem" title="Add CM" id="rkG-Ol-gWS"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k73-EY-Kvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276.875" y="139.43661971830986"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KYg-YI-w4L">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="otP-up-xpu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sPg-n6-hlf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EeV-2S-k1I" kind="relationship" relationship="rootViewController" id="qda-Qn-WhL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8J-1e-VJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="279.375" y="139.43661971830986"/>
         </scene>
