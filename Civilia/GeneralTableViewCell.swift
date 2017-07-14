@@ -25,7 +25,8 @@ class GeneralTableViewCell: UITableViewCell {
       
       viewController.accounts[indexPath.row].civilPoints = Int(stepper.value)
       
-      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
+//      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
+      Account.save(accounts: self.viewController.accounts)
       
       viewController.tableView.reloadData()
       
