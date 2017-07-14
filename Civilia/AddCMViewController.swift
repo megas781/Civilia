@@ -9,13 +9,18 @@
 import UIKit
 
 class AddCMViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-    }
-
-
-
+   
+   @IBOutlet weak var contentView: UIView!
+   
+   
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      
+      
+   }
+   
+   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+      print("touches: \(touches)")
+   }
+   
 }
