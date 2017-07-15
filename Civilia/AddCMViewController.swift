@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCMViewController: UIViewController {
+class AddCMViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
    
    //MARK: +++ Outlets
    
@@ -70,6 +70,21 @@ class AddCMViewController: UIViewController {
    
    //MARK: +++ Implementation of protocols
    
+   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+      
+      print("info: \(info)")
+      
+      if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+         
+         self.imageButton.setImage(pickedImage, for: .normal)
+         
+      } else {
+         print("провал с извлечением из info")
+      }
+      
+      picker.dismiss(animated: true, completion: nil)
+      
+   }
    
    
    
@@ -102,16 +117,16 @@ class AddCMViewController: UIViewController {
       case 0:
          
          imageButton.isHidden = false
-//         imageButton.isEnabled = true
+         //         imageButton.isEnabled = true
          
          urlViewContainer.isHidden = true
-//         urlTextField.isEnabled = false
+         //         urlTextField.isEnabled = false
          
          
       case 1:
          
          imageButton.isHidden = true
-//         imageButton.isEnabled = false
+         //         imageButton.isEnabled = false
          urlViewContainer.isHidden = false
          
          
@@ -124,8 +139,35 @@ class AddCMViewController: UIViewController {
    
    @IBAction func imageButtonTapped(sender: UIButton) {
       self.resignAnyFirstResponder()
-      
       //Здесь мы должны показать actionSheet с выбором imageSource
+      
+      let ac = UIAlertController.init(title: "Choose source", message: "Where is the face of our new civilmaker?", preferredStyle: .actionSheet)
+      
+      let imagePicker = UIImagePickerController.init()
+      
+      imagePicker.delegate = self
+      
+      ac.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+      ac.addAction(.init(title: "Library", style: .default, handler: {
+         (action) in
+         //PhotoLibrary option
+         
+         imagePicker.sourceType = .photoLibrary
+         
+         self.present(imagePicker, animated: true, completion: nil)
+         
+      }))
+      ac.addAction(.init(title: "Camera", style: .default, handler: {
+         (action) in
+         //Camera option
+         
+         imagePicker.sourceType = .camera
+         
+         self.present(imagePicker, animated: true, completion: nil)
+         
+      }))
+      
+      self.present(ac, animated: true, completion: nil)
       
    }
    
@@ -180,10 +222,15 @@ class AddCMViewController: UIViewController {
    func updateUI() {
       self.imageButton.layer.borderColor = UIColor.black.cgColor
       self.imageButton.layer.borderWidth = 2
+      self.imageButton.layer.cornerRadius = self.imageButton.frame.size.height/36
+      
+      
       
       self.urlImageView.layer.borderColor = UIColor.black.cgColor
       self.urlImageView.layer.borderWidth = 2
+      self.urlImageView.layer.cornerRadius = self.urlImageView.frame.size.height/36
       
+      self.imageButton.imageView?.contentMode = .scaleAspectFill
       
    }
    
