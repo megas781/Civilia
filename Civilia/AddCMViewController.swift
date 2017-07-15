@@ -22,6 +22,10 @@ class AddCMViewController: UIViewController {
    @IBOutlet weak var segmentedControl: UISegmentedControl!
    @IBOutlet weak var imageButton: UIButton!
    
+   @IBOutlet weak var urlViewContainer: UIView!
+   @IBOutlet weak var urlTextField: UITextField!
+   @IBOutlet weak var urlImageView: UIImageView!
+   
    
    //MARK: +++ Properties
    
@@ -38,6 +42,9 @@ class AddCMViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+      self.updateUI()
+      
+      //Добавление gestureRecognizer'ов
       do {
          //Хрупкая система переопределения gr
          
@@ -89,14 +96,24 @@ class AddCMViewController: UIViewController {
          }
       }
       
+      
       switch segmentedControl.selectedSegmentIndex {
       case 0:
          
          imageButton.isHidden = false
-         imageButton.isEnabled = true
+//         imageButton.isEnabled = true
+         
+         urlViewContainer.isHidden = true
+//         urlTextField.isEnabled = false
+         
          
       case 1:
-         print("сделай textField для URL")
+         
+         imageButton.isHidden = true
+//         imageButton.isEnabled = false
+         urlViewContainer.isHidden = false
+         
+         
       default:
          fatalError()
       }
@@ -140,7 +157,13 @@ class AddCMViewController: UIViewController {
    
    //MARK: +++ Updating UI Functions
    
-   
+   func updateUI() {
+      self.imageButton.layer.borderColor = UIColor.black.cgColor
+      self.imageButton.layer.borderWidth = 2
+      
+      self.urlImageView.layer.borderColor = UIColor.black.cgColor
+      self.urlImageView.layer.borderWidth = 2
+   }
    
    
    //MARK: +++ Selectors
@@ -155,6 +178,7 @@ class AddCMViewController: UIViewController {
    //MARK: +++ Custom functions
    func resignAnyFirstResponder() {
       self.nameTextField.resignFirstResponder()
+      self.urlTextField.resignFirstResponder()
       self.civilpointsTextField.resignFirstResponder()
       if civilpointsTextField.text == "" || civilpointsTextField.text == nil {
          civilpointsTextField.text = "0"

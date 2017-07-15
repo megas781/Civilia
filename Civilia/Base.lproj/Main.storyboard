@@ -177,7 +177,7 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77e-hO-hX5">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77e-hO-hX5" userLabel="ImagePickerView">
                                                 <rect key="frame" x="16.5" y="136" width="288" height="328"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="er2-IQ-FZp">
@@ -187,13 +187,37 @@
                                                             <segment title="URL"/>
                                                         </segments>
                                                     </segmentedControl>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
-                                                        <rect key="frame" x="30" y="54" width="227" height="227.5"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-JR-DiC">
+                                                        <rect key="frame" x="0.0" y="44" width="288" height="284"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ol-BD-PFq">
+                                                                <rect key="frame" x="47.5" y="4" width="192" height="30"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyImage" translatesAutoresizingMaskIntoConstraints="NO" id="GMC-Q2-NuJ">
+                                                                <rect key="frame" x="30" y="46" width="227" height="227.5"/>
+                                                                <color key="backgroundColor" red="0.99888652560000002" green="1" blue="0.01201445051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="GMC-Q2-NuJ" secondAttribute="height" multiplier="1:1" id="KdR-hY-dVC"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="GMC-Q2-NuJ" firstAttribute="top" secondItem="6ol-BD-PFq" secondAttribute="bottom" constant="12" id="L6K-PN-d0o"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-S1-DaF">
+                                                        <rect key="frame" x="31" y="54" width="227" height="227"/>
                                                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="xLE-S1-DaF" secondAttribute="height" id="8NO-Wq-tDX"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                                        <state key="normal" title="Pick image" backgroundImage="emptyImage">
+                                                            <color key="titleColor" red="0.99920219180000003" green="0.72569417950000004" blue="0.04327086359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="imageButtonTappedWithSender:" destination="Yxc-nC-XsI" eventType="touchUpInside" id="QfL-eR-pqn"/>
                                                         </connections>
@@ -202,37 +226,16 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="xLE-S1-DaF" firstAttribute="centerX" secondItem="77e-hO-hX5" secondAttribute="centerX" id="9Oo-S4-Ivl"/>
+                                                    <constraint firstItem="6ol-BD-PFq" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="12" id="Ajv-pI-q0H"/>
+                                                    <constraint firstItem="n2E-JR-DiC" firstAttribute="leading" secondItem="77e-hO-hX5" secondAttribute="leading" id="EKB-p6-ef0"/>
                                                     <constraint firstItem="er2-IQ-FZp" firstAttribute="top" secondItem="77e-hO-hX5" secondAttribute="top" constant="8" id="Hlh-d6-Ec6"/>
+                                                    <constraint firstItem="n2E-JR-DiC" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="8" id="JWs-ye-ba4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="n2E-JR-DiC" secondAttribute="trailing" id="Kfg-IW-YGm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="n2E-JR-DiC" secondAttribute="bottom" id="Lzd-rp-4na"/>
                                                     <constraint firstItem="er2-IQ-FZp" firstAttribute="centerX" secondItem="77e-hO-hX5" secondAttribute="centerX" id="mWP-hZ-pEh"/>
+                                                    <constraint firstItem="6ol-BD-PFq" firstAttribute="trailing" secondItem="er2-IQ-FZp" secondAttribute="trailing" id="nS6-TF-Z0d"/>
+                                                    <constraint firstItem="6ol-BD-PFq" firstAttribute="leading" secondItem="er2-IQ-FZp" secondAttribute="leading" id="rvi-Fu-9cs"/>
                                                     <constraint firstItem="xLE-S1-DaF" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="18" id="x84-FL-RVi"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="xLE-S1-DaF"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-JR-DiC">
-                                                <rect key="frame" x="47" y="178" width="227" height="273"/>
-                                                <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ol-BD-PFq">
-                                                        <rect key="frame" x="17" y="8" width="192" height="30"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GMC-Q2-NuJ">
-                                                        <rect key="frame" x="0.0" y="46" width="227" height="227"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="GMC-Q2-NuJ" secondAttribute="height" multiplier="1:1" id="KdR-hY-dVC"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="GMC-Q2-NuJ" firstAttribute="centerX" secondItem="n2E-JR-DiC" secondAttribute="centerX" id="9I1-ca-j8V"/>
-                                                    <constraint firstItem="GMC-Q2-NuJ" firstAttribute="top" secondItem="6ol-BD-PFq" secondAttribute="bottom" constant="8" id="Rj5-L6-2Zs"/>
-                                                    <constraint firstAttribute="bottom" secondItem="GMC-Q2-NuJ" secondAttribute="bottom" id="cPu-0o-fNK"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -243,20 +246,15 @@
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="trailing" secondItem="Kal-ZU-QIt" secondAttribute="trailing" id="4um-a0-9YJ"/>
                                             <constraint firstItem="77e-hO-hX5" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="5Pp-Nt-N7j"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.9" id="8Kv-S5-72i"/>
-                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="14" id="GkY-Zn-R0E"/>
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="top" secondItem="Kal-ZU-QIt" secondAttribute="bottom" constant="8" id="L7M-M5-yop"/>
-                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="top" secondItem="er2-IQ-FZp" secondAttribute="bottom" constant="6" id="MJk-tf-acI"/>
                                             <constraint firstItem="9LS-V7-jhO" firstAttribute="leading" secondItem="Kal-ZU-QIt" secondAttribute="leading" id="P77-ly-oDo"/>
                                             <constraint firstItem="77e-hO-hX5" firstAttribute="trailing" secondItem="Kal-ZU-QIt" secondAttribute="trailing" id="RSW-4J-9PW"/>
                                             <constraint firstItem="77e-hO-hX5" firstAttribute="top" secondItem="9LS-V7-jhO" secondAttribute="bottom" constant="16" id="TzF-tA-M9N"/>
-                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="WSA-4b-biO"/>
-                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="trailing" secondItem="er2-IQ-FZp" secondAttribute="trailing" id="Wca-cV-Pxe"/>
-                                            <constraint firstItem="n2E-JR-DiC" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="Zfn-0M-jWv"/>
                                             <constraint firstItem="er2-IQ-FZp" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.6" id="a0C-3c-heO"/>
+                                            <constraint firstItem="GMC-Q2-NuJ" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="iTU-4X-evW"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="top" secondItem="Dgh-Gl-AO2" secondAttribute="top" constant="20" id="kZ6-oM-fZY"/>
-                                            <constraint firstItem="GMC-Q2-NuJ" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="ku5-4r-mOr"/>
+                                            <constraint firstItem="GMC-Q2-NuJ" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="n71-Un-v9V"/>
                                             <constraint firstItem="xLE-S1-DaF" firstAttribute="width" secondItem="Dgh-Gl-AO2" secondAttribute="width" multiplier="0.71" id="nTH-gK-Ldq"/>
-                                            <constraint firstItem="6ol-BD-PFq" firstAttribute="leading" secondItem="er2-IQ-FZp" secondAttribute="leading" id="rh5-bv-cmO"/>
                                             <constraint firstItem="Kal-ZU-QIt" firstAttribute="centerX" secondItem="Dgh-Gl-AO2" secondAttribute="centerX" id="y2U-yK-4sO"/>
                                         </constraints>
                                     </view>
@@ -297,6 +295,9 @@
                         <outlet property="nameTextField" destination="uDN-Xl-W6Z" id="gfE-YZ-DxG"/>
                         <outlet property="scrollView" destination="TTQ-gT-1QK" id="ohB-VD-drC"/>
                         <outlet property="segmentedControl" destination="er2-IQ-FZp" id="PkX-Tm-kUc"/>
+                        <outlet property="urlImageView" destination="GMC-Q2-NuJ" id="XnH-Jn-hat"/>
+                        <outlet property="urlTextField" destination="6ol-BD-PFq" id="uqp-RS-hWa"/>
+                        <outlet property="urlViewContainer" destination="n2E-JR-DiC" id="sQX-TX-bWW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6he-S4-npo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,6 +351,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="emptyImage" width="700" height="700"/>
         <image name="wreath" width="2000" height="2000"/>
     </resources>
 </document>
