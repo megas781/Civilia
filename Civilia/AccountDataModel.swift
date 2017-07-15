@@ -11,9 +11,20 @@ import UIKit
 class Account: NSObject, NSCoding {
    
    
-   
+   //MARK: Properties
    var fullName: String
    var civilpoints: Int
+   
+   var imageURL: URL? = nil {
+      didSet {
+         
+      }
+   }
+   var image: UIImage? = nil {
+      didSet {
+         
+      }
+   }
    
    struct PropertyKey {
       static let fullName = "fullName"
@@ -21,6 +32,17 @@ class Account: NSObject, NSCoding {
    }
    
    
+   
+   
+   
+   init(fullName: String, civilPoints: Int) {
+      
+      self.fullName = fullName
+      self.civilpoints = civilPoints
+      
+   }
+   
+   //MARK: Static methods
    
    static func save(accounts: [Account]){
       NSKeyedArchiver.archiveRootObject(accounts, toFile: archiveURL.path)
@@ -31,15 +53,6 @@ class Account: NSObject, NSCoding {
       return NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) as? [Account] ?? []
       
    }
-   
-   
-   init(fullName: String, civilPoints: Int) {
-      
-      self.fullName = fullName
-      self.civilpoints = civilPoints
-      
-   }
-   
    
    //MARK: Coding
    required init?(coder aDecoder: NSCoder) {
