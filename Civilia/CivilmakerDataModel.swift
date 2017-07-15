@@ -111,6 +111,30 @@ class Civilmaker: NSObject, NSCoding {
       
    }
    
+   override var description: String  {
+      return "\(self.fullName) - \(self.civilpoints) civilpoints"
+   }
+   
 }
 
 internal let archiveURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!.appendingPathComponent("accounts")
+
+
+extension Array {
+   var civilmakerStringStatistics: String {
+      if self is [Civilmaker] {
+         
+         let array = self as! [Civilmaker]
+         
+         var value = "Last loaded results:\n\n"
+         
+         for item in array {
+            value += "\(item.description)\n"
+         }
+         
+         return value
+      } else {
+         return "[no custom implementation]"
+      }
+   }
+}
