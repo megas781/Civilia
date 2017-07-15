@@ -18,8 +18,8 @@
 		ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9D1F190B5E004CC420 /* +dataSource.swift */; };
 		ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */; };
 		ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA11F195FC3004CC420 /* ColorSet.swift */; };
-		ED191EA41F1963FB004CC420 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA31F1963FB004CC420 /* DataManager.swift */; };
 		ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA51F196758004CC420 /* AddCMViewController.swift */; };
+		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		ED191E9D1F190B5E004CC420 /* +dataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+dataSource.swift"; sourceTree = "<group>"; };
 		ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+tableViewDelegate.swift"; sourceTree = "<group>"; };
 		ED191EA11F195FC3004CC420 /* ColorSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
-		ED191EA31F1963FB004CC420 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		ED191EA51F196758004CC420 /* AddCMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCMViewController.swift; sourceTree = "<group>"; };
+		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,11 +71,11 @@
 			isa = PBXGroup;
 			children = (
 				ED191E831F18F7F4004CC420 /* AppDelegate.swift */,
-				ED191EA31F1963FB004CC420 /* DataManager.swift */,
 				ED191E981F18F824004CC420 /* MainViewController */,
 				ED191EA71F196761004CC420 /* AddCMViewCOntroller */,
 				ED191E871F18F7F4004CC420 /* Main.storyboard */,
 				ED191E9B1F18FD87004CC420 /* AccountDataModel.swift */,
+				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
 				ED191E8D1F18F7F4004CC420 /* Assets.xcassets */,
 				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
@@ -177,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */,
 				ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */,
 				ED191E9C1F18FD87004CC420 /* AccountDataModel.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
@@ -185,7 +186,6 @@
 				ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */,
 				ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */,
 				ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */,
-				ED191EA41F1963FB004CC420 /* DataManager.swift in Sources */,
 				ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
