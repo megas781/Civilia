@@ -35,7 +35,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wreath" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-je-b5k">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wreath" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-je-b5k">
                                             <rect key="frame" x="8" y="8" width="63" height="63"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="LHr-je-b5k" secondAttribute="height" id="9K9-UL-dI9"/>
