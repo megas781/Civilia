@@ -20,10 +20,9 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.99920219180000003" green="0.72569417950000004" blue="0.04327086359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x9I-n5-hcO">
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x9I-n5-hcO" userLabel="Decorative Button">
                             <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Check Button"/>
                             <connections>
                                 <action selector="checkButtonTapped:" destination="EeV-2S-k1I" eventType="touchUpInside" id="iAL-yR-p0e"/>
                             </connections>
@@ -152,6 +151,7 @@
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                         <connections>
                                                             <action selector="nameTextFieldReturnKeyTapped:" destination="Yxc-nC-XsI" eventType="primaryActionTriggered" id="Etp-hZ-wJQ"/>
+                                                            <action selector="nameTextFieldValueChanged:" destination="Yxc-nC-XsI" eventType="editingChanged" id="Esy-Gw-CxX"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -281,16 +281,20 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cXM-Tu-RrM">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="Sm7-Lf-IZp" kind="unwind" unwindAction="unwindToMainViewWithSegue:" id="AiH-gR-o4z"/>
+                                <action selector="cancelButtonTapped:" destination="Yxc-nC-XsI" id="vfU-tJ-fzG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="0Yh-To-gcZ">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Create" id="0Yh-To-gcZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="createButtonTapped:" destination="Yxc-nC-XsI" id="FCF-ve-exw"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="civilpointsTextField" destination="YRT-2V-KYP" id="1ay-I3-QAi"/>
                         <outlet property="contentView" destination="Dgh-Gl-AO2" id="fgQ-em-zJG"/>
+                        <outlet property="createButton" destination="0Yh-To-gcZ" id="dBR-Zm-Ym9"/>
                         <outlet property="imageButton" destination="xLE-S1-DaF" id="O6n-l9-BlF"/>
                         <outlet property="nameTextField" destination="uDN-Xl-W6Z" id="gfE-YZ-DxG"/>
                         <outlet property="scrollView" destination="TTQ-gT-1QK" id="ohB-VD-drC"/>
@@ -298,6 +302,8 @@
                         <outlet property="urlImageView" destination="GMC-Q2-NuJ" id="XnH-Jn-hat"/>
                         <outlet property="urlTextField" destination="6ol-BD-PFq" id="uqp-RS-hWa"/>
                         <outlet property="urlViewContainer" destination="n2E-JR-DiC" id="sQX-TX-bWW"/>
+                        <segue destination="Sm7-Lf-IZp" kind="unwind" identifier="createUnwind" unwindAction="unwindToMainViewWithSegue:" id="Nzl-Bs-KcA"/>
+                        <segue destination="Sm7-Lf-IZp" kind="unwind" identifier="cancelUnwind" unwindAction="unwindToMainViewWithSegue:" id="xbh-dO-Gg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6he-S4-npo" userLabel="First Responder" sceneMemberID="firstResponder"/>

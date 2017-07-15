@@ -26,6 +26,8 @@ class AddCMViewController: UIViewController {
    @IBOutlet weak var urlTextField: UITextField!
    @IBOutlet weak var urlImageView: UIImageView!
    
+   @IBOutlet weak var createButton: UIBarButtonItem!
+   
    
    //MARK: +++ Properties
    
@@ -54,7 +56,6 @@ class AddCMViewController: UIViewController {
          
          //Добавление gr для segmentedControl
          gr = UITapGestureRecognizer.init(target: self, action: #selector(self.segmentedControlTapped(_:)))
-         print("segmented recogrizers: \(self.segmentedControl.gestureRecognizers)")
          self.segmentedControl.addGestureRecognizer(gr)
       }
       
@@ -130,6 +131,14 @@ class AddCMViewController: UIViewController {
    
    //Нажатие Return'a в nameTextField
    @IBAction func nameTextFieldReturnKeyTapped(_ sender: UITextField) {
+      
+      //Такое же условие, чтобы не переходил на civilpointsLabel, пока invalid fullName
+      guard sender.text != nil && sender.text!.isVisible && sender.text!.characters.count > 2 else {
+         print("недостаточное имя")
+         createButton.isEnabled = false
+         return
+      }
+      
       self.civilpointsTextField.text = ""
       self.civilpointsTextField.becomeFirstResponder()
    }
@@ -152,6 +161,17 @@ class AddCMViewController: UIViewController {
    
    //MARK: +++ IBActions of changing value
    
+   @IBAction func nameTextFieldValueChanged(_ sender: UITextField) {
+      
+      guard sender.text != nil && sender.text!.isVisible && sender.text!.characters.count > 2 else {
+         print("недостаточное имя")
+         createButton.isEnabled = false
+         return
+      }
+      print("О, теперь норм")
+      createButton.isEnabled = true
+      
+   }
    
    
    
@@ -163,6 +183,8 @@ class AddCMViewController: UIViewController {
       
       self.urlImageView.layer.borderColor = UIColor.black.cgColor
       self.urlImageView.layer.borderWidth = 2
+      
+      
    }
    
    
@@ -189,7 +211,18 @@ class AddCMViewController: UIViewController {
    
    //MARK: +++ Navigation methods
    
+   @IBAction func createButtonTapped(_ sender: UIBarButtonItem) {
+      self.performSegue(withIdentifier: "createUnwind", sender: self)
+   }
    
+   
+   @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+      self.performSegue(withIdentifier: "cancelUnwind", sender: self)
+   }
+   
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      self.resignAnyFirstResponder()
+   }
    
    
    

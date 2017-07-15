@@ -99,7 +99,29 @@ class MainViewController: UITableViewController {
    //MARK: +++ Navigation methods
    
    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
-      print("Вернулся к MainView")
+      
+      guard let identifier = segue.identifier else {
+         print("нет identifier'a | это не нормально")
+         return
+      }
+      
+      switch identifier {
+      case "createUnwind":
+         print("create button")
+         
+         
+         
+         
+         break
+         
+      case "cancelUnwind":
+         
+         print("cancelButton")
+         break
+         
+      default:
+         fatalError()
+      }
    }
    
    
