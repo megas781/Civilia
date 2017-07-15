@@ -30,4 +30,27 @@ extension MainViewController {
       return cell
    }
    
+   
+//   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//      switch editingStyle {
+//      case .delete:
+
+//      default:
+//         break
+//      }
+//   }
+   
+   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+      
+      let delete = UITableViewRowAction.init(style: .destructive, title: "Delete") { (action, indexPath) in
+         
+                  self.accounts.remove(at: indexPath.row)
+                  self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                  Civilmaker.save(accounts: self.accounts)
+         
+      }
+      
+      return [delete]
+   }
+   
 }

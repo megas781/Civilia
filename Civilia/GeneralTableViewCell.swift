@@ -25,15 +25,15 @@ class GeneralTableViewCell: UITableViewCell {
       
       viewController.accounts[indexPath.row].civilpoints = Int(stepper.value)
       
-//      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
-      Account.save(accounts: self.viewController.accounts)
+      
+//      Civilmaker.save(accounts: self.viewController.accounts)
       
       viewController.tableView.reloadData()
       
    }
    
    //TODO: Загрузи image
-   func updateUI(with account: Account) {
+   func updateUI(with account: Civilmaker) {
       self.nameLabel.text = account.fullName
       self.civilPointsLabel.text = "\(account.civilpoints)"
       self.stepper.value = Double(account.civilpoints)

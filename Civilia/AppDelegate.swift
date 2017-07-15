@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    func applicationWillTerminate(_ application: UIApplication) {
       // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
       // Saves changes in the application's managed object context before the application terminates.
+      Civilmaker.save(accounts: ((self.window!.rootViewController as! UINavigationController).viewControllers.first as! MainViewController).accounts)
       self.saveContext()
    }
 
