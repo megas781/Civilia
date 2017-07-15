@@ -74,6 +74,8 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       
       print("info: \(info)")
       
+      
+      
       if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
          
          self.imageButton.setImage(pickedImage, for: .normal)
@@ -264,7 +266,10 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       
       //TODO: Сделать, чтобы чекал правильность numberOfCivilpoints
       
+      
       self.newCivilmaker = Civilmaker.init(fullName: self.nameTextField.text!, civilpoints: Int(self.civilpointsTextField.text!)!, image: self.imageButton.imageView?.image, imageURL: URL.init(string: self.urlTextField.text!))
+      
+      
       
       
       self.performSegue(withIdentifier: "createUnwind", sender: self)

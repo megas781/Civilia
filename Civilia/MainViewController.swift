@@ -17,6 +17,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Outlets
    
+   @IBOutlet weak var publishButtonBackgourdRect: UIView!
    
    
    
@@ -36,6 +37,8 @@ class MainViewController: UITableViewController {
       super.viewDidLoad()
       
 //      self.navigationItem.leftBarButtonItem = editButtonItem
+      
+      self.publishButtonBackgourdRect.layer.cornerRadius = self.publishButtonBackgourdRect.frame.size.height/4
 //      self.navigationItem.leftBarButtonItem!.tintColor = .white
       
       self.accounts = Civilmaker.getAccounts()
@@ -45,6 +48,8 @@ class MainViewController: UITableViewController {
             Civilmaker.init(fullName: "Gleb Kalachev", civilpoints: 10)
          ]
       }
+      
+      print(self.accounts)
       
    }
    
@@ -70,19 +75,15 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
-   
-   @IBAction func checkButtonTapped(_ sender: UIButton) {
+   @IBAction func publishButtonTapped(_ sender: UIButton) {
       
-      if let fetchedAccounts = NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) {
-         
-         print("exists!")
-         print("fetchedAccounts: \(fetchedAccounts)")
-         
-      } else {
-         print("doesn't exist")
-      }
+      let ac = UIActivityViewController.init(activityItems: [self.accounts.civilmakerStringStatistics], applicationActivities: nil)
+      
+      self.present(ac, animated: true, completion: nil)
       
    }
+   
+   
    
    
    

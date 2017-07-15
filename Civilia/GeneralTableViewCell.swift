@@ -41,29 +41,49 @@ class GeneralTableViewCell: UITableViewCell {
       
       self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/8
       
+      self.theImageView.image = account.image ?? UIImage(named: "wreath")
+      
+//      self.theImageView.image = UIImage.init(cgImage: account.image!.cgImage!, scale: 1, orientation: {
+//         () -> UIImageOrientation in
+//         switch account.image!.imageOrientation {
+//         case .up :
+//            return .down
+//         case .down:
+//            return .up
+//         case .left:
+//            return .up
+//         case .right:
+//            return .up
+//         default:
+//            fatalError("orientation error")
+//         }
+//      }()
+//      )
+      
       //Правило такое: если есть image, то url не используется
-      if let image = account.image {
-         self.theImageView.image = image
-      } else {
-         if let url = account.imageURL {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-               
-               guard let data = data else {
-                  print("не смог извлечь data")
-                  return
-               }
-               guard let image = UIImage(data: data) else {
-                  print("не смог докастить до UIImage")
-                  return
-               }
-               
-               DispatchQueue.main.async {
-                  self.theImageView.image = image
-               }
-               
-            })
-         }
-      }
+      
+//      if let image = account.image {
+//         self.theImageView.image = image
+//      } else {
+//         if let url = account.imageURL {
+//            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+//               
+//               guard let data = data else {
+//                  print("не смог извлечь data")
+//                  return
+//               }
+//               guard let image = UIImage(data: data) else {
+//                  print("не смог докастить до UIImage")
+//                  return
+//               }
+//               
+//               DispatchQueue.main.async {
+//                  self.theImageView.image = image
+//               }
+//               
+//            })
+//         }
+//      }
    }
    
    
