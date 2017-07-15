@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal let archiveURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!.appendingPathComponent("accounts")
+
 
 class MainViewController: UITableViewController {
    
@@ -22,7 +22,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Properties
    
-   var accounts: [Account] = []
+   var accounts: [Civilmaker] = []
    
    
    //MARK: +++ Computed Properties
@@ -35,11 +35,21 @@ class MainViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      self.navigationItem.leftBarButtonItem = editButtonItem
-      self.navigationItem.leftBarButtonItem!.tintColor = .white
+//      self.navigationItem.leftBarButtonItem = editButtonItem
+//      self.navigationItem.leftBarButtonItem!.tintColor = .white
       
-      self.accounts = Account.getAccounts()
+      self.accounts = Civilmaker.getAccounts()
       
+      if self.accounts.count == 0 {
+         self.accounts = [
+            Civilmaker.init(fullName: "Gleb Kalachev", civilpoints: 10)
+         ]
+      }
+      
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+      Civilmaker.save(accounts: self.accounts)
    }
    
    
@@ -109,8 +119,19 @@ class MainViewController: UITableViewController {
       case "createUnwind":
          print("create button")
          
+         let src = segue.source as! AddCMViewController
          
+         guard let newCivilmaker = src.newCivilmaker else {
+            fatalError("Пустой newCivilMaker")
+         }
          
+         //TODO: Сделать анимацию добвления
+         
+         self.accounts.append(newCivilmaker)
+         
+         Civilmaker.save(accounts: self.accounts)
+         
+         self.tableView.reloadData()
          
          break
          

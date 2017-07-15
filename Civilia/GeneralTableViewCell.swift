@@ -25,18 +25,45 @@ class GeneralTableViewCell: UITableViewCell {
       
       viewController.accounts[indexPath.row].civilpoints = Int(stepper.value)
       
-//      NSKeyedArchiver.archiveRootObject(self.viewController.accounts, toFile: archiveURL.path)
-      Account.save(accounts: self.viewController.accounts)
+      
+//      Civilmaker.save(accounts: self.viewController.accounts)
       
       viewController.tableView.reloadData()
       
    }
    
    //TODO: Загрузи image
-   func updateUI(with account: Account) {
+   func updateUI(with account: Civilmaker) {
       self.nameLabel.text = account.fullName
       self.civilPointsLabel.text = "\(account.civilpoints)"
       self.stepper.value = Double(account.civilpoints)
+      
+      
+      self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/8
+      
+      //Правило такое: если есть image, то url не используется
+      if let image = account.image {
+         self.theImageView.image = image
+      } else {
+         if let url = account.imageURL {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+               
+               guard let data = data else {
+                  print("не смог извлечь data")
+                  return
+               }
+               guard let image = UIImage(data: data) else {
+                  print("не смог докастить до UIImage")
+                  return
+               }
+               
+               DispatchQueue.main.async {
+                  self.theImageView.image = image
+               }
+               
+            })
+         }
+      }
    }
    
    

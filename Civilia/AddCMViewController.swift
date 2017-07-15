@@ -31,7 +31,7 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
    
    //MARK: +++ Properties
    
-   
+   var newCivilmaker: Civilmaker?
    
    
    //MARK: +++ Computed Properties
@@ -259,6 +259,14 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
    //MARK: +++ Navigation methods
    
    @IBAction func createButtonTapped(_ sender: UIBarButtonItem) {
+      
+      //Создаем civilmaker'a
+      
+      //TODO: Сделать, чтобы чекал правильность numberOfCivilpoints
+      
+      self.newCivilmaker = Civilmaker.init(fullName: self.nameTextField.text!, civilpoints: Int(self.civilpointsTextField.text!)!, image: self.imageButton.imageView?.image, imageURL: URL.init(string: self.urlTextField.text!))
+      
+      
       self.performSegue(withIdentifier: "createUnwind", sender: self)
    }
    
