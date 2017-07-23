@@ -57,6 +57,7 @@ class Civilmaker: NSObject, NSCoding {
    //MARK: Static methods
    
    static func save(accounts: [Civilmaker]){
+      
       NSKeyedArchiver.archiveRootObject(accounts, toFile: archiveURL.path)
    }
    
@@ -100,10 +101,10 @@ class Civilmaker: NSObject, NSCoding {
       aCoder.encode(fullName, forKey: PropertyKey.fullName)
       aCoder.encode(NSNumber.init(value: civilpoints), forKey: PropertyKey.civilPoints)
       
-      if let image = self.image,
-         let data = UIImagePNGRepresentation(image) {
-         aCoder.encode(data, forKey: PropertyKey.imageData)
-      }
+//      if let image = self.image,
+//         let data = UIImagePNGRepresentation(image) {
+//         aCoder.encode(data, forKey: PropertyKey.imageData)
+//      }
       
       if let urlString = self.imageURL?.absoluteString {
          aCoder.encode(urlString, forKey: PropertyKey.imageURLString)

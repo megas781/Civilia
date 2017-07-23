@@ -46,7 +46,7 @@ extension MainViewController {
          
                   self.accounts.remove(at: indexPath.row)
                   self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                  Civilmaker.save(accounts: self.accounts)
+//                  Civilmaker.save(accounts: self.accounts)
          
       }
       
