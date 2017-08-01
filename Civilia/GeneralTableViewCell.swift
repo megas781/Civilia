@@ -41,7 +41,7 @@ class GeneralTableViewCell: UITableViewCell {
       
       self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/8
       
-      self.theImageView.image = account.image ?? UIImage(named: "wreath")
+      self.theImageView.image = account.getImage() ?? UIImage(named: "wreath")
       
 //      self.theImageView.image = UIImage.init(cgImage: account.image!.cgImage!, scale: 1, orientation: {
 //         () -> UIImageOrientation in

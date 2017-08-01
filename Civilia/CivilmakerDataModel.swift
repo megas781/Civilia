@@ -1,126 +1,126 @@
 //
-//  AccountDataModel.swift
+//  CivilmakerDataModel2.swift
 //  Civilia
 //
-//  Created by Gleb Kalachev on 7/14/17.
+//  Created by Gleb Kalachev on 7/24/17.
 //  Copyright © 2017 Gleb Kalachev. All rights reserved.
 //
 
-import UIKit
+import RealmSwift
 
-class Civilmaker: NSObject, NSCoding {
+class Civilmaker: Object {
    
+   dynamic var fullName: String = ""
+   dynamic var civilpoints: Int = 0
+   dynamic var dateOfCreation: Date = Date()
    
-   //MARK: Properties
-   var fullName: String
-   var civilpoints: Int
+   private dynamic var imageURLString: String? = nil
+   private dynamic var imageData : Data? = nil
    
-   var imageURL: URL? = nil {
-      didSet {
-         
-      }
-   }
-   var image: UIImage? = nil {
-      didSet {
-         
-      }
-   }
-   
-   struct PropertyKey {
-      static let fullName = "fullName"
-      static let civilPoints = "civilPoints"
-      static let imageData = "image"
-      static let imageURLString = "imageURL"
-   }
-   
-   
-   
-   
-   
-   init(fullName: String, civilpoints: Int) {
-      
-      self.fullName = fullName
-      self.civilpoints = civilpoints
-      
-   }
-   
-   //Полный инициализатор
-   convenience init(fullName: String, civilpoints: Int, image: UIImage?, imageURL: URL?) {
-      
-      self.init(fullName: fullName, civilpoints: civilpoints)
-      
-      self.imageURL = imageURL
-      self.image = image
-      
-   }
-   
-   //MARK: Static methods
-   
-   static func save(accounts: [Civilmaker]){
-      
-      NSKeyedArchiver.archiveRootObject(accounts, toFile: archiveURL.path)
-   }
-   
-   static func getAccounts() -> [Civilmaker] {
-      
-      return NSKeyedUnarchiver.unarchiveObject(withFile: archiveURL.path) as? [Civilmaker] ?? []
-      
-   }
-   
-   //MARK: Coding
-   required init?(coder aDecoder: NSCoder) {
-      
-      guard let fullName = aDecoder.decodeObject(forKey: PropertyKey.fullName) as? String,
-         let civilPoints = aDecoder.decodeObject(forKey: PropertyKey.civilPoints) as? NSNumber
-         else {
-            return nil
-      }
-      
-      self.fullName = fullName
-      self.civilpoints = Int(civilPoints)
-      
-      
-      
-      if let data = aDecoder.decodeObject(forKey: PropertyKey.imageData) as? Data {
-         self.image = UIImage(data: data)
-      } else {
-         print("не нашел image")
-      }
-      
-      if let imageURLString = aDecoder.decodeObject(forKey: PropertyKey.imageURLString) as? String,
-         let imageURL = URL.init(string: imageURLString) {
-         self.imageURL = imageURL
-      } else {
-         print("не нашел URL")
-      }
-      
-   }
-   
-   func encode(with aCoder: NSCoder) {
-      
-      aCoder.encode(fullName, forKey: PropertyKey.fullName)
-      aCoder.encode(NSNumber.init(value: civilpoints), forKey: PropertyKey.civilPoints)
-      
-//      if let image = self.image,
-//         let data = UIImagePNGRepresentation(image) {
-//         aCoder.encode(data, forKey: PropertyKey.imageData)
+   //
+//   dynamic var image : UIImage? {
+//      get {
+//         if let data = self.imageData {
+//            return UIImage(data: data)
+//         } else {
+//            return nil
+//         }
 //      }
-      
-      if let urlString = self.imageURL?.absoluteString {
-         aCoder.encode(urlString, forKey: PropertyKey.imageURLString)
+//      set {
+//         if let image = newValue {
+//            self.imageData = UIImagePNGRepresentation(image)
+//         } else {
+//            self.imageData = nil
+//         }
+//      }
+//   }
+   
+   
+   //getting image
+   func getImage() -> UIImage? {
+      if let data = self.imageData,
+         let image = UIImage(data: data) {
+         
+         return image
+         
+      } else {
+         //В противном случае, придется чекать URL
+         if let _ /*url*/ = self.imageURLString {
+            
+            print("No URL realisation")
+            return nil
+         }
+         
+         return nil
+         
       }
-      
+   }
+   //setting image
+   func setImage(image: UIImage?) {
+      if let image = image {
+         self.imageData = UIImagePNGRepresentation(image)
+      } else {
+         self.imageData = nil
+      }
    }
    
-   override var description: String  {
-      return "\(self.fullName) - \(self.civilpoints) civilpoints"
+   //Sample initializer
+   static func `init`(fullName: String) -> Civilmaker {
+      
+      let newCM = Civilmaker()
+      
+      newCM.fullName = fullName
+      
+      
+      return newCM
+      
    }
+//   Full initializer
+   static func `init`(fullName: String, civilpoints: Int, image: UIImage?, imageURL: URL?) -> Civilmaker {
+      
+      let newCM = Civilmaker()
+      newCM.fullName = fullName
+      newCM.civilpoints = civilpoints
+      newCM.dateOfCreation = Date()
+      
+      //MARK: Maybe rewise this
+      if let image = image {
+         newCM.setImage(image: image)
+      } else {
+         newCM.imageURLString = imageURL?.absoluteString
+      }
+      
+      return newCM
+   }
+   
    
 }
 
-internal let archiveURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!.appendingPathComponent("accounts")
+//Полезность для создания массива из results
+extension Results {
+   var array: [T] {
+      let array: [T] = self.map { (item) -> T in
+         return item
+      }
+      switch array {
+      case _ where array is [Civilmaker]:
+         
+         //Здесь кастим до [Civilmaker], сортируем и возвращаем как [T]
+         return (array as! [Civilmaker]).sorted(by: { (one, two) -> Bool in
+            return one.dateOfCreation > two.dateOfCreation
+         }) as! [T]
+         
+      default:
+         print("Array ordering for this Results<T> generic type is not implemented")
+         return array
+      }
+      
+   }
+   
+   
+}
 
-
+//Это, чтобы публиковать на стену статистику
 extension Array {
    var civilmakerStringStatistics: String {
       if self is [Civilmaker] {
@@ -139,3 +139,12 @@ extension Array {
       }
    }
 }
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,9 @@
 
 import UIKit
 
+import RealmSwift
 
+let realm = try! Realm()
 
 class MainViewController: UITableViewController {
    
@@ -41,11 +43,14 @@ class MainViewController: UITableViewController {
       self.publishButtonBackgourdRect.layer.cornerRadius = self.publishButtonBackgourdRect.frame.size.height/4
 //      self.navigationItem.leftBarButtonItem!.tintColor = .white
       
-      self.accounts = Civilmaker.getAccounts()
+      
+      //TODO: FIX_IT
+      self.accounts = realm.objects(Civilmaker.self).array
       
       if self.accounts.count == 0 {
          self.accounts = [
-            Civilmaker.init(fullName: "Gleb Kalachev", civilpoints: 10)
+            //TODO: FIX_IT
+            
          ]
       }
       
@@ -54,7 +59,8 @@ class MainViewController: UITableViewController {
    }
    
    override func viewDidAppear(_ animated: Bool) {
-      Civilmaker.save(accounts: self.accounts)
+      //TODO: FIX_IT
+//      Civilmaker.save(accounts: self.accounts)
    }
    
    
@@ -130,7 +136,13 @@ class MainViewController: UITableViewController {
          
          self.accounts.append(newCivilmaker)
          
-         Civilmaker.save(accounts: self.accounts)
+         //TODO: FIX_IT
+         try! realm.write {
+            realm.add(newCivilmaker)
+         }
+         
+//         Civilmaker.save(accounts: self.accounts)
+         
          
          self.tableView.reloadData()
          

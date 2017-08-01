@@ -264,10 +264,10 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       
       //Создаем civilmaker'a
       
-      //TODO: Сделать, чтобы чекал правильность numberOfCivilpoints
       
       
-      self.newCivilmaker = Civilmaker.init(fullName: self.nameTextField.text!, civilpoints: Int(self.civilpointsTextField.text!)!, image: self.imageButton.imageView?.image, imageURL: URL.init(string: self.urlTextField.text!))
+      //TODO: FIX_IT
+//      self.newCivilmaker = Civilmaker.init(fullName: self.nameTextField.text!, civilpoints: Int(self.civilpointsTextField.text!)!, image: self.imageButton.imageView?.image, imageURL: URL.init(string: self.urlTextField.text!))
       
       
       
