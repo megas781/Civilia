@@ -7,97 +7,63 @@
 //
 
 import RealmSwift
-
+import Foundation
+import UIKit
 class Civilmaker: Object {
    
    dynamic var fullName: String = ""
    dynamic var civilpoints: Int = 0
    dynamic var dateOfCreation: Date = Date()
    
-   private dynamic var imageURLString: String? = nil
-   private dynamic var imageData : Data? = nil
    
-   //
-//   dynamic var image : UIImage? {
-//      get {
-//         if let data = self.imageData {
-//            return UIImage(data: data)
-//         } else {
-//            return nil
-//         }
-//      }
-//      set {
-//         if let image = newValue {
-//            self.imageData = UIImagePNGRepresentation(image)
-//         } else {
-//            self.imageData = nil
-//         }
-//      }
-//   }
+   fileprivate dynamic var storedImageURLString: String? = nil
+   fileprivate dynamic var storedImageData : Data? = nil
+   
+   fileprivate dynamic var id : String = ""
    
    
-   //getting image
-   func getImage() -> UIImage? {
-      if let data = self.imageData,
-         let image = UIImage(data: data) {
-         
-         return image
-         
-      } else {
-         //В противном случае, придется чекать URL
-         if let _ /*url*/ = self.imageURLString {
-            
-            print("No URL realisation")
-            return nil
-         }
-         
-         return nil
-         
-      }
+   //Overrides
+   override class func primaryKey() -> String {
+      return "id"
    }
-   //setting image
-   func setImage(image: UIImage?) {
-      if let image = image {
-         self.imageData = UIImagePNGRepresentation(image)
-      } else {
-         self.imageData = nil
-      }
+   override class func ignoredProperties() -> [String] {
+      return ["image"]
    }
-   
-   //Sample initializer
-   static func `init`(fullName: String) -> Civilmaker {
-      
-      let newCM = Civilmaker()
-      
-      newCM.fullName = fullName
-      
-      
-      return newCM
-      
-   }
-//   Full initializer
-   static func `init`(fullName: String, civilpoints: Int, image: UIImage?, imageURL: URL?) -> Civilmaker {
-      
-      let newCM = Civilmaker()
-      newCM.fullName = fullName
-      newCM.civilpoints = civilpoints
-      newCM.dateOfCreation = Date()
-      
-      //MARK: Maybe rewise this
-      if let image = image {
-         newCM.setImage(image: image)
-      } else {
-         newCM.imageURLString = imageURL?.absoluteString
-      }
-      
-      return newCM
-   }
-   
-   
 }
+
+//Convenience properties
+extension Civilmaker {
+   var image: UIImage? {
+      get {
+         return nil
+      }
+      set {
+         
+      }
+   }
+}
+
+//Initializators
+extension Civilmaker {
+   convenience init(fullName: String) {
+      self.init()
+      
+      self.fullName = fullName
+      self.id = UUID.init().uuidString
+   }
+   convenience init(fullName: String, civilpoints: Int) {
+      self.init()
+      self.fullName = fullName
+      self.civilpoints = civilpoints
+      self.id = UUID.init().uuidString
+   }
+}
+
+
 
 //Полезность для создания массива из results
 extension Results {
+   
    var array: [T] {
       let array: [T] = self.map { (item) -> T in
          return item

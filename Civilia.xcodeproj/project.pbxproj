@@ -7,42 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BF799062988A0B62C90E6F7 /* Pods_Civilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C4A2E7B6E548C019CBF4CB7 /* Pods_Civilia.framework */; };
 		ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E831F18F7F4004CC420 /* AppDelegate.swift */; };
 		ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* MainViewController.swift */; };
 		ED191E891F18F7F4004CC420 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E871F18F7F4004CC420 /* Main.storyboard */; };
-		ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */; };
 		ED191E8E1F18F7F4004CC420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8D1F18F7F4004CC420 /* Assets.xcassets */; };
 		ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */; };
 		ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */; };
-		ED191E9C1F18FD87004CC420 /* OldCivilmakerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9B1F18FD87004CC420 /* OldCivilmakerDataModel.swift */; };
 		ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9D1F190B5E004CC420 /* +dataSource.swift */; };
 		ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */; };
 		ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA11F195FC3004CC420 /* ColorSet.swift */; };
 		ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA51F196758004CC420 /* AddCMViewController.swift */; };
 		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
+		EDAD6CB91F30CEF000E2B9EF /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAD6CB71F30CEF000E2B9EF /* Realm.framework */; };
+		EDAD6CBA1F30CEF000E2B9EF /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDAD6CB71F30CEF000E2B9EF /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EDAD6CBB1F30CEF000E2B9EF /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAD6CB81F30CEF000E2B9EF /* RealmSwift.framework */; };
+		EDAD6CBC1F30CEF000E2B9EF /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDAD6CB81F30CEF000E2B9EF /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EDAEED261F25C3C700150A53 /* CivilmakerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAEED251F25C3C700150A53 /* CivilmakerDataModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EDAD6CBD1F30CEF100E2B9EF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EDAD6CBC1F30CEF000E2B9EF /* RealmSwift.framework in Embed Frameworks */,
+				EDAD6CBA1F30CEF000E2B9EF /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1F6759425B81FC878AC231CA /* Pods-Civilia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Civilia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Civilia/Pods-Civilia.debug.xcconfig"; sourceTree = "<group>"; };
-		8C4A2E7B6E548C019CBF4CB7 /* Pods_Civilia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Civilia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9814D7F86B9754B4C59F844F /* Pods-Civilia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Civilia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Civilia/Pods-Civilia.release.xcconfig"; sourceTree = "<group>"; };
 		ED191E801F18F7F4004CC420 /* Civilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Civilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED191E831F18F7F4004CC420 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED191E851F18F7F4004CC420 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ED191E881F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Civilia.xcdatamodel; sourceTree = "<group>"; };
 		ED191E8D1F18F7F4004CC420 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED191E901F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED191E921F18F7F4004CC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTableViewCell.swift; sourceTree = "<group>"; };
-		ED191E9B1F18FD87004CC420 /* OldCivilmakerDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldCivilmakerDataModel.swift; sourceTree = "<group>"; };
 		ED191E9D1F190B5E004CC420 /* +dataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+dataSource.swift"; sourceTree = "<group>"; };
 		ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+tableViewDelegate.swift"; sourceTree = "<group>"; };
 		ED191EA11F195FC3004CC420 /* ColorSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		ED191EA51F196758004CC420 /* AddCMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCMViewController.swift; sourceTree = "<group>"; };
 		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
+		EDAD6CB71F30CEF000E2B9EF /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
+		EDAD6CB81F30CEF000E2B9EF /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 		EDAEED251F25C3C700150A53 /* CivilmakerDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivilmakerDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,28 +64,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BF799062988A0B62C90E6F7 /* Pods_Civilia.framework in Frameworks */,
+				EDAD6CBB1F30CEF000E2B9EF /* RealmSwift.framework in Frameworks */,
+				EDAD6CB91F30CEF000E2B9EF /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9D6571EA5941B18739CD77F7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8C4A2E7B6E548C019CBF4CB7 /* Pods_Civilia.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		ED191E771F18F7F4004CC420 = {
 			isa = PBXGroup;
 			children = (
 				ED191E821F18F7F4004CC420 /* Civilia */,
 				ED191E811F18F7F4004CC420 /* Products */,
-				FE45C270E09925A29336C8D7 /* Pods */,
-				9D6571EA5941B18739CD77F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,13 +96,14 @@
 				ED191EA71F196761004CC420 /* AddCMViewCOntroller */,
 				ED191E871F18F7F4004CC420 /* Main.storyboard */,
 				EDAEED251F25C3C700150A53 /* CivilmakerDataModel.swift */,
-				ED191E9B1F18FD87004CC420 /* OldCivilmakerDataModel.swift */,
 				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
+				ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */,
 				ED191E8D1F18F7F4004CC420 /* Assets.xcassets */,
 				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
 				ED191E921F18F7F4004CC420 /* Info.plist */,
-				ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */,
+				EDAD6CB71F30CEF000E2B9EF /* Realm.framework */,
+				EDAD6CB81F30CEF000E2B9EF /* RealmSwift.framework */,
 			);
 			path = Civilia;
 			sourceTree = "<group>";
@@ -108,7 +113,6 @@
 			children = (
 				ED191E851F18F7F4004CC420 /* MainViewController.swift */,
 				ED191E9D1F190B5E004CC420 /* +dataSource.swift */,
-				ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */,
 				ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */,
 			);
 			name = MainViewController;
@@ -122,15 +126,6 @@
 			name = AddCMViewCOntroller;
 			sourceTree = "<group>";
 		};
-		FE45C270E09925A29336C8D7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1F6759425B81FC878AC231CA /* Pods-Civilia.debug.xcconfig */,
-				9814D7F86B9754B4C59F844F /* Pods-Civilia.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,12 +133,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED191E951F18F7F4004CC420 /* Build configuration list for PBXNativeTarget "Civilia" */;
 			buildPhases = (
-				E791363852675A5AF5AAA8C4 /* [CP] Check Pods Manifest.lock */,
 				ED191E7C1F18F7F4004CC420 /* Sources */,
 				ED191E7D1F18F7F4004CC420 /* Frameworks */,
 				ED191E7E1F18F7F4004CC420 /* Resources */,
-				A8B2B5B9F95799BB64CC33E6 /* [CP] Embed Pods Frameworks */,
-				C5BB8E4D70B15D1B9E1AAD28 /* [CP] Copy Pods Resources */,
+				EDAD6CBD1F30CEF100E2B9EF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,54 +195,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A8B2B5B9F95799BB64CC33E6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Civilia/Pods-Civilia-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C5BB8E4D70B15D1B9E1AAD28 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Civilia/Pods-Civilia-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E791363852675A5AF5AAA8C4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		ED191E7C1F18F7F4004CC420 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -257,8 +202,6 @@
 			files = (
 				EDAEED261F25C3C700150A53 /* CivilmakerDataModel.swift in Sources */,
 				ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */,
-				ED191E8C1F18F7F4004CC420 /* Civilia.xcdatamodeld in Sources */,
-				ED191E9C1F18FD87004CC420 /* OldCivilmakerDataModel.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
 				ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */,
 				ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */,
@@ -386,10 +329,13 @@
 		};
 		ED191E961F18F7F4004CC420 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F6759425B81FC878AC231CA /* Pods-Civilia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6WBATSU6B5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Civilia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GGhost.Civilia;
@@ -400,10 +346,13 @@
 		};
 		ED191E971F18F7F4004CC420 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9814D7F86B9754B4C59F844F /* Pods-Civilia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6WBATSU6B5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Civilia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GGhost.Civilia;
@@ -434,19 +383,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		ED191E8A1F18F7F4004CC420 /* Civilia.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */,
-			);
-			currentVersion = ED191E8B1F18F7F4004CC420 /* Civilia.xcdatamodel */;
-			path = Civilia.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = ED191E781F18F7F4004CC420 /* Project object */;
 }

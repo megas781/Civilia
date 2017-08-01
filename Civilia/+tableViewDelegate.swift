@@ -15,8 +15,6 @@ extension MainViewController {
       
       tableView.deselectRow(at: indexPath, animated: false)
       
-      
-      
    }
    
 }

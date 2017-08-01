@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import RealmSwift
 
 let realm = try! Realm()
@@ -25,12 +24,26 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Properties
    
-   var accounts: [Civilmaker] = []
-   
+   private var realm: Realm!
+   private var civilmakerResults: Results<Civilmaker>!
    
    //MARK: +++ Computed Properties
    
-   
+   var civilmakers: [Civilmaker] {
+      get {
+         //Я решил пока что всегда всё соритровать по количеству civilpoint'ов по убыванию(от большего вниз к меньшему)
+         
+         var returnArray: [Civilmaker] = self.civilmakerResults.map { (civilmaker) -> Civilmaker in
+            return civilmaker
+         }
+         
+         returnArray.sort { (one, two) -> Bool in
+            return one.civilpoints > two.civilpoints
+         }
+         
+         return returnArray
+      }
+   }
    
    
    //MARK: +++ Overrides of Appearance
@@ -38,30 +51,33 @@ class MainViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-//      self.navigationItem.leftBarButtonItem = editButtonItem
-      
-      self.publishButtonBackgourdRect.layer.cornerRadius = self.publishButtonBackgourdRect.frame.size.height/4
-//      self.navigationItem.leftBarButtonItem!.tintColor = .white
-      
-      
-      //TODO: FIX_IT
-      self.accounts = realm.objects(Civilmaker.self).array
-      
-      if self.accounts.count == 0 {
-         self.accounts = [
-            //TODO: FIX_IT
-            
-         ]
+      //Realm Setup
+      do {
+         self.realm = try! Realm()
+         self.civilmakerResults = realm.objects(Civilmaker.self)
       }
       
-      print(self.accounts)
+      setupUI()
       
+      try! realm.write {
+         realm.add(Civilmaker.init(fullName: "Glib", civilpoints: 4))
+         realm.add(Civilmaker.init(fullName: "Lexa", civilpoints: 8))
+      }
+      
+      print("self.civilmakers before: \(civilmakers)")
+      try! realm.write {
+         for civilmaker in civilmakers {
+            civilmaker.civilpoints += 1
+         }
+      }
+      print("self.civilmakers after : \(civilmakers)")
+      
+      
+      try! realm.write {
+         realm.deleteAll()
+      }
    }
    
-   override func viewDidAppear(_ animated: Bool) {
-      //TODO: FIX_IT
-//      Civilmaker.save(accounts: self.accounts)
-   }
    
    
    //MARK: +++ Overrides of Superclass
@@ -83,9 +99,9 @@ class MainViewController: UITableViewController {
    
    @IBAction func publishButtonTapped(_ sender: UIButton) {
       
-      let ac = UIActivityViewController.init(activityItems: [self.accounts.civilmakerStringStatistics], applicationActivities: nil)
+//      let ac = UIActivityViewController.init(activityItems: [self.accounts.civilmakerStringStatistics], applicationActivities: nil)
       
-      self.present(ac, animated: true, completion: nil)
+//      self.present(ac, animated: true, completion: nil)
       
    }
    
@@ -100,6 +116,11 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Updating UI Functions
    
+   func setupUI() {
+      self.navigationItem.leftBarButtonItem = editButtonItem
+      self.publishButtonBackgourdRect.layer.cornerRadius = self.publishButtonBackgourdRect.frame.size.height/4
+      self.navigationItem.leftBarButtonItem!.tintColor = .white
+   }
    
    
    
@@ -112,50 +133,12 @@ class MainViewController: UITableViewController {
    
    
    
-   
    //MARK: +++ Navigation methods
    
    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
       
-      guard let identifier = segue.identifier else {
-         print("нет identifier'a | это не нормально")
-         return
-      }
       
-      switch identifier {
-      case "createUnwind":
-         print("create button")
-         
-         let src = segue.source as! AddCMViewController
-         
-         guard let newCivilmaker = src.newCivilmaker else {
-            fatalError("Пустой newCivilMaker")
-         }
-         
-         //TODO: Сделать анимацию добвления
-         
-         self.accounts.append(newCivilmaker)
-         
-         //TODO: FIX_IT
-         try! realm.write {
-            realm.add(newCivilmaker)
-         }
-         
-//         Civilmaker.save(accounts: self.accounts)
-         
-         
-         self.tableView.reloadData()
-         
-         break
-         
-      case "cancelUnwind":
-         
-         print("cancelButton")
-         break
-         
-      default:
-         fatalError()
-      }
+      
    }
    
    

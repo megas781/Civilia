@@ -7,6 +7,6 @@ target 'Civilia' do
 
   # Pods for Civilia
 
-pod 'RealmSwift'
+  # pod 'RealmSwift'
 
 end

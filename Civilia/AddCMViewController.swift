@@ -193,6 +193,7 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       if sender.text == "0" {
          sender.text = ""
       }
+      
    }
    
    
