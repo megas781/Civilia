@@ -27,18 +27,20 @@ class MainViewController: UITableViewController {
    private var realm: Realm!
    private var civilmakerResults: Results<Civilmaker>!
    
+//   private var civilmakerNotificationToken: NotificationToken!
+   
    //MARK: +++ Computed Properties
    
    var civilmakers: [Civilmaker] {
       get {
-         //Я решил пока что всегда всё соритровать по количеству civilpoint'ов по убыванию(от большего вниз к меньшему)
          
          var returnArray: [Civilmaker] = self.civilmakerResults.map { (civilmaker) -> Civilmaker in
             return civilmaker
          }
          
          returnArray.sort { (one, two) -> Bool in
-            return one.civilpoints > two.civilpoints
+            
+            return one.dateOfCreation < two.dateOfCreation
          }
          
          return returnArray
@@ -59,23 +61,6 @@ class MainViewController: UITableViewController {
       
       setupUI()
       
-      try! realm.write {
-         realm.add(Civilmaker.init(fullName: "Glib", civilpoints: 4))
-         realm.add(Civilmaker.init(fullName: "Lexa", civilpoints: 8))
-      }
-      
-      print("self.civilmakers before: \(civilmakers)")
-      try! realm.write {
-         for civilmaker in civilmakers {
-            civilmaker.civilpoints += 1
-         }
-      }
-      print("self.civilmakers after : \(civilmakers)")
-      
-      
-      try! realm.write {
-         realm.deleteAll()
-      }
    }
    
    
@@ -117,6 +102,9 @@ class MainViewController: UITableViewController {
    //MARK: +++ Updating UI Functions
    
    func setupUI() {
+      
+      editButtonItem.action = #selector(self.toggleEditingMode(sender:))
+      
       self.navigationItem.leftBarButtonItem = editButtonItem
       self.publishButtonBackgourdRect.layer.cornerRadius = self.publishButtonBackgourdRect.frame.size.height/4
       self.navigationItem.leftBarButtonItem!.tintColor = .white
@@ -126,7 +114,17 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
-   
+   func toggleEditingMode(sender: UIBarButtonItem) {
+      tableView.setEditing(!tableView.isEditing, animated: true)
+      if tableView.isEditing {
+         sender.title = "Done"
+         sender.style = .done
+      } else {
+         sender.title = "Edit"
+         sender.style = .plain
+      }
+      
+   }
    
    
    //MARK: +++ Custom functions

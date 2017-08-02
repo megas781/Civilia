@@ -21,13 +21,15 @@ class Civilmaker: Object {
    
    fileprivate dynamic var id : String = ""
    
+   //Index of the cell, the Civilmaker belongs to
+   var cellIndex: Int?
    
    //Overrides
    override class func primaryKey() -> String {
       return "id"
    }
    override class func ignoredProperties() -> [String] {
-      return ["image"]
+      return ["image","cellIndex"]
    }
 }
 
@@ -45,6 +47,7 @@ extension Civilmaker {
 
 //Initializators
 extension Civilmaker {
+   
    convenience init(fullName: String) {
       self.init()
       
@@ -61,30 +64,6 @@ extension Civilmaker {
 
 
 
-//Полезность для создания массива из results
-extension Results {
-   
-   var array: [T] {
-      let array: [T] = self.map { (item) -> T in
-         return item
-      }
-      switch array {
-      case _ where array is [Civilmaker]:
-         
-         //Здесь кастим до [Civilmaker], сортируем и возвращаем как [T]
-         return (array as! [Civilmaker]).sorted(by: { (one, two) -> Bool in
-            return one.dateOfCreation > two.dateOfCreation
-         }) as! [T]
-         
-      default:
-         print("Array ordering for this Results<T> generic type is not implemented")
-         return array
-      }
-      
-   }
-   
-   
-}
 
 //Это, чтобы публиковать на стену статистику
 extension Array {

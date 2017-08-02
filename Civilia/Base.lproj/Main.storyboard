@@ -60,7 +60,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="KM2-xJ-8UU" customClass="GeneralTableViewCell" customModule="Civilia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="KM2-xJ-8UU" customClass="GeneralTableViewCell" customModule="Civilia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM2-xJ-8UU" id="djY-fS-3Yh">
@@ -99,7 +99,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-9.2233720368547758e+18" maximumValue="9.2233720368547758e+18" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-IR-abj">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" minimumValue="-9.2233720368547758e+18" maximumValue="9.2233720368547758e+18" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-IR-abj">
                                             <rect key="frame" x="218" y="40" width="94" height="29"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -114,7 +114,7 @@
                                         <constraint firstItem="aHO-IR-abj" firstAttribute="bottom" secondItem="wGO-Ne-Qwu" secondAttribute="bottom" constant="-2" id="4Hc-6b-uKH"/>
                                         <constraint firstItem="wGO-Ne-Qwu" firstAttribute="leading" secondItem="LHr-je-b5k" secondAttribute="trailing" constant="8" id="CIV-tl-NBz"/>
                                         <constraint firstItem="YcZ-Ux-E5O" firstAttribute="top" secondItem="LHr-je-b5k" secondAttribute="top" constant="2" id="GtE-Ui-Ph8"/>
-                                        <constraint firstItem="aHO-IR-abj" firstAttribute="leading" secondItem="wGO-Ne-Qwu" secondAttribute="trailing" constant="8" id="OM7-4r-cNq"/>
+                                        <constraint firstItem="wGO-Ne-Qwu" firstAttribute="trailing" secondItem="aHO-IR-abj" secondAttribute="leading" constant="-8" identifier="betweenStackAndStepper" id="OIX-Ht-QUb"/>
                                         <constraint firstItem="LHr-je-b5k" firstAttribute="centerY" secondItem="djY-fS-3Yh" secondAttribute="centerY" id="Smh-y7-JyU"/>
                                         <constraint firstItem="YcZ-Ux-E5O" firstAttribute="leading" secondItem="LHr-je-b5k" secondAttribute="trailing" constant="8" id="YYb-NM-bgC"/>
                                         <constraint firstItem="YcZ-Ux-E5O" firstAttribute="trailing" secondItem="djY-fS-3Yh" secondAttribute="trailingMargin" id="a8A-QE-ggz"/>
@@ -129,6 +129,7 @@
                                     <outlet property="nameLabel" destination="YcZ-Ux-E5O" id="Kn3-mV-Sb6"/>
                                     <outlet property="stepper" destination="aHO-IR-abj" id="2GS-h6-Fe2"/>
                                     <outlet property="theImageView" destination="LHr-je-b5k" id="OVR-XR-zCt"/>
+                                    <outlet property="theStack" destination="wGO-Ne-Qwu" id="32w-Uf-S9E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

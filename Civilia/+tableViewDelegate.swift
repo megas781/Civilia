@@ -13,8 +13,17 @@ extension MainViewController {
    
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
+      
+      if let index = tableView.indexPathForSelectedRow {
+         let cell = tableView.cellForRow(at: index) as! GeneralTableViewCell
+         
+         print("civilmaker; source order: \(cell.civilmaker.cellIndex)")
+         
+      }
+      
       tableView.deselectRow(at: indexPath, animated: false)
       
    }
+   
    
 }
