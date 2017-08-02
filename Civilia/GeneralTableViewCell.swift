@@ -13,9 +13,19 @@ class GeneralTableViewCell: UITableViewCell {
    var viewController: MainViewController!
    var indexPath: IndexPath!
    var civilmaker: Civilmaker! {
-      willSet {
-         self.nameLabel.text = newValue.fullName
-         self.civilPointsLabel.text = String(newValue.civilpoints)
+      didSet {
+         self.nameLabel.text = civilmaker.fullName
+         self.civilPointsLabel.text = String(civilmaker.civilpoints)
+         
+         if let customImage = civilmaker.image {
+            
+            self.theImageView.image = customImage
+            
+         } else {
+            
+         }
+         
+         
       }
    }
    
@@ -61,6 +71,8 @@ class GeneralTableViewCell: UITableViewCell {
             civilmaker.cellIndex = indexPath.row
          }
       }
+      
+      self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/12
    }
    
    

@@ -17,7 +17,9 @@ class Civilmaker: Object {
    
    
    fileprivate dynamic var storedImageURLString: String? = nil
+   
    fileprivate dynamic var storedImageData : Data? = nil
+   fileprivate let storedImageOrientation = RealmOptional<Int>()
    
    fileprivate dynamic var id : String = ""
    
@@ -29,20 +31,63 @@ class Civilmaker: Object {
       return "id"
    }
    override class func ignoredProperties() -> [String] {
-      return ["image","cellIndex"]
+      return ["image","imageURL","cellIndex"]
    }
 }
 
 //Convenience properties
 extension Civilmaker {
+   
    var image: UIImage? {
       get {
-         return nil
+         
+         if let data = self.storedImageData {
+            
+            guard let orientation = self.storedImageOrientation.value else {
+               fatalError("пустое свойство imageOrientation")
+            }
+            guard let retrievedImage = UIImage(data: data) else {
+               return nil
+            }
+            switch orientation {
+            case 0:
+               return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .up)
+            case 1:
+               return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .down)
+            case 2:
+               return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .left)
+            case 3:
+               return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .right)
+            default:
+               fatalError("not implemented case")
+            } 
+            
+            
+         } else {
+            return nil
+         }
       }
       set {
-         
+         if let newValue = newValue {
+            self.storedImageData = UIImagePNGRepresentation(newValue)
+            self.storedImageOrientation.value = newValue.imageOrientation.rawValue
+         }
       }
    }
+   
+   var imageURL: URL? {
+      get {
+         if let string = self.storedImageURLString {
+            return URL(string: string)
+         } else {
+            return nil
+         }
+      }
+      set {
+         self.storedImageURLString = newValue?.absoluteString
+      }
+   }
+   
 }
 
 //Initializators

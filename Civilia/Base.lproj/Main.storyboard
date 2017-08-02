@@ -188,6 +188,7 @@
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                         <connections>
                                                             <action selector="nameTextFieldReturnKeyTapped:" destination="Yxc-nC-XsI" eventType="primaryActionTriggered" id="Etp-hZ-wJQ"/>
+                                                            <action selector="nameTextFieldTouchUpInside:" destination="Yxc-nC-XsI" eventType="editingDidBegin" id="QXI-ZA-RmV"/>
                                                             <action selector="nameTextFieldValueChanged:" destination="Yxc-nC-XsI" eventType="editingChanged" id="Esy-Gw-CxX"/>
                                                         </connections>
                                                     </textField>
@@ -206,7 +207,7 @@
                                                         <rect key="frame" x="145" y="0.0" width="143" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="ASCIICapableNumberPad"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="yes" keyboardType="ASCIICapableNumberPad"/>
                                                         <connections>
                                                             <action selector="civilpointsTextFieldReturnButtonTapped:" destination="Yxc-nC-XsI" eventType="primaryActionTriggered" id="tUU-5R-0ce"/>
                                                             <action selector="civilpointsTextFieldTouchUpInside:" destination="Yxc-nC-XsI" eventType="editingDidBegin" id="3wx-bO-8VU"/>

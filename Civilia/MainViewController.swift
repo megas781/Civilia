@@ -135,7 +135,28 @@ class MainViewController: UITableViewController {
    
    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
       
+      guard let identifier = segue.identifier else {
+         fatalError("Сигвей без идентификатора")
+      }
       
+      switch identifier {
+         case "createUnwind":
+         let src = segue.source as! AddCMViewController
+         
+         guard let newCivilmaker = src.newCivilmaker else {
+            fatalError("Couldn't retrieve the new civilmaker")
+         }
+         
+         try! realm.write {
+            realm.add(newCivilmaker)
+         }
+         tableView.reloadData()
+         
+         case "cancelUnwind":
+         print("cancelUnwind executed")
+      default:
+         fatalError("Mustn't pass to default case")
+      }
       
    }
    

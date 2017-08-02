@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCMViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddCMViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
    
    //MARK: +++ Outlets
    
@@ -57,7 +57,13 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
          //Добавление gr для segmentedControl
          gr = UITapGestureRecognizer.init(target: self, action: #selector(self.segmentedControlTapped(_:)))
          self.segmentedControl.addGestureRecognizer(gr)
+         
+//         //Добавление gr для nameTextField
+//         gr = UITapGestureRecognizer.init(target: self, action: #selector(self.nameTextFieldTouchUpInsude(sender:)))
+//         self.nameTextField.addGestureRecognizer(gr)
       }
+      
+      self.civilpointsTextField.delegate = self
       
    }
    
@@ -78,6 +84,8 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       
       if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
          
+         
+         
          self.imageButton.setImage(pickedImage, for: .normal)
          
       } else {
@@ -88,6 +96,15 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       
    }
    
+   //Защита от того, чтобы в civilpointsTextField не появилось букв
+   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+      
+      if ["0","1","2","3","4","5","6","7","8","9",""].contains(string) {
+         return true
+      } else {
+         return false
+      }
+   }
    
    
    //MARK: +++ Implementation of custom protocols
@@ -187,6 +204,16 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       self.civilpointsTextField.becomeFirstResponder()
    }
    
+   //nameTextField did become firt responder. Implemented to return zero to civilpointsTextFeild, if it is empty
+   @IBAction func nameTextFieldTouchUpInside(_ sender: UITextField) {
+      
+      if self.civilpointsTextField.text == nil || self.civilpointsTextField.text == "" {
+         self.civilpointsTextField.text = "0"
+      }
+      
+   }
+   
+   
    //civipointstextField did become first responder
    //Чтобы убирать ноль
    @IBAction func civilpointsTextFieldTouchUpInside(_ sender: UITextField) {
@@ -266,11 +293,16 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
       //Создаем civilmaker'a
       
       
-      
       //TODO: FIX_IT
-//      self.newCivilmaker = Civilmaker.init(fullName: self.nameTextField.text!, civilpoints: Int(self.civilpointsTextField.text!)!, image: self.imageButton.imageView?.image, imageURL: URL.init(string: self.urlTextField.text!))
+      guard let name = self.nameTextField.text,
+         let civilpointsText = self.civilpointsTextField.text,
+         let civilpoints = Int(civilpointsText) else {
+            fatalError("Что-то не смог извлечь")
+      }
       
       
+      
+      newCivilmaker = Civilmaker.init(fullName: name, civilpoints: civilpoints, dateOfCreation: Date(), image: self.imageButton.imageView?.image, imageURL: self.urlTextField.text == nil ? nil : URL(string: self.urlTextField.text!))
       
       
       self.performSegue(withIdentifier: "createUnwind", sender: self)
@@ -284,8 +316,19 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       self.resignAnyFirstResponder()
    }
-   
-   
-   
-   
+    
+}
+
+fileprivate extension Civilmaker {
+   convenience init(fullName: String, civilpoints: Int, dateOfCreation: Date, image: UIImage?, imageURL: URL?) {
+      
+      //Здесь использую инициализатор, чтобы установить id, так как в этом расширении у меня нет доступа к этому свойству
+      self.init(fullName: fullName)
+      
+      self.civilpoints = civilpoints
+      self.dateOfCreation = dateOfCreation
+      self.image = image
+      self.imageURL = imageURL
+      
+   }
 }
