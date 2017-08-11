@@ -45,7 +45,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1h-Ri-fiT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                     <connections>
-                                        <action selector="publishButtonTapped:" destination="EeV-2S-k1I" eventType="touchUpInside" id="9b7-ae-3Mn"/>
+                                        <action selector="publishButtonTouchUpInside:" destination="EeV-2S-k1I" eventType="touchUpInside" id="4Uv-eL-deN"/>
                                     </connections>
                                 </button>
                             </subviews>

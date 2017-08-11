@@ -82,14 +82,16 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
-   @IBAction func publishButtonTapped(_ sender: UIButton) {
+   
+   
+   
+   @IBAction func publishButtonTouchUpInside(_ sender: UIButton) {
       
-//      let ac = UIActivityViewController.init(activityItems: [self.accounts.civilmakerStringStatistics], applicationActivities: nil)
+      let ac = UIActivityViewController.init(activityItems: [self.civilmakers.civilmakerStringStatistics], applicationActivities: nil)
       
-//      self.present(ac, animated: true, completion: nil)
+      self.present(ac, animated: true, completion: nil)
       
    }
-   
    
    
    
