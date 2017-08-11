@@ -26,6 +26,8 @@ class Civilmaker: Object {
    //Index of the cell, the Civilmaker belongs to
    var cellIndex: Int?
    
+   
+   
    //Overrides
    override class func primaryKey() -> String {
       return "id"
@@ -33,6 +35,7 @@ class Civilmaker: Object {
    override class func ignoredProperties() -> [String] {
       return ["image","imageURL","cellIndex"]
    }
+   
 }
 
 //Convenience properties
@@ -107,20 +110,19 @@ extension Civilmaker {
    }
 }
 
-
-
-
 //Это, чтобы публиковать на стену статистику
 extension Array {
    var civilmakerStringStatistics: String {
       if self is [Civilmaker] {
          
-         let array = self as! [Civilmaker]
+         let array = (self as! [Civilmaker]).sorted(by: { (one, two) -> Bool in
+            return one.civilpoints >= two.civilpoints
+         })
          
-         var value = "Last loaded results:\n\n"
+         var value = "Последние результаты:\n\n"
          
          for item in array {
-            value += "\(item.description)\n"
+            value += "\(item.fullName) – \(item.civilpoints) цивилпоинтов\n"
          }
          
          return value
