@@ -11,17 +11,17 @@ import Foundation
 import UIKit
 class Civilmaker: Object {
    
-   dynamic var fullName: String = ""
-   dynamic var civilpoints: Int = 0
-   dynamic var dateOfCreation: Date = Date()
+   @objc dynamic var fullName: String = ""
+   @objc dynamic var civilpoints: Int = 0
+   @objc dynamic var dateOfCreation: Date = Date()
    
    
-   fileprivate dynamic var storedImageURLString: String? = nil
+   @objc fileprivate dynamic var storedImageURLString: String? = nil
    
-   fileprivate dynamic var storedImageData : Data? = nil
+   @objc fileprivate dynamic var storedImageData : Data? = nil
    fileprivate let storedImageOrientation = RealmOptional<Int>()
    
-   fileprivate dynamic var id : String = ""
+   @objc fileprivate dynamic var id : String = ""
    
    //Index of the cell, the Civilmaker belongs to
    var cellIndex: Int?

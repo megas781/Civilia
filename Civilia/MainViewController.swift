@@ -116,7 +116,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
-   func toggleEditingMode(sender: UIBarButtonItem) {
+   @objc func toggleEditingMode(sender: UIBarButtonItem) {
       tableView.setEditing(!tableView.isEditing, animated: true)
       if tableView.isEditing {
          sender.title = "Done"
