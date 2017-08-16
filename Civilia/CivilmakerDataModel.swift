@@ -70,10 +70,12 @@ extension Civilmaker {
             return nil
          }
       }
-      set {
-         if let newValue = newValue {
-            self.storedImageData = UIImagePNGRepresentation(newValue)
-            self.storedImageOrientation.value = newValue.imageOrientation.rawValue
+      set (newImage) {
+         if let newImage = newImage {
+            self.storedImageData = UIImagePNGRepresentation(newImage)
+            self.storedImageOrientation.value = newImage.imageOrientation.rawValue
+         } else {
+            self.storedImageData = nil
          }
       }
    }
@@ -108,10 +110,22 @@ extension Civilmaker {
       self.civilpoints = civilpoints
       self.id = UUID.init().uuidString
    }
+   convenience init(fullName: String, civilpoints: Int, dateOfCreation: Date, image: UIImage?, imageURL: URL?) {
+      
+      //Здесь использую инициализатор, чтобы установить id, так как в этом расширении у меня нет доступа к этому свойству
+      self.init(fullName: fullName)
+      
+      self.civilpoints = civilpoints
+      self.dateOfCreation = dateOfCreation
+      self.image = image
+      self.imageURL = imageURL
+      
+   }
 }
 
 //Это, чтобы публиковать на стену статистику
 extension Array {
+   
    var civilmakerStringStatistics: String {
       if self is [Civilmaker] {
          
