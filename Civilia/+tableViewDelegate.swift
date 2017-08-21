@@ -17,7 +17,7 @@ extension MainViewController {
       if let index = tableView.indexPathForSelectedRow {
          let cell = tableView.cellForRow(at: index) as! GeneralTableViewCell
          
-         print("civilmaker; source order: \(cell.civilmaker.cellIndex)")
+         print("civilmaker; source order: \(String(describing: cell.civilmaker.cellIndex))")
          
       }
       

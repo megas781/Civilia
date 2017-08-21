@@ -115,7 +115,7 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
    //MARK: +++ IBActions of Tap
    
    //Это теперь селектор
-   func segmentedControlTapped(_ sender: UITapGestureRecognizer) {
+   @objc func segmentedControlTapped(_ sender: UITapGestureRecognizer) {
       self.resignAnyFirstResponder()
       
       //Здесь мы будем смотреть на выбранный сегмент и, в зависимости от него, будем презентовать тот или иной view
@@ -268,7 +268,7 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
    //MARK: +++ Selectors
    
    //Чтобы убирать клавиатуру
-   func didTapContentView(sender: UITapGestureRecognizer) {
+   @objc func didTapContentView(sender: UITapGestureRecognizer) {
       self.resignAnyFirstResponder()
    }
    
@@ -319,16 +319,4 @@ class AddCMViewController: UIViewController, UINavigationControllerDelegate, UII
     
 }
 
-fileprivate extension Civilmaker {
-   convenience init(fullName: String, civilpoints: Int, dateOfCreation: Date, image: UIImage?, imageURL: URL?) {
-      
-      //Здесь использую инициализатор, чтобы установить id, так как в этом расширении у меня нет доступа к этому свойству
-      self.init(fullName: fullName)
-      
-      self.civilpoints = civilpoints
-      self.dateOfCreation = dateOfCreation
-      self.image = image
-      self.imageURL = imageURL
-      
-   }
-}
+
