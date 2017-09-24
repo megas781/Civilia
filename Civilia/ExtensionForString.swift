@@ -18,7 +18,7 @@ extension String {
    //Достать сабстроку по номерам ячеек
    subscript (indexStart: Int,indexEnd: Int) -> String {
       if indexStart < indexEnd {
-         return self.substring(with: self.index(indexStart)..<self.index(indexEnd+1))
+         return String(self[self.index(indexStart)..<self.index(indexEnd+1)])
       } else {
          if indexStart == indexEnd {
             return String(self[indexStart])

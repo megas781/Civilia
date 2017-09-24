@@ -27,11 +27,11 @@ class MainViewController: UITableViewController {
    private var realm: Realm!
    private var civilmakerResults: Results<Civilmaker>!
    
-//   private var civilmakerNotificationToken: NotificationToken!
+   var inMemoryCivilmakers: [Civilmaker] = []
    
    //MARK: +++ Computed Properties
    
-   var civilmakers: [Civilmaker] {
+   var computedCivilmakers: [Civilmaker] {
       get {
          
          var returnArray: [Civilmaker] = self.civilmakerResults.map { (civilmaker) -> Civilmaker in
@@ -55,8 +55,12 @@ class MainViewController: UITableViewController {
       
       //Realm Setup
       do {
+         //Инициализируем realm
          self.realm = try! Realm()
+         //Fetch'им в civilmakerResults наши объекты
          self.civilmakerResults = realm.objects(Civilmaker.self)
+         //Обновляем наш in-memory массив
+         self.inMemoryCivilmakers = self.computedCivilmakers
       }
       
       setupUI()
@@ -87,7 +91,7 @@ class MainViewController: UITableViewController {
    
    @IBAction func publishButtonTouchUpInside(_ sender: UIButton) {
       
-      let ac = UIActivityViewController.init(activityItems: [self.civilmakers.civilmakerStringStatistics], applicationActivities: nil)
+      let ac = UIActivityViewController.init(activityItems: [self.computedCivilmakers.civilmakerStringStatistics], applicationActivities: nil)
       
       self.present(ac, animated: true, completion: nil)
       
@@ -116,7 +120,7 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
-   func toggleEditingMode(sender: UIBarButtonItem) {
+   @objc func toggleEditingMode(sender: UIBarButtonItem) {
       tableView.setEditing(!tableView.isEditing, animated: true)
       if tableView.isEditing {
          sender.title = "Done"
@@ -131,7 +135,10 @@ class MainViewController: UITableViewController {
    
    //MARK: +++ Custom functions
    
-   
+   func reloadData() {
+      self.inMemoryCivilmakers = self.computedCivilmakers
+      tableView.reloadData()
+   }
    
    //MARK: +++ Navigation methods
    
@@ -142,7 +149,8 @@ class MainViewController: UITableViewController {
       }
       
       switch identifier {
-         case "createUnwind":
+         
+      case "createUnwind":
          let src = segue.source as! AddCMViewController
          
          guard let newCivilmaker = src.newCivilmaker else {
@@ -152,10 +160,11 @@ class MainViewController: UITableViewController {
          try! realm.write {
             realm.add(newCivilmaker)
          }
-         tableView.reloadData()
+         self.reloadData()
          
-         case "cancelUnwind":
+      case "cancelUnwind":
          print("cancelUnwind executed")
+         
       default:
          fatalError("Mustn't pass to default case")
       }

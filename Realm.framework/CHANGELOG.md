@@ -1,3 +1,60 @@
+2.10.1 Release notes (2017-09-14)
+=============================================================
+
+Swift binaries are now produced for Swift 3.0, 3.0.1, 3.0.2, 3.1, 3.2 and 4.0.
+
+### Enhancements
+
+* Auxiliary files are excluded from backup by default.
+
+### Bugfixes
+
+* Fix more cases where assigning an RLMArray property to itself would clear the
+  RLMArray.
+
+2.10.0 Release notes (2017-08-21)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Expose additional authentication-related errors that might be reported by
+  a Realm Object Server.
+* An error handler can now be registered on `{RLM}SyncUser`s in order to
+  report authentication-related errors that affect the user.
+
+### Bugfixes
+
+* Sorting Realm collection types no longer throws an exception on iOS 7.
+* Sync users are now automatically logged out upon receiving certain types
+  of errors that indicate they are no longer logged into the server. For
+  example, users who are authenticated using third-party credentials will find
+  themselves logged out of the Realm Object Server if the third-party identity
+  service indicates that their credential is no longer valid.
+* Address high CPU usage and hangs in certain cases when processing collection
+  notifications in highly-connected object graphs.
+
+2.9.1 Release notes (2017-08-01)
+=============================================================
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* The `shouldCompactOnLaunch` block is no longer invoked if the Realm at that
+  path is already open on other threads.
+* Fix an assertion failure in collection notifications when changes are made to
+  the schema via sync while the notification block is active.
+
 2.9.0 Release notes (2017-07-26)
 =============================================================
 

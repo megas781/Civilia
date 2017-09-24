@@ -9,28 +9,52 @@
 import RealmSwift
 import Foundation
 import UIKit
+
+struct PrimeFirebaseKeys {
+   static let allProfiles = "allProfiles"
+}
+
+struct FirebaseKeys {
+   static let fullName = "fullName"
+   static let civilpoints = "civilpoints"
+   static let dateOfCreationSinceReferenceDate = "dateOfCreationSinceReferenceDate"
+   static let uuid = "uuid"
+}
+
 class Civilmaker: Object {
    
-   dynamic var fullName: String = ""
-   dynamic var civilpoints: Int = 0
-   dynamic var dateOfCreation: Date = Date()
+   @objc dynamic var fullName: String = ""
+   @objc dynamic var civilpoints: Int = 0
+   @objc dynamic var dateOfCreation: Date = Date()
    
    
-   fileprivate dynamic var storedImageURLString: String? = nil
+   @objc fileprivate dynamic var storedImageURLString: String? = nil
    
-   fileprivate dynamic var storedImageData : Data? = nil
+   @objc fileprivate dynamic var storedImageData : Data? = nil
    fileprivate let storedImageOrientation = RealmOptional<Int>()
    
-   fileprivate dynamic var id : String = ""
+   @objc fileprivate dynamic var uuid : String = ""
+   func getUUID() -> String {
+      return uuid
+   }
    
    //Index of the cell, the Civilmaker belongs to
    var cellIndex: Int?
    
    
    
+   //Functions for Firebase
+   func getDictionary() -> [String: Any] {
+      
+      
+      
+      return [FirebaseKeys.fullName:self.fullName,FirebaseKeys.civilpoints: self.civilpoints, FirebaseKeys.dateOfCreationSinceReferenceDate: self.dateOfCreation.timeIntervalSinceReferenceDate,FirebaseKeys.uuid: self.uuid]
+   }
+   
+   
    //Overrides
    override class func primaryKey() -> String {
-      return "id"
+      return "uuid"
    }
    override class func ignoredProperties() -> [String] {
       return ["image","imageURL","cellIndex"]
@@ -70,10 +94,12 @@ extension Civilmaker {
             return nil
          }
       }
-      set {
-         if let newValue = newValue {
-            self.storedImageData = UIImagePNGRepresentation(newValue)
-            self.storedImageOrientation.value = newValue.imageOrientation.rawValue
+      set (newImage) {
+         if let newImage = newImage {
+            self.storedImageData = UIImagePNGRepresentation(newImage)
+            self.storedImageOrientation.value = newImage.imageOrientation.rawValue
+         } else {
+            self.storedImageData = nil
          }
       }
    }
@@ -100,18 +126,30 @@ extension Civilmaker {
       self.init()
       
       self.fullName = fullName
-      self.id = UUID.init().uuidString
+      self.uuid = UUID.init().uuidString
    }
    convenience init(fullName: String, civilpoints: Int) {
       self.init()
       self.fullName = fullName
       self.civilpoints = civilpoints
-      self.id = UUID.init().uuidString
+      self.uuid = UUID.init().uuidString
+   }
+   convenience init(fullName: String, civilpoints: Int, dateOfCreation: Date, image: UIImage?, imageURL: URL?) {
+      
+      //Здесь использую инициализатор, чтобы установить id, так как в этом расширении у меня нет доступа к этому свойству
+      self.init(fullName: fullName)
+      
+      self.civilpoints = civilpoints
+      self.dateOfCreation = dateOfCreation
+      self.image = image
+      self.imageURL = imageURL
+      
    }
 }
 
 //Это, чтобы публиковать на стену статистику
 extension Array {
+   
    var civilmakerStringStatistics: String {
       if self is [Civilmaker] {
          
@@ -131,6 +169,7 @@ extension Array {
       }
    }
 }
+
 
 
 

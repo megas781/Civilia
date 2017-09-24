@@ -8,5 +8,6 @@ target 'Civilia' do
   # Pods for Civilia
 
   # pod 'RealmSwift'
+pod ‘Firebase/Database’
 
 end
