@@ -32,7 +32,7 @@ class RegisterTableViewController: UITableViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      performUIPreparing()
+      setupUI()
       
       
       
@@ -113,7 +113,7 @@ class RegisterTableViewController: UITableViewController {
    
    //MARK: +++ Updating UI Functions
    
-   func performUIPreparing() {
+   func setupUI() {
       tableView.allowsSelection = false
       
    }

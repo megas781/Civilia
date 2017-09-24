@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
       setupUI()
       
       NotificationCenter.default.addObserver(self, selector: #selector(self.putUpViewByKeyboardHeight), name: Notification.Name.UIKeyboardWillShow, object: nil)
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownViewByKeyboardHeight(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownViewByKeyboardHeight), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
    }
    
@@ -77,6 +77,13 @@ class LoginViewController: UIViewController {
    @IBAction func forgotPasswordButtonTapped(_ sender: UIButton) {
    }
    
+   @IBAction func emailTextFieldNextButtonTapped(_ sender: UITextField) {
+//      self.emailInputTextField.resignFirstResponder()
+      self.passwordInputTextField.becomeFirstResponder()
+   }
+   @IBAction func passwordTextFieldNextButtonTapped(_ sender: UITextField) {
+      self.perform(#selector(self.putDownViewByKeyboardHeight))
+   }
    
    
    
@@ -128,15 +135,17 @@ class LoginViewController: UIViewController {
       
       
       theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: theInset, right: 0)
-      theScrollView.setContentOffset(CGPoint.init(x: 0, y: theInset), animated: true)
+      theScrollView.setContentOffset(CGPoint.init(x: 0, y: theInset + (emailInputTextField.isFirstResponder ? 37 : 0)), animated: true)
       
       self.keyboardIsDisplayed = true
    }
    
-   @objc func putDownViewByKeyboardHeight(notification: Notification) {
+   @objc func putDownViewByKeyboardHeight() {
       guard self.keyboardIsDisplayed else {
          return
       }
+      
+      self.resignAnyFirstResponder()
       
       theScrollView.setContentOffset(CGPoint.zero, animated: true)
       theScrollView.contentInset = UIEdgeInsets.zero
