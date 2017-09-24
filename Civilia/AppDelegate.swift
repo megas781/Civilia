@@ -30,23 +30,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //      }
       
       
-      let realm = try! Realm()
-      if realm.objects(Civilmaker.self).count == 0 {
-         let stringToParse = """
-Vadim Shemet – 11 цивилпоинтов
-Gleb Kalachev – 5 цивилпоинтов
-Kolya Koptilkin – 5 цивилпоинтов
-Ksenya Bondorenko – 4 цивилпоинтов
-Artem Mashkin – 4 цивилпоинтов
-Lyubava Bakhmetova – 3 цивилпоинтов
-Pavel Goncharov – 1 цивилпоинтов
-Alexey Kalachev – 1 цивилпоинтов
-"""
-         parse(string: stringToParse)
-      }
+      let config = Realm.Configuration.init(schemaVersion: 7, migrationBlock: {
+         (migration,oldSchemaVersion) in 
+         
+         migration.renameProperty(onType: Civilmaker.className(), from: "id", to: "uuid")
+         
+      })
       
+      Realm.Configuration.defaultConfiguration = config
+      
+      let realm = try! Realm()
+//      if realm.objects(Civilmaker.self).count == 0 {
+//         let stringToParse = """
+//Vadim Shemet – 11 цивилпоинтов
+//Gleb Kalachev – 5 цивилпоинтов
+//Kolya Koptilkin – 5 цивилпоинтов
+//Ksenya Bondorenko – 4 цивилпоинтов
+//Artem Mashkin – 4 цивилпоинтов
+//Lyubava Bakhmetova – 3 цивилпоинтов
+//Pavel Goncharov – 1 цивилпоинтов
+//Alexey Kalachev – 1 цивилпоинтов
+//"""
+//         parse(string: stringToParse)
+//      }
+//      
       return true
    }
+      
    
    func applicationWillResignActive(_ application: UIApplication) {
       // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -107,5 +117,6 @@ fileprivate func parse(string: String) {
       
    }
    
-}
 
+
+}

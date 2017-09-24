@@ -9,6 +9,18 @@
 import RealmSwift
 import Foundation
 import UIKit
+
+struct PrimeFirebaseKeys {
+   static let allProfiles = "allProfiles"
+}
+
+struct FirebaseKeys {
+   static let fullName = "fullName"
+   static let civilpoints = "civilpoints"
+   static let dateOfCreationSinceReferenceDate = "dateOfCreationSinceReferenceDate"
+   static let uuid = "uuid"
+}
+
 class Civilmaker: Object {
    
    @objc dynamic var fullName: String = ""
@@ -21,16 +33,28 @@ class Civilmaker: Object {
    @objc fileprivate dynamic var storedImageData : Data? = nil
    fileprivate let storedImageOrientation = RealmOptional<Int>()
    
-   @objc fileprivate dynamic var id : String = ""
+   @objc fileprivate dynamic var uuid : String = ""
+   func getUUID() -> String {
+      return uuid
+   }
    
    //Index of the cell, the Civilmaker belongs to
    var cellIndex: Int?
    
    
    
+   //Functions for Firebase
+   func getDictionary() -> [String: Any] {
+      
+      
+      
+      return [FirebaseKeys.fullName:self.fullName,FirebaseKeys.civilpoints: self.civilpoints, FirebaseKeys.dateOfCreationSinceReferenceDate: self.dateOfCreation.timeIntervalSinceReferenceDate,FirebaseKeys.uuid: self.uuid]
+   }
+   
+   
    //Overrides
    override class func primaryKey() -> String {
-      return "id"
+      return "uuid"
    }
    override class func ignoredProperties() -> [String] {
       return ["image","imageURL","cellIndex"]
@@ -102,13 +126,13 @@ extension Civilmaker {
       self.init()
       
       self.fullName = fullName
-      self.id = UUID.init().uuidString
+      self.uuid = UUID.init().uuidString
    }
    convenience init(fullName: String, civilpoints: Int) {
       self.init()
       self.fullName = fullName
       self.civilpoints = civilpoints
-      self.id = UUID.init().uuidString
+      self.uuid = UUID.init().uuidString
    }
    convenience init(fullName: String, civilpoints: Int, dateOfCreation: Date, image: UIImage?, imageURL: URL?) {
       
