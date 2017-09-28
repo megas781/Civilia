@@ -12,6 +12,10 @@ extension String {
    
    //Достать символ
    subscript (number: Int) -> Character {
+      
+      var m: (String,String) = ("Gleb","Kalachev")
+      
+      
       return self[self.index(self.startIndex, offsetBy: number-1)]
    }
    

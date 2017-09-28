@@ -20,14 +20,8 @@ class LoginViewController: UIViewController {
    //Это outlet стака из кнопки регистрации и восстановления пароля. Этот outlet нужен, чтобы обозначить самую крайнюю точнку снизу
    @IBOutlet weak var theLowestView: UIView!
    
-   //Additional views
+   //В этом массиве view собраны UIView, нажатие на которые вызывает putDownViewByKeyboardHeight(), чтобы убрать клавиатуру
    @IBOutlet var primeViews: [UIView]!
-   
-   
-   
-   
-   
-   
    
    
    //MARK: +++ Properties
@@ -47,8 +41,8 @@ class LoginViewController: UIViewController {
       
       setupUI()
       
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpViewByKeyboardHeight), name: Notification.Name.UIKeyboardWillShow, object: nil)
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownViewByKeyboardHeight), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing), name: Notification.Name.UIKeyboardWillShow, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
    }
    
@@ -73,6 +67,7 @@ class LoginViewController: UIViewController {
    @IBAction func enterButtonTapped(_ sender: UIButton) {
    }
    @IBAction func registraionButtonTapped(_ sender: UIButton) {
+      performSegue(withIdentifier: "registrationButtonTappedSegue", sender: self)
    }
    @IBAction func forgotPasswordButtonTapped(_ sender: UIButton) {
    }
@@ -82,7 +77,7 @@ class LoginViewController: UIViewController {
       self.passwordInputTextField.becomeFirstResponder()
    }
    @IBAction func passwordTextFieldNextButtonTapped(_ sender: UITextField) {
-      self.perform(#selector(self.putDownViewByKeyboardHeight))
+      self.perform(#selector(self.putDownScrollViewForKeyboardDisappearing))
    }
    
    
@@ -108,7 +103,8 @@ class LoginViewController: UIViewController {
    
    //MARK: +++ Selectors
    
-   @objc func putUpViewByKeyboardHeight(notification: Notification) {
+   //Метод, убирающий contentInset и contentOffset для scrollView
+   @objc func putUpScrollViewForKeyboardAppearing(notification: Notification) {
       
       
       guard !self.keyboardIsDisplayed else {
@@ -122,11 +118,11 @@ class LoginViewController: UIViewController {
       }
       
       
-      print("notificationType: \(notification.name)")
-      for infoPair in notification.userInfo! {
-         print("\(infoPair.key) : \(infoPair.value)")
-      }
-      print()
+//      print("notificationType: \(notification.name)")
+//      for infoPair in notification.userInfo! {
+//         print("\(infoPair.key) : \(infoPair.value)")
+//      }
+//      print()
       
       
       let absoluteCoordinates = theLowestView.superview!.convert(theLowestView.frame, to: self.view)
@@ -140,25 +136,21 @@ class LoginViewController: UIViewController {
       self.keyboardIsDisplayed = true
    }
    
-   @objc func putDownViewByKeyboardHeight() {
+   //Метод, убирающий contentInset и contentOffset для scrollView
+   @objc func putDownScrollViewForKeyboardDisappearing() {
       guard self.keyboardIsDisplayed else {
          return
       }
-      
       self.resignAnyFirstResponder()
-      
-      theScrollView.setContentOffset(CGPoint.zero, animated: true)
-      theScrollView.contentInset = UIEdgeInsets.zero
-      
       self.keyboardIsDisplayed = false
    }
    
+   //Функция для скрытия клавиатуры
    @objc func resignAnyFirstResponder() {
       self.emailInputTextField.resignFirstResponder()
       self.passwordInputTextField.resignFirstResponder()
       theScrollView.setContentOffset(CGPoint.zero, animated: true)
       theScrollView.contentInset = UIEdgeInsets.zero
-      
    }
    
    //MARK: +++ Custom functions
@@ -168,6 +160,7 @@ class LoginViewController: UIViewController {
    
    //MARK: +++ Navigation methods
    
+   @IBAction func unwindToLoginViewController(withSegue segue: UIStoryboardSegue) {}
    
    
    
