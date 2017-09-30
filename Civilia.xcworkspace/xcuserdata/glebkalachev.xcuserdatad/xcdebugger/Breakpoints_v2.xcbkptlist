@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Civilia/LoginViewController.swift"
-            timestampString = "527971546.064293"
+            filePath = "Civilia/RegistrationViewController.swift"
+            timestampString = "528503831.305835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "emailTextFieldNextButtonTapped(_:)"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "putUpScrollViewForKeyboardAppearing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Civilia/LoginViewController.swift"
-            timestampString = "527971546.064406"
+            filePath = "Civilia/RegistrationViewController.swift"
+            timestampString = "528503831.309917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "putUpViewByKeyboardHeight(notification:)"
-            landmarkType = "7">
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "RegistrationViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Civilia/LoginViewController.swift"
-            timestampString = "527971546.064458"
+            filePath = "Civilia/RegistrationViewController.swift"
+            timestampString = "528503831.313805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "putDownViewByKeyboardHeight()"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "textFieldShouldBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
