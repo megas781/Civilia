@@ -17,6 +17,7 @@
 		ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA11F195FC3004CC420 /* ColorSet.swift */; };
 		ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA51F196758004CC420 /* AddCMViewController.swift */; };
 		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
+		EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */; };
 		EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; };
 		EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EDDD946F1F7779BE00F89761 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946C1F7779BE00F89761 /* Realm.framework */; };
@@ -27,7 +28,6 @@
 		EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947A1F777E4B00F89761 /* RoundedButton.swift */; };
 		EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947B1F777E4C00F89761 /* LoginViewController.swift */; };
 		EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947C1F777E4C00F89761 /* RoundedView.swift */; };
-		EDDD94821F777E6C00F89761 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD94811F777E6C00F89761 /* RegisterTableViewController.swift */; };
 		EDDD94841F777F4700F89761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDD94771F777DDD00F89761 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +61,7 @@
 		ED191EA11F195FC3004CC420 /* ColorSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		ED191EA51F196758004CC420 /* AddCMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCMViewController.swift; sourceTree = "<group>"; };
 		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
+		EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EDDD946B1F7779BB00F89761 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		EDDD946C1F7779BE00F89761 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		EDDD94711F777B5400F89761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		EDDD947A1F777E4B00F89761 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EDDD947B1F777E4C00F89761 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EDDD947C1F777E4C00F89761 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		EDDD94811F777E6C00F89761 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +168,7 @@
 		EDDD94831F777E7100F89761 /* Registration Scene */ = {
 			isa = PBXGroup;
 			children = (
-				EDDD94811F777E6C00F89761 /* RegisterTableViewController.swift */,
+				EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */,
 			);
 			name = "Registration Scene";
 			sourceTree = "<group>";
@@ -319,9 +319,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */,
-				EDDD94821F777E6C00F89761 /* RegisterTableViewController.swift in Sources */,
 				EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
+				EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */,
 				ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */,
 				ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */,
 				ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */,

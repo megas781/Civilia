@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
       Realm.Configuration.defaultConfiguration = config
       
-      let realm = try! Realm()
+//      let realm = try! Realm()
 //      if realm.objects(Civilmaker.self).count == 0 {
 //         let stringToParse = """
 //Vadim Shemet – 11 цивилпоинтов
@@ -93,7 +93,7 @@ fileprivate func parse(string: String) {
       realm.deleteAll()
    }
    
-   var lines = string.characters.split(separator: "\n").map({String($0)})
+   let lines = string.characters.split(separator: "\n").map({String($0)})
    
    for i in lines {
       
@@ -117,6 +117,7 @@ fileprivate func parse(string: String) {
       
    }
    
-
-
 }
+
+//AppDelegate, к свойству window которого я буду обращаться
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
