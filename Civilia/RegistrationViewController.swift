@@ -25,10 +25,16 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    @IBOutlet weak var registerButton: RoundedButton!
    
+   
    //View, cодержащий весь контент внутри scrollView
    @IBOutlet weak var relativeContentView: UIView!
    
+   //View, являющиеся фоном, и нажатие на кторые скрывает клавиатуру
    @IBOutlet var primeViews: [UIView]!
+   
+   //Чекмарки, соответствующие своим textField'ам по формуле checkmarks[textField.tag-1]
+   @IBOutlet var checkmarks: [UIImageView]!
+   
    
    //MARK: +++ Properties
    
@@ -41,8 +47,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //Свойство, хранящее последнюю зафиксированную высоту клавиатуры
    private var keyboardHeight: CGFloat!
    
-//   private var animationCompletionSemaphore: DispatchSemaphore = DispatchSemaphore.init(value: 0)
-   private var animationCompletionQueue = DispatchQueue.init(label: "animationCompletionQueue", qos: DispatchQoS.userInteractive, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+   //Для каждого массива правило одно правило. 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
+   private var textFieldTimers: [[Timer]] = []
    
    //MARK: +++ Computed Properties
    
@@ -64,11 +70,24 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+      let aTimer = Timer.init(timeInterval: 1, repeats: false, block: {(_) in})
+      aTimer.invalidate()
+      print("count: \(self.textFieldTimers.count)")
+      self.textFieldTimers = Array.init(repeating: [Timer.init(timeInterval: 1, repeats: false, block: {(_) in}),Timer.init(timeInterval: 1, repeats: false, block: {(_) in})], count: 2)
+      
+      print("count after: \(self.textFieldTimers.count)")
+      
+      
+      
+      
+      
       setupUI()
       
       
       
+      
    }
+   
    
    
    //MARK: +++ Overrides of Superclass
@@ -102,20 +121,69 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ IBActions of changing value
    
-   @IBAction func emailTextFieldTextChanged(_ sender: UITextField) {
-   }
-   @IBAction func passwordFirstInputTextFieldTextChanged(_ sender: UITextField) {
+   //text-changed для каждого textField
+   @IBAction func anyTextFieldTextChanged(_ sender: UITextField) {
       
-   }
-   @IBAction func passwordSecondInputTextFieldTextChanged(_ sender: UITextField) {
+      //      guard sender.isFirstResponder else {
+      //         print("is not first responder")
+      //         return
+      //      }
       
+      
+      
+      self.toggleCheckmark(forTextField: sender)
+      
+      switch sender.tag {
+      case 1:
+         
+         
+         
+//         DispatchQueue.main.async {
+//            
+//            let checkmark = self.checkmarks[sender.tag - 1]
+//            
+//            self.textFieldTimers[sender.tag - 1][0].invalidate()
+//            
+//            if !sender.text!.isEmailAddress && checkmark.image == #imageLiteral(resourceName: "checkmark") {
+//               self.textFieldTimers[sender.tag - 1][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
+//                  DispatchQueue.main.async {
+//                     checkmark.animateDisappearing()
+//                  }
+//               })
+//            }
+//            
+//            self.textFieldTimers[sender.tag - 1][1].invalidate()
+//            if sender.text!.isEmailAddress && !(checkmark.image == #imageLiteral(resourceName: "checkmark")){
+//               self.textFieldTimers[sender.tag - 1][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+//                  DispatchQueue.main.async {
+//                     checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+//                  }
+//               })
+//            }
+//            
+//         }
+         
+         break
+      case 2:
+         //first password input
+         
+         break
+      case 3:
+         //second password input
+         
+         break
+      case 4:
+         //given name text field
+         
+         break
+      case 5:
+         //family name text field
+         
+         break
+      default:
+         fatalError("tag is out of cases")
+      }
    }
-   @IBAction func nameTextFieldTextChanged(_ sender: UITextField) {
-   }
-   @IBAction func surnameTextFieldTextChanged(_ sender: UITextField) {
-   }
-   
-   
    
    
    
@@ -123,13 +191,14 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //MARK: +++ Updating UI Functions
    
    func setupUI() {
-//      tableView.allowsSelection = false
       
       registerButton.isEnabled = false
       
+      //      self.navigationItem.titleView!.frame.size.width = self.view.frame.width
+      
       //Подпись класса под уведомления о появлении и исчезновении клавиатуры
       NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      //      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
       //Соединение textField'ов с primaryKeyTriggered, который меняет firstResponder
       emailTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
@@ -181,7 +250,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          print("Не смог извлечь keyboardHeight")
          return
       }
-//      print("userInfo: \(notification.userInfo)")
+      //      print("userInfo: \(notification.userInfo)")
       guard let textField = self.activeTextField else {
          print("Не смог извлечь activeTextField")
          return
@@ -229,10 +298,20 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       performSegue(withIdentifier: "unwindToLoginViewControllerSegue", sender: self)
    }
    
+   var k = -1
+   
    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
       
-      print("theScrollView.contentInset : \(theScrollView.contentInset)")
-      print("theScrollView.contentOffset: \(theScrollView.contentOffset)")
+      
+      k += 1
+      let checkmark = self.checkmarks[k % self.checkmarks.count]
+      
+      if checkmark.image == nil {
+         checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+      } else {
+         checkmark.animateChange(toImage: checkmark.image! == UIImage(named: "checkmark")! ? UIImage(named: "exclamation_mark")! : UIImage(named: "checkmark")!)
+      }
+      
       
    }
    
@@ -241,12 +320,47 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //MARK: +++ Custom functions
    
    
-   
-   
-   
-   //MARK: +++ Navigation methods
-   
-   
-   
+   //
+   private func toggleCheckmark(forTextField textField: UITextField) {
+      
+      
+      DispatchQueue.main.async {
+         
+         let textFieldZeroBasedIndex = textField.tag - 1
+         
+         let checkmark = self.checkmarks[textFieldZeroBasedIndex]
+         
+         self.textFieldTimers[textFieldZeroBasedIndex][0].invalidate()
+         
+         if !textField.text!.isEmailAddress && checkmark.image == #imageLiteral(resourceName: "checkmark") {
+            self.textFieldTimers[textFieldZeroBasedIndex][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
+               DispatchQueue.main.async {
+                  checkmark.animateDisappearing()
+               }
+            })
+         }
+         
+         self.textFieldTimers[textFieldZeroBasedIndex][1].invalidate()
+         if textField.text!.isEmailAddress && !(checkmark.image == #imageLiteral(resourceName: "checkmark")){
+            self.textFieldTimers[textFieldZeroBasedIndex][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+               DispatchQueue.main.async {
+                  checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+               }
+            })
+         }
+         
+      }
+      
+      
+      
+   }
    
 }
+
+
+
+//MARK: +++ Navigation methods
+
+
+
+
