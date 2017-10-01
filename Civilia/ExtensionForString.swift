@@ -396,4 +396,12 @@ extension String {
    }
    
    
+   //Функция, парсящая string и показывающая, является ли string электронной почтой
+   func isEmailAddress() -> Bool {
+      //Алгоритм не идеален, допускает кирилицу, но это я уже отдаю на проверку интернету
+      let returnValue = (self.quantityOfTheSymbol("@") == 1) && (self.getPrefixWithFirstFoundSymbol("@").length > 0) && (self.getPostfixWithFirstFoundSymbol("@").quantityOfTheSymbol(".") == 1) && (self.getPostfixWithFirstFoundSymbol(".").length > 0) && (self.getPostfixWithFirstFoundSymbol("@")[1] != ".")
+      return returnValue
+   }
+   
+   
 }
