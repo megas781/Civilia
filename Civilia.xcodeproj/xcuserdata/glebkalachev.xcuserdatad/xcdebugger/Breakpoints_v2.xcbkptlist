@@ -26,12 +26,12 @@
                   moduleName = "Civilia"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/Civilia/Civilia/+dataSource.swift"
-                  timestampString = "528500260.305137"
+                  timestampString = "528506896.832716"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
                   endingLineNumber = "65"
-                  offsetFromSymbolStart = "638">
+                  offsetFromSymbolStart = "504">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "Civilia"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/Civilia/Civilia/+dataSource.swift"
-                  timestampString = "528500260.307696"
+                  timestampString = "528506896.835158"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
                   endingLineNumber = "66"
-                  offsetFromSymbolStart = "27">
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>

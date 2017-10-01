@@ -41,6 +41,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //Свойство, хранящее последнюю зафиксированную высоту клавиатуры
    private var keyboardHeight: CGFloat!
    
+//   private var animationCompletionSemaphore: DispatchSemaphore = DispatchSemaphore.init(value: 0)
+   private var animationCompletionQueue = DispatchQueue.init(label: "animationCompletionQueue", qos: DispatchQoS.userInteractive, attributes: DispatchQueue.Attributes.concurrent, autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
+   
    //MARK: +++ Computed Properties
    
    private var isMale: Bool {
@@ -125,7 +128,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       registerButton.isEnabled = false
       
       //Подпись класса под уведомления о появлении и исчезновении клавиатуры
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 //      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
       //Соединение textField'ов с primaryKeyTriggered, который меняет firstResponder
@@ -166,7 +169,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       case 5:
          self.resignAnyFirstResponder()
       default:
-         fatalError("[шибка тега]")
+         fatalError("[ошибка тега]")
       }
    }
    
@@ -178,24 +181,26 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          print("Не смог извлечь keyboardHeight")
          return
       }
-      print("userInfo: \(notification.userInfo)")
+//      print("userInfo: \(notification.userInfo)")
       guard let textField = self.activeTextField else {
          print("Не смог извлечь activeTextField")
          return
       }
       
+      print("keyboardHeight: \(keyboardHeight)")
+      
       let absoluteTextFieldCoordinates = textField.superview!.convert(textField.frame, to: self.relativeContentView)
-      print("absoluteCoordinates: \(absoluteTextFieldCoordinates)")
+      print("absoluteCoordinates.maxY: \(absoluteTextFieldCoordinates.maxY)")
       let delta = (absoluteTextFieldCoordinates.maxY + keyboardHeight) - self.view.frame.size.height
       
       print("delta: \(delta)")
       
       
-      UIView.animate(withDuration: 0.25, animations: { 
-         self.theScrollView.contentOffset = CGPoint.init(x: 0, y: delta > 0 ? delta : 0)
-      }) { (bool) in
-         self.theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: delta > 0 ? delta : 0, right: 0)
-      }
+      UIView.animate(withDuration: 0.25, delay: 0, animations: { 
+         self.theScrollView.contentOffset = CGPoint.init(x: 0, y: delta > 0 ? delta + 18 /*немного больше спейса над клавиатурой*/ : 0)
+         self.theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: delta > 0 ? delta + 18 /*немного больше спейса над клавиатурой*/ : 0, right: 0)
+      })
+      
       
       print()
    }
@@ -211,11 +216,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.keyboardIsDisplayed = false
       self.activeTextField = nil
       
-      UIView.animate(withDuration: 0.35, animations: { 
+      UIView.animate(withDuration: 0.35, delay: 0, options: [], animations: { 
          self.theScrollView.contentOffset = CGPoint.zero
-      }) { (bool) in
          self.theScrollView.contentInset = UIEdgeInsets.zero
-      }
+      })
       
    }
    
@@ -225,10 +229,17 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       performSegue(withIdentifier: "unwindToLoginViewControllerSegue", sender: self)
    }
    
+   @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
+      
+      print("theScrollView.contentInset : \(theScrollView.contentInset)")
+      print("theScrollView.contentOffset: \(theScrollView.contentOffset)")
+      
+   }
    
    
    
    //MARK: +++ Custom functions
+   
    
    
    

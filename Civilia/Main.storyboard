@@ -727,7 +727,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="email"/>
                                                                 <connections>
                                                                     <action selector="emailTextFieldTextChanged:" destination="YDD-KI-A8i" eventType="editingChanged" id="bqg-wL-3aD"/>
                                                                 </connections>
@@ -745,11 +745,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5x-kq-FWe" userLabel="password 1th input">
                                                         <rect key="frame" x="10" y="77.5" width="219" height="57.5"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SsO-81-IeO">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="&gt; 8 символов, A-z,0-9" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SsO-81-IeO">
                                                                 <rect key="frame" x="0.0" y="23.5" width="219" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="password"/>
                                                                 <connections>
                                                                     <action selector="passwordFirstInputTextFieldTextChanged:" destination="YDD-KI-A8i" eventType="editingChanged" id="w9F-yP-SCd"/>
                                                                 </connections>
@@ -784,7 +784,7 @@
                                                                 <rect key="frame" x="0.0" y="23.5" width="219" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="password"/>
                                                                 <connections>
                                                                     <action selector="passwordSecondInputTextFieldTextChanged:" destination="YDD-KI-A8i" eventType="editingChanged" id="w6P-df-nNG"/>
                                                                 </connections>
@@ -836,7 +836,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="136" height="34"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="given-name"/>
                                                                         <connections>
                                                                             <action selector="nameTextFieldTextChanged:" destination="YDD-KI-A8i" eventType="editingChanged" id="sqE-UZ-XNs"/>
                                                                         </connections>
@@ -845,7 +845,7 @@
                                                                         <rect key="frame" x="148" y="0.0" width="136" height="34"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="family-name"/>
                                                                         <connections>
                                                                             <action selector="surnameTextFieldTextChanged:" destination="YDD-KI-A8i" eventType="editingChanged" id="TyK-Y4-ng1"/>
                                                                         </connections>
@@ -895,6 +895,13 @@
                                                             <constraint firstAttribute="height" constant="60" id="xoc-75-Vrw"/>
                                                         </constraints>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Пароли не совпадают" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxN-0h-WaF">
+                                                        <rect key="frame" x="140" y="128" width="176" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.99924403429999997" green="0.67472523449999999" blue="0.0066120959819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -966,7 +973,14 @@
                             <constraint firstItem="9Lw-ku-ekc" firstAttribute="leading" secondItem="6iK-zm-Rdg" secondAttribute="leading" id="Lit-iq-XkV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Регистрация" id="9Kj-bJ-np8"/>
+                    <navigationItem key="navigationItem" title="Регистрация" id="9Kj-bJ-np8">
+                        <barButtonItem key="rightBarButtonItem" title="Test" id="bzI-Hr-amJ">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="testButtonTapped:" destination="YDD-KI-A8i" id="ga3-bd-0In"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="r3n-bR-OJl" id="DSg-Sp-SAZ"/>
                         <outlet property="maleSegmentedControl" destination="EJz-ep-kFS" id="eN5-z3-ned"/>
@@ -986,7 +1000,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9U-1J-D2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yN6-UJ-aDg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1845" y="-1066"/>
+            <point key="canvasLocation" x="1845" y="-1066.9014084507041"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gfd-an-zmt">
