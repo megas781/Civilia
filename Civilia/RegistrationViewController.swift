@@ -48,7 +48,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    private var keyboardHeight: CGFloat!
    
    //Для каждого массива правило одно правило. 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
-   private var textFieldTimers: [[Timer]] = []
+   private var textFieldTimers: [[Timer?]] = []
    
    //MARK: +++ Computed Properties
    
@@ -69,13 +69,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
-      let aTimer = Timer.init(timeInterval: 1, repeats: false, block: {(_) in})
-      aTimer.invalidate()
-      print("count: \(self.textFieldTimers.count)")
-      self.textFieldTimers = Array.init(repeating: [Timer.init(timeInterval: 1, repeats: false, block: {(_) in}),Timer.init(timeInterval: 1, repeats: false, block: {(_) in})], count: 2)
-      
-      print("count after: \(self.textFieldTimers.count)")
+
+      //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
+      self.textFieldTimers = Array.init(repeating: [nil,nil], count: 3)
+
       
       
       
@@ -124,65 +121,13 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //text-changed для каждого textField
    @IBAction func anyTextFieldTextChanged(_ sender: UITextField) {
       
-      //      guard sender.isFirstResponder else {
-      //         print("is not first responder")
-      //         return
-      //      }
-      
       
       
       self.toggleCheckmark(forTextField: sender)
       
-      switch sender.tag {
-      case 1:
-         
-         
-         
-//         DispatchQueue.main.async {
-//            
-//            let checkmark = self.checkmarks[sender.tag - 1]
-//            
-//            self.textFieldTimers[sender.tag - 1][0].invalidate()
-//            
-//            if !sender.text!.isEmailAddress && checkmark.image == #imageLiteral(resourceName: "checkmark") {
-//               self.textFieldTimers[sender.tag - 1][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
-//                  DispatchQueue.main.async {
-//                     checkmark.animateDisappearing()
-//                  }
-//               })
-//            }
-//            
-//            self.textFieldTimers[sender.tag - 1][1].invalidate()
-//            if sender.text!.isEmailAddress && !(checkmark.image == #imageLiteral(resourceName: "checkmark")){
-//               self.textFieldTimers[sender.tag - 1][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
-//                  DispatchQueue.main.async {
-//                     checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
-//                  }
-//               })
-//            }
-//            
-//         }
-         
-         break
-      case 2:
-         //first password input
-         
-         break
-      case 3:
-         //second password input
-         
-         break
-      case 4:
-         //given name text field
-         
-         break
-      case 5:
-         //family name text field
-         
-         break
-      default:
-         fatalError("tag is out of cases")
-      }
+      
+      
+      
    }
    
    
@@ -240,6 +185,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       default:
          fatalError("[ошибка тега]")
       }
+      
+      if (1...3).contains(sender.tag) {
+         self.toggleCheckmark(forTextField: sender)
+      }
+      
    }
    
    //метод, понимающий scrollView, адоптируясь под появляющуюся клавиатуру
@@ -283,12 +233,21 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.surnameTextField.resignFirstResponder()
       
       self.keyboardIsDisplayed = false
+      
+      if let textField = self.activeTextField {
+         if (1...3).contains(textField.tag) {
+            self.toggleCheckmark(forTextField: textField)
+         }
+      }
+      
       self.activeTextField = nil
       
       UIView.animate(withDuration: 0.35, delay: 0, options: [], animations: { 
          self.theScrollView.contentOffset = CGPoint.zero
          self.theScrollView.contentInset = UIEdgeInsets.zero
       })
+      
+      
       
    }
    
@@ -322,37 +281,96 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //
    private func toggleCheckmark(forTextField textField: UITextField) {
-      
-      
       DispatchQueue.main.async {
          
+         guard (1...3).contains(textField.tag) else {
+            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений (1...3)]")
+            return
+         }
+         
+         //Zero-based индекс textField'a, считающийся сверху вниз
          let textFieldZeroBasedIndex = textField.tag - 1
          
+         //Ссылка на checkmark, соответствующий данному textField
          let checkmark = self.checkmarks[textFieldZeroBasedIndex]
          
-         self.textFieldTimers[textFieldZeroBasedIndex][0].invalidate()
+         //Гарантированно обнуляем все предыдущие анимации, так как мы сейчас будем их в любом случае обновлять
+         print("textFieldTimers: \(self.textFieldTimers.count)")
+         print("textFieldTimers: \(self.textFieldTimers)")
          
-         if !textField.text!.isEmailAddress && checkmark.image == #imageLiteral(resourceName: "checkmark") {
-            self.textFieldTimers[textFieldZeroBasedIndex][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
-               DispatchQueue.main.async {
-                  checkmark.animateDisappearing()
-               }
-            })
+         self.textFieldTimers[textFieldZeroBasedIndex][0]?.invalidate()
+         self.textFieldTimers[textFieldZeroBasedIndex][1]?.invalidate()
+         
+         //по переменной textFieldIsProperlyFilled мы будем определять, правильно ли заполнен textField или нет. Для каждого textField будем делать свой кейс, определяющий, всё ли правильно 
+         var textFieldIsProperlyFilled: Bool!
+         
+         //В этой switch-конкструкции мы, собственно, и будем определять textFeildIsProperlyFilled
+         switch textField.tag {
+         case 1:
+            print("кейс email'a")
+            textFieldIsProperlyFilled = textField.text!.isEmailAddress
+         case 2:
+            print("кейс first password input")
+            textFieldIsProperlyFilled = true
+         case 3:
+            print("кейс second password input")
+            textFieldIsProperlyFilled = true
+         default:
+            fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
+            return
          }
          
-         self.textFieldTimers[textFieldZeroBasedIndex][1].invalidate()
-         if textField.text!.isEmailAddress && !(checkmark.image == #imageLiteral(resourceName: "checkmark")){
-            self.textFieldTimers[textFieldZeroBasedIndex][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
-               DispatchQueue.main.async {
-                  checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+         if textField.isFirstResponder {
+            
+            
+            //Анимация происходит только в случае, если при textField ,  
+            if !textField.text!.isEmailAddress && checkmark.image != nil {
+               self.textFieldTimers[textFieldZeroBasedIndex][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
+                  DispatchQueue.main.async {
+                     checkmark.animateDisappearing()
+                  }
+               })
+               //else-if гарантирует, что эти блоки кода, отвечающие за анимацию, не запустятся одновременно
+            } else if textField.text!.isEmailAddress && checkmark.image != #imageLiteral(resourceName: "checkmark") {
+               self.textFieldTimers[textFieldZeroBasedIndex][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+                  DispatchQueue.main.async {
+                     checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+                  }
+               })
+            }
+            
+         } else {
+            //Here we know, that textField is not first responder
+            
+            //If we resigned empty textField, it should assgin new image, describing, that user should fill it with a string
+            guard textField.text != "" && textField != nil else {
+               print("Здесь нужно сделать другой image, показывающий, что нужно заполнить поле")
+               checkmark.animateDisappearing()
+               return
+            }
+            
+            
+            //Обнуляю предыдущие таймеры, чтобы анимация не стакалась
+//            self.textFieldTimers[textFieldZeroBasedIndex][0].invalidate()
+//            self.textFieldTimers[textFieldZeroBasedIndex][1].invalidate()
+            
+            if checkmark.image == nil {
+               
+               checkmark.animateEmergence(withImage: textField.text!.isEmailAddress ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "exclamation_mark"))
+            } else {
+               
+               let newImage = textField.text!.isEmailAddress ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "exclamation_mark")
+
+               if checkmark.image != newImage {
+                  checkmark.animateChange(toImage: newImage)
                }
-            })
+               
+            }
+            
          }
+         print()
          
       }
-      
-      
-      
    }
    
 }

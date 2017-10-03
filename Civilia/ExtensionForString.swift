@@ -191,8 +191,8 @@ extension String {
             print("lengthOfPostfix = \(lengthOfPostfix); while self.length = \(self.characters.count)")
             
             return ""
-         //Ошибка
-//         fatalError("Can not exacute getPostfixWithLength, because smaller than zero")
+            //Ошибка
+            //         fatalError("Can not exacute getPostfixWithLength, because smaller than zero")
          }
       }
       
@@ -372,17 +372,17 @@ extension String {
    
    
    //Вернуть строку с разделением между словами только одним пробелом
-//   func withoutAnyExtraSpace() -> String {
-//      
-//      var result = self
-//      
-//      result = result.formatingToSingleLine()
-//      
-//      //Теперь удаляем лишние пробелы
-//      result = result.withoutExtraSpaces()
-//      
-//      return result
-//   }
+   //   func withoutAnyExtraSpace() -> String {
+   //      
+   //      var result = self
+   //      
+   //      result = result.formatingToSingleLine()
+   //      
+   //      //Теперь удаляем лишние пробелы
+   //      result = result.withoutExtraSpaces()
+   //      
+   //      return result
+   //   }
    
    //Количество символов в строке
    func quantityOfTheSymbol(_ symbol: Character) -> Int {
@@ -406,5 +406,31 @@ extension String {
       return returnValue
    }
    
+   //Dot-atom знаки, разрешенные в большенстве систем для создания логина, электронной почты или пароля
+   static var dotAtomCharacters: Set<Character> {
+      return ["!","$","&","*" ,"-", "=", "^", "`", "|", "~", "#", "%", "'", "+", "/", "?", "_", "{", "}"]
+   }
+   
+   //Английкие буквы
+   static var englishCharacters: Set<Character> {
+      return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+   }
+   
+   //Руссие буквы
+   static var russianCharacters: Set<Character> {
+      return ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"]
+   }
+   
+   //Функция, определяющая, походит ли строка для создания пароля. Параметры: не менее 8 знаков, может содержать латиницу, кириллицу и dot-atom знаки
+   var isPassword: Bool {
+      var returnValue = self.count >= 8
+      for char in self {
+         returnValue = returnValue && String.englishCharacters.union(String.dotAtomCharacters).union(String.russianCharacters).contains(char)
+      }
+      return returnValue
+   }
+   
    
 }
+
+
