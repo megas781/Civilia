@@ -44,8 +44,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //Свойство-ссылка на активный textField
    private var activeTextField: UITextField?
    
-   //Свойство, хранящее последнюю зафиксированную высоту клавиатуры
-   private var keyboardHeight: CGFloat!
+   //Свойство, хранящее последнюю зафиксированную высоту клавиатуры. Делаю опциональным и присваиваю ноль во viewDidLoad, чтобы сохранить логическое понимание переменной
+   private var lastSavedKeyboardHeight: CGFloat = 0
    
    //Для каждого массива правило одно правило. 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
    private var textFieldTimers: [[Timer?]] = []
@@ -72,9 +72,6 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
 
       //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
       self.textFieldTimers = Array.init(repeating: [nil,nil], count: 3)
-
-      
-      
       
       
       
@@ -126,8 +123,6 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.toggleCheckmark(forTextField: sender)
       
       
-      
-      
    }
    
    
@@ -142,7 +137,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       //      self.navigationItem.titleView!.frame.size.width = self.view.frame.width
       
       //Подпись класса под уведомления о появлении и исчезновении клавиатуры
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
       //      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
       //Соединение textField'ов с primaryKeyTriggered, который меняет firstResponder
@@ -180,6 +175,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       switch sender.tag {
       case 1,2,3,4:
          (view.viewWithTag(sender.tag + 1)! as! UITextField).becomeFirstResponder()
+         
+         //На этом месте self.activeTextField будет уже переопределен, так что можно вызывать putUpScrollViewForKeyboardAppearing(), чтобы отрегулировать поднятие scrollView при нажатии на Next на клавиатуре
+         self.putUpScrollViewForKeyboardAppearing(nil)
+         
       case 5:
          self.resignAnyFirstResponder()
       default:
@@ -193,20 +192,48 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    }
    
    //метод, понимающий scrollView, адоптируясь под появляющуюся клавиатуру
-   @objc func putUpScrollViewForKeyboardAppearing(_ notification: Notification!) {
+   @objc func putUpScrollViewForKeyboardAppearing(_ notification: Notification?) {
       
       //Если удалось извлечь, то сохраняем последнюю высоту в self.keyboardHeight
-      guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect)?.height else {
-         print("Не смог извлечь keyboardHeight")
+//      guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect)?.height else {
+//         print("Не смог извлечь keyboardHeight из userInfo")
+//         return
+//      }
+      
+      //В этой переменной будет храниться высота клавиатуры
+      var keyboardHeight: CGFloat!
+      
+      //Удается ли извлечь высоту из userInfo?
+      if let retrievedHeight = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect)?.height {
+         print("case userInfo")
+         //Если да, то устанавливаем извлеченное значение в keyboardHeight
+         keyboardHeight = retrievedHeight
+         
+         //Здесь, если извлеченное значение больше текущего сохраненного (по дефолту хранится ноль), то обновляем его
+//         if self.largestSavedKeyboardHeight < retrievedHeight {
+            self.lastSavedKeyboardHeight = retrievedHeight
+//         }
+         
+      } else
+         //В противном случае, если нам удалось извлечь высоту из self.largestSavedKeyboardHeight(а если эта переменная равна нулю, то не смогли), то... 
+         if self.lastSavedKeyboardHeight > 0 {
+            //...то просто устанавливаем это значение в keyboardHeight
+            print("case largestSavedKeyboardheight")
+         keyboardHeight = self.lastSavedKeyboardHeight
+      } else {
+            //В самом противном случае, если мы вообще ничего не смогли извлечь, то выходим из функции, так как больше здесь нам делать нечего. Эта функция только поднимет scrollView на рассчитанную delta
+         print("Не смог извлечь высоту клавиатуры ни из userInfo, ни из self.largestlargestSavedKeyboardHeight")
          return
       }
-      //      print("userInfo: \(notification.userInfo)")
+      
+      
+      //Извлечение activeTextField'a
       guard let textField = self.activeTextField else {
          print("Не смог извлечь activeTextField")
          return
       }
       
-      print("keyboardHeight: \(keyboardHeight)")
+      print("local keyboardHeight: \(keyboardHeight)")
       
       let absoluteTextFieldCoordinates = textField.superview!.convert(textField.frame, to: self.relativeContentView)
       print("absoluteCoordinates.maxY: \(absoluteTextFieldCoordinates.maxY)")
@@ -311,27 +338,40 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             textFieldIsProperlyFilled = textField.text!.isEmailAddress
          case 2:
             print("кейс first password input")
-            textFieldIsProperlyFilled = true
+            textFieldIsProperlyFilled = textField.text!.isPassword
          case 3:
             print("кейс second password input")
-            textFieldIsProperlyFilled = true
+            
+            //Здесь нужно проверить, правильно ли заполнен firstInput перед тем, как оценивать правильность secondInput'a
+            guard self.passwordFirstInputTextField.text!.isPassword else {
+               print("Первое поля пароля не заполнено, чтобы оценивать второе")
+               
+               //Если прежде у secondInputTextField'a стоял какой-то checkmark, то убираем его
+               if checkmark.image != nil {
+                  checkmark.animateDisappearing()
+               }
+               
+               return
+            }
+            
+            textFieldIsProperlyFilled = self.passwordSecondInputTextField.text! == self.passwordFirstInputTextField.text!
          default:
             fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
-            return
          }
          
          if textField.isFirstResponder {
             
             
             //Анимация происходит только в случае, если при textField ,  
-            if !textField.text!.isEmailAddress && checkmark.image != nil {
+            if !textFieldIsProperlyFilled && checkmark.image != nil {
                self.textFieldTimers[textFieldZeroBasedIndex][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
                   DispatchQueue.main.async {
                      checkmark.animateDisappearing()
                   }
                })
-               //else-if гарантирует, что эти блоки кода, отвечающие за анимацию, не запустятся одновременно
-            } else if textField.text!.isEmailAddress && checkmark.image != #imageLiteral(resourceName: "checkmark") {
+               //else-if гарантирует, что эти блоки кода, отвечающие за анимацию, не запустятся одновременно (хотя они и так не будут стакаться, так как оба выражения - это конъюнкции, и они имеют противоположные значения)
+               
+            } else if textFieldIsProperlyFilled && checkmark.image != #imageLiteral(resourceName: "checkmark") {
                self.textFieldTimers[textFieldZeroBasedIndex][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
                   DispatchQueue.main.async {
                      checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
@@ -343,32 +383,40 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             //Here we know, that textField is not first responder
             
             //If we resigned empty textField, it should assgin new image, describing, that user should fill it with a string
-            guard textField.text != "" && textField != nil else {
+            guard textField.text != "" && textField.text != nil else {
                print("Здесь нужно сделать другой image, показывающий, что нужно заполнить поле")
                checkmark.animateDisappearing()
                return
             }
             
             
-            //Обнуляю предыдущие таймеры, чтобы анимация не стакалась
-//            self.textFieldTimers[textFieldZeroBasedIndex][0].invalidate()
-//            self.textFieldTimers[textFieldZeroBasedIndex][1].invalidate()
+            //Здесь мы знаем, что checkmark'у точно нужно будет поставить какой-то image 
+            
+            var newImage : UIImage!
+            
+            if textFieldIsProperlyFilled {
+               newImage = UIImage(named:"checkmark")
+            } else {
+               newImage = UIImage(named:"exclamation_mark")
+            }
+            
+            
             
             if checkmark.image == nil {
                
-               checkmark.animateEmergence(withImage: textField.text!.isEmailAddress ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "exclamation_mark"))
+               //Если текущий checkmark.image пустой, то анимация появления
+               checkmark.animateEmergence(withImage: newImage)
+               
             } else {
                
-               let newImage = textField.text!.isEmailAddress ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "exclamation_mark")
-
+               //Если у newImage, который нам нужно поставить, отличается от текущего checkmark.image'a, то мутим анимацию
                if checkmark.image != newImage {
                   checkmark.animateChange(toImage: newImage)
                }
-               
             }
             
          }
-         print()
+//         print()
          
       }
    }
