@@ -407,7 +407,7 @@ extension String {
    }
    
    //Dot-atom знаки, разрешенные в большенстве систем для создания логина, электронной почты или пароля
-   static var dotAtomCharacters: Set<Character> {
+   static var basicSymbols: Set<Character> {
       return ["!","$","&","*" ,"-", "=", "^", "`", "|", "~", "#", "%", "'", "+", "/", "?", "_", "{", "}"]
    }
    
@@ -421,16 +421,54 @@ extension String {
       return ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"]
    }
    
+   static var digits: Set<Character> {
+      return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+   }
+   
    //Функция, определяющая, походит ли строка для создания пароля. Параметры: не менее 8 знаков, может содержать латиницу, кириллицу и dot-atom знаки
    var isPassword: Bool {
-      var returnValue = self.count >= 8
-      for char in self {
-         returnValue = returnValue && String.englishCharacters.union(String.dotAtomCharacters).union(String.russianCharacters).contains(char)
+      
+      //Пароль должен из не менее чем восьми символов
+      guard self.count >= 8 else {
+         return false
       }
-      return returnValue
+      
+      //Проходимся по каждому символу
+      for char in self {
+         
+         //Этот способ заменяю для оптимизации (deprecated)
+         //         returnValue = returnValue && String.englishCharacters.union(String.basicSymbols).union(String.russianCharacters).contains(char)
+         
+         //Если хоть один символ не соответстует множеству, то выходим из алгоритма в возвращаем false
+         guard String.englishCharacters.union(String.basicSymbols).union(String.digits).union(String.russianCharacters).contains(char) else {
+            return false
+         }
+      }
+      
+      return true
+   }
+   
+   //Подходит ли строка для русскоязычного имени. Также допускается тире, хз, зачем :D. Ну типа "Дарина-сан" ))
+   var isNameValid: Bool {
+      
+      //Проверка на валидность символов
+      for char in self {
+         guard (String.russianCharacters.union(["-"]).contains(char)) else {
+            return false
+         }
+      }
+      
+      //Дефис не должен стоять ни в начале, ни в конце
+      guard self.first != nil && self.first! != "-" && self.last != nil && self.last! != "-" else {
+         return false
+      }
+      
+      return true
+      
    }
    
    
 }
+
 
 

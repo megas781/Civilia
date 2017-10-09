@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+let window = appDelegate.window!
 class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    
@@ -21,7 +23,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    @IBOutlet weak var passwordSecondInputTextField: UITextField!
    @IBOutlet weak var nameTextField: UITextField!
    @IBOutlet weak var surnameTextField: UITextField!
-   @IBOutlet weak var maleSegmentedControl: UISegmentedControl!
+   @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
    
    @IBOutlet weak var registerButton: RoundedButton!
    
@@ -38,8 +40,12 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ Properties
    
-   //Свойство, показывающее, отображается ли клавиатура на экране
+   //Свойство, показывающее, отображается ли клавиатура на экране (removed)
    private var keyboardIsDisplayed = false
+   
+   
+   //В этом свойстве хрянятся теги textField'ов, напротив которых есть checkmark
+   private let verifiableTextFieldTags: [Int] = [1,2,3,4]
    
    //Свойство-ссылка на активный textField
    private var activeTextField: UITextField?
@@ -50,10 +56,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //Для каждого массива правило одно правило. 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
    private var textFieldTimers: [[Timer?]] = []
    
+   
    //MARK: +++ Computed Properties
    
    private var isMale: Bool {
-      switch maleSegmentedControl.selectedSegmentIndex {
+      switch genderSegmentedControl.selectedSegmentIndex {
       case 0:
          return true
       case 1:
@@ -69,20 +76,32 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    override func viewDidLoad() {
       super.viewDidLoad()
-
-      //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
-      self.textFieldTimers = Array.init(repeating: [nil,nil], count: 3)
       
+      //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
+      self.textFieldTimers = Array.init(repeating: [nil,nil], count: verifiableTextFieldTags.count)
       
       
       setupUI()
+      
+      self.view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+      
       
       
       
       
    }
    
-   
+   override func viewWillAppear(_ animated: Bool) {
+      
+      print("scrollView.frame: \(theScrollView.frame)")
+      print(" self.view.frame: \(self.view.frame)")
+      
+      let view1 = UIView.init(frame: self.surnameTextField.superview!.convert(surnameTextField.frame, to: self.view))
+      view1.frame.size = CGSize.init(width: 50, height: 34)
+      view1.backgroundColor = UIColor.blue
+      self.view.addSubview(view1)
+      
+   }
    
    //MARK: +++ Overrides of Superclass
    
@@ -137,8 +156,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       //      self.navigationItem.titleView!.frame.size.width = self.view.frame.width
       
       //Подпись класса под уведомления о появлении и исчезновении клавиатуры
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-      //      NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.alternativePutUpScrollViewForAppearingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+      //            NotificationCenter.default.addObserver(self, selector: #selector(self.exampleSelector(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
       //Соединение textField'ов с primaryKeyTriggered, который меняет firstResponder
       emailTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
@@ -151,6 +170,13 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       for view in self.primeViews {
          let gr = UITapGestureRecognizer(target: self, action: #selector(self.resignAnyFirstResponder))
          view.addGestureRecognizer(gr)
+      }
+      
+      //На углах segmentedControl'a белые углы. Поменяю цвет фона, но так как буквы тоже цвета фона, то положу под segmentedControl белый view
+      do {
+         
+         genderSegmentedControl.layer.cornerRadius = genderSegmentedControl.frame.size.height/7
+         
       }
       
       //Здесь я добавляю кнопку "Назад" для navigationItem
@@ -177,7 +203,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          (view.viewWithTag(sender.tag + 1)! as! UITextField).becomeFirstResponder()
          
          //На этом месте self.activeTextField будет уже переопределен, так что можно вызывать putUpScrollViewForKeyboardAppearing(), чтобы отрегулировать поднятие scrollView при нажатии на Next на клавиатуре
-         self.putUpScrollViewForKeyboardAppearing(nil)
+         //         self.alternativePutUpScrollViewForAppearingKeyboard(nil)
          
       case 5:
          self.resignAnyFirstResponder()
@@ -185,45 +211,72 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          fatalError("[ошибка тега]")
       }
       
-      if (1...3).contains(sender.tag) {
+      if verifiableTextFieldTags.contains(sender.tag) {
          self.toggleCheckmark(forTextField: sender)
       }
       
    }
    
-   //метод, понимающий scrollView, адоптируясь под появляющуюся клавиатуру
-   @objc func putUpScrollViewForKeyboardAppearing(_ notification: Notification?) {
+   @objc func alternativePutUpScrollViewForAppearingKeyboard(_ notification: Notification?) {
       
-      //Если удалось извлечь, то сохраняем последнюю высоту в self.keyboardHeight
-//      guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect)?.height else {
-//         print("Не смог извлечь keyboardHeight из userInfo")
-//         return
-//      }
+      for pair in notification!.userInfo! {
+         print("\(pair.key) : \(pair.value)")
+      }
+      
+      
+      //Конечный frame keyboard'a. У него мы будем использовать Y для поднятия scrollView (непосредственно theScrollView.frame).
+      guard let endKeyboardRect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect) else {
+         
+         print("не смог извлечь keyboardHeight")
+         return
+      }
+      print("retrieved y: \(endKeyboardRect.origin.y)")
+      print()
+      //Извлекаем активный textField. После, нам понадобится его frame
+      guard let retrievedTextField = activeTextField else {
+         print("не смог извлечь activeTextField")
+         return
+      }
+      
+      
+      self.theScrollView.frame.size.height = endKeyboardRect.origin.y - (self.navigationController!.navigationBar.frame.size.height + 20) /* это высота status bar'a */
+      self.theScrollView.scrollRectToVisible(retrievedTextField.superview!.convert(retrievedTextField.frame, to: self.theScrollView), animated: true)
+      
+   }
+   
+   //метод, понимающий scrollView, адоптируясь под появляющуюся клавиатуру
+   @objc func putUpScrollViewForAppearingKeyboard(_ notification: Notification?) {
+      
+      print()
+      for pair in notification!.userInfo! {
+         print("\(pair.key) : \(pair.value)")
+      }
+      print()
       
       //В этой переменной будет храниться высота клавиатуры
       var keyboardHeight: CGFloat!
       
       //Удается ли извлечь высоту из userInfo?
       if let retrievedHeight = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect)?.height {
-         print("case userInfo")
+         //         print("case userInfo")
          //Если да, то устанавливаем извлеченное значение в keyboardHeight
          keyboardHeight = retrievedHeight
          
          //Здесь, если извлеченное значение больше текущего сохраненного (по дефолту хранится ноль), то обновляем его
-//         if self.largestSavedKeyboardHeight < retrievedHeight {
-            self.lastSavedKeyboardHeight = retrievedHeight
-//         }
+         //         if self.largestSavedKeyboardHeight < retrievedHeight {
+         self.lastSavedKeyboardHeight = retrievedHeight
+         //         }
          
       } else
          //В противном случае, если нам удалось извлечь высоту из self.largestSavedKeyboardHeight(а если эта переменная равна нулю, то не смогли), то... 
          if self.lastSavedKeyboardHeight > 0 {
             //...то просто устанавливаем это значение в keyboardHeight
-            print("case largestSavedKeyboardheight")
-         keyboardHeight = self.lastSavedKeyboardHeight
-      } else {
+            //            print("case largestSavedKeyboardheight")
+            keyboardHeight = self.lastSavedKeyboardHeight
+         } else {
             //В самом противном случае, если мы вообще ничего не смогли извлечь, то выходим из функции, так как больше здесь нам делать нечего. Эта функция только поднимет scrollView на рассчитанную delta
-         print("Не смог извлечь высоту клавиатуры ни из userInfo, ни из self.largestlargestSavedKeyboardHeight")
-         return
+            //         print("Не смог извлечь высоту клавиатуры ни из userInfo, ни из self.largestlargestSavedKeyboardHeight")
+            return
       }
       
       
@@ -233,22 +286,29 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          return
       }
       
-      print("local keyboardHeight: \(keyboardHeight)")
       
-      let absoluteTextFieldCoordinates = textField.superview!.convert(textField.frame, to: self.relativeContentView)
-      print("absoluteCoordinates.maxY: \(absoluteTextFieldCoordinates.maxY)")
-      let delta = (absoluteTextFieldCoordinates.maxY + keyboardHeight) - self.view.frame.size.height
+      //      print("self.view.frame.height  :\(self.view.frame.height)")
+      let absoluteTextFieldCoordinates = textField.superview!.convert(textField.frame, to: self.view)
+      //      print("absoluteCoordinates.maxY: \(absoluteTextFieldCoordinates.maxY)")
+      //      print("local keyboardHeight    : \(keyboardHeight)")
       
-      print("delta: \(delta)")
+      //      let delta = (absoluteTextFieldCoordinates.maxY + keyboardHeight) - self.view.frame.size.height
+      let delta = keyboardHeight - (self.view.frame.size.height - absoluteTextFieldCoordinates.maxY)
       
-      
-      UIView.animate(withDuration: 0.25, delay: 0, animations: { 
-         self.theScrollView.contentOffset = CGPoint.init(x: 0, y: delta > 0 ? delta + 18 /*немного больше спейса над клавиатурой*/ : 0)
-         self.theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: delta > 0 ? delta + 18 /*немного больше спейса над клавиатурой*/ : 0, right: 0)
-      })
+      //      print("delta: \(delta)")
       
       
-      print()
+      
+      
+      //      UIView.animate(withDuration: 0.25, delay: 0, animations: { 
+      //         self.theScrollView.contentOffset = CGPoint.init(x: 0, y: delta > 0 ? delta /*немного больше спейса над клавиатурой*/ : 0)
+      //         self.theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: delta > 0 ? delta /*немного больше спейса над клавиатурой*/ : 0, right: 0)
+      //      })
+      
+      
+      self.theScrollView.contentOffset = CGPoint.init(x: 0, y: 253)
+      self.theScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 253, right: 0)
+      
    }
    
    @objc func resignAnyFirstResponder() {
@@ -259,22 +319,26 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.nameTextField.resignFirstResponder()
       self.surnameTextField.resignFirstResponder()
       
+      //Этому свойству присваивается ложь только здесь
       self.keyboardIsDisplayed = false
       
       if let textField = self.activeTextField {
-         if (1...3).contains(textField.tag) {
+         if verifiableTextFieldTags.contains(textField.tag) {
             self.toggleCheckmark(forTextField: textField)
          }
       }
       
       self.activeTextField = nil
+      //FIXME: Это нужно поменять на откат к преждему состоянию. И эта логика должна находиться не здесь, а где-нибудь в putDownScrollView
       
-      UIView.animate(withDuration: 0.35, delay: 0, options: [], animations: { 
-         self.theScrollView.contentOffset = CGPoint.zero
-         self.theScrollView.contentInset = UIEdgeInsets.zero
-      })
-      
-      
+      print("this you will assign you scrollViewHeight: \(self.view.frame.size)")
+      UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: { 
+         
+         self.theScrollView.frame.size = self.view.frame.size
+         
+      }) { (bool) in
+         
+      }
       
    }
    
@@ -288,16 +352,16 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
       
-      
-      k += 1
-      let checkmark = self.checkmarks[k % self.checkmarks.count]
-      
-      if checkmark.image == nil {
-         checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+      if let retrievedFrame = self.activeTextField?.frame {
+         
+         print("scrollRect performed")
+         
+         self.theScrollView.scrollRectToVisible(retrievedFrame
+            , animated: true)
+         
       } else {
-         checkmark.animateChange(toImage: checkmark.image! == UIImage(named: "checkmark")! ? UIImage(named: "exclamation_mark")! : UIImage(named: "checkmark")!)
+         print("не удалось извлечь activeTextField")
       }
-      
       
    }
    
@@ -310,8 +374,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    private func toggleCheckmark(forTextField textField: UITextField) {
       DispatchQueue.main.async {
          
-         guard (1...3).contains(textField.tag) else {
-            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений (1...3)]")
+         guard self.verifiableTextFieldTags.contains(textField.tag) else {
+            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
             return
          }
          
@@ -322,8 +386,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          let checkmark = self.checkmarks[textFieldZeroBasedIndex]
          
          //Гарантированно обнуляем все предыдущие анимации, так как мы сейчас будем их в любом случае обновлять
-         print("textFieldTimers: \(self.textFieldTimers.count)")
-         print("textFieldTimers: \(self.textFieldTimers)")
+         //         print("textFieldTimers: \(self.textFieldTimers.count)")
+         //         print("textFieldTimers: \(self.textFieldTimers)")
          
          self.textFieldTimers[textFieldZeroBasedIndex][0]?.invalidate()
          self.textFieldTimers[textFieldZeroBasedIndex][1]?.invalidate()
@@ -355,6 +419,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             }
             
             textFieldIsProperlyFilled = self.passwordSecondInputTextField.text! == self.passwordFirstInputTextField.text!
+         case 4:
+            //Кейс nameTextField, т.е. Given Name
+            textFieldIsProperlyFilled = textField.text!.isNameValid
          default:
             fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
          }
@@ -379,6 +446,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
                })
             }
             
+            //Здесь нам не нужно исполнять никакую анимацию
+            
          } else {
             //Here we know, that textField is not first responder
             
@@ -392,40 +461,37 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             
             //Здесь мы знаем, что checkmark'у точно нужно будет поставить какой-то image 
             
-            var newImage : UIImage!
+            //В переменной properImage мы будем хранить релевантный image
+            var properImage : UIImage!
             
+            //Тринарный оператор, почему не работает. Выводит ошибку Segmentation Fault 11
             if textFieldIsProperlyFilled {
-               newImage = UIImage(named:"checkmark")
+               properImage = UIImage(named:"checkmark")
             } else {
-               newImage = UIImage(named:"exclamation_mark")
+               properImage = UIImage(named:"exclamation_mark")
             }
             
-            
-            
+            //Если текущий checkmark.image пустой, то...
             if checkmark.image == nil {
-               
-               //Если текущий checkmark.image пустой, то анимация появления
-               checkmark.animateEmergence(withImage: newImage)
+               //...то анимация появления
+               checkmark.animateEmergence(withImage: properImage)
                
             } else {
                
                //Если у newImage, который нам нужно поставить, отличается от текущего checkmark.image'a, то мутим анимацию
-               if checkmark.image != newImage {
-                  checkmark.animateChange(toImage: newImage)
+               if checkmark.image != properImage {
+                  checkmark.animateChange(toImage: properImage)
                }
             }
             
          }
-//         print()
+         //         print()
          
       }
    }
    
 }
 
-
-
-//MARK: +++ Navigation methods
 
 
 

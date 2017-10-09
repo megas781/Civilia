@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
       
       setupUI()
       
-      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing), name: Notification.Name.UIKeyboardWillShow, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
       NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
    }
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController {
    //MARK: +++ Selectors
    
    //Метод, убирающий contentInset и contentOffset для scrollView
-   @objc func putUpScrollViewForKeyboardAppearing(notification: Notification) {
+   @objc func putUpScrollViewForKeyboardAppearing(_ notification: Notification) {
       
       
       guard !self.keyboardIsDisplayed else {
