@@ -34,7 +34,7 @@ extension UIImageView {
       }
    }
    //Вторая – для смены
-   func animateChange(toImage image: UIImage,animationDuration: TimeInterval = 0.23) {
+   func animateChange(toImage image: UIImage,animationDuration: TimeInterval = 0.27) {
       
       DispatchQueue.main.async {
          
