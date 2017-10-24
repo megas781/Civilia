@@ -54,8 +54,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
 //   private var keyboardIsDisplayed = false
    
    
-   //В этом свойстве хрянятся теги textField'ов, напротив которых есть checkmark
-   private let verifiableTextFieldTags: [Int] = [1,2,3,4]
+   //В этом свойстве хрянятся теги textField'ов, напротив которых есть checkmark. Тупо? На всякий случай, если будет поле, которое 
+   private let verifiableTextFieldTags: [Int] = [1,2,3,4,5]
    
    //Свойство-ссылка на активный textField
    private var activeTextField: VerifiableTextField?
@@ -392,6 +392,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          case 4:
             //Кейс nameTextField, т.е. Given Name
             textFieldIsProperlyFilled = textField.text!.isNameValid
+         case 5:
+            print("[case 5: Сделай имплементацию для фамилии!]")
+            return
          default:
             fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
          }
