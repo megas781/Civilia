@@ -9,7 +9,9 @@
 import UIKit
 
 class VerifiableTextField: UITextField {
-
-    
-
+   
+   var checkmark: CheckmarkView!
+   
+   
+   
 }

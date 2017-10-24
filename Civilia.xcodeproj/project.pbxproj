@@ -19,7 +19,6 @@
 		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
 		ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */; };
 		ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */; };
-		EDB752191F80F28C00FD98AE /* UIImageView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB752181F80F28C00FD98AE /* UIImageView+animations.swift */; };
 		EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */; };
 		EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; };
 		EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,7 +65,6 @@
 		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
 		ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableTextField.swift; sourceTree = "<group>"; };
 		ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
-		EDB752181F80F28C00FD98AE /* UIImageView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+animations.swift"; sourceTree = "<group>"; };
 		EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EDDD946B1F7779BB00F89761 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		EDDD946C1F7779BE00F89761 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */,
-				EDB752181F80F28C00FD98AE /* UIImageView+animations.swift */,
 				ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */,
 				ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */,
 			);
@@ -330,7 +327,6 @@
 				ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */,
 				ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */,
 				ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */,
-				EDB752191F80F28C00FD98AE /* UIImageView+animations.swift in Sources */,
 				EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
 				EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */,

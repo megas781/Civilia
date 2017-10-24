@@ -4,7 +4,7 @@
 //
 //  Created by Gleb Kalachev on 9/29/17.
 //  Copyright © 2017 Gleb Kalachev. All rights reserved.
-//
+// 
 
 import UIKit
 
@@ -22,17 +22,17 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    @IBOutlet var scrollViewBottomConstraint: NSLayoutConstraint!
    
    
-   @IBOutlet weak var emailTextField: UITextField!
-   @IBOutlet weak var passwordFirstInputTextField: UITextField!
-   @IBOutlet weak var passwordSecondInputTextField: UITextField!
-   @IBOutlet weak var nameTextField: UITextField!
-   @IBOutlet weak var surnameTextField: UITextField!
+   @IBOutlet weak var emailTextField: VerifiableTextField!
+   @IBOutlet weak var passwordFirstInputTextField: VerifiableTextField!
+   @IBOutlet weak var passwordSecondInputTextField: VerifiableTextField!
+   @IBOutlet weak var nameTextField: VerifiableTextField!
+   @IBOutlet weak var surnameTextField: VerifiableTextField!
    
    //Здесь будут храниться вышеобъявленные textField'ы, только в формате словаря. Устанавливать сам словарь буду во viewDidLoad
-   private var textFieldCollection: [Int : UITextField]!
+   private var textFieldCollection: [Int : VerifiableTextField]!
    
    //Чекмарки, соответствующие своим textField'ам по формуле checkmarks[textField.tag-1]
-   @IBOutlet var checkmarks: [UIImageView]!
+   @IBOutlet var checkmarks: [CheckmarkView]!
    
    
    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
@@ -58,12 +58,12 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    private let verifiableTextFieldTags: [Int] = [1,2,3,4]
    
    //Свойство-ссылка на активный textField
-   private var activeTextField: UITextField?
+   private var activeTextField: VerifiableTextField?
    
    //Свойство, хранящее последнюю зафиксированную высоту клавиатуры. Делаю опциональным и присваиваю ноль во viewDidLoad, чтобы сохранить логическое понимание переменной
    private var lastSavedKeyboardHeight: CGFloat = 0
    
-   //Для каждого массива правило одно правило. 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
+   //Инструкция для каждого массива в textFieldTimers: 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
    private var textFieldTimers: [[Timer?]] = []
    
    
@@ -96,6 +96,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       
    }
    
+   override func viewDidAppear(_ animated: Bool) {
+      
+      print(self.emailTextField.checkmark ?? "nil checkmark")
+      
+   }
    
    //MARK: +++ Overrides of Superclass
    
@@ -111,13 +116,22 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    
    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-      self.activeTextField = textField
+      
+      if textField is VerifiableTextField {
+         self.activeTextField = (textField as! VerifiableTextField)
+      } else {
+         fatalError("Ошибка downcasting'a параметра textField до VerifiableTextField")
+      }
+      
       return true
    }
    
    func textFieldDidEndEditing(_ textField: UITextField) {
       
-      self.toggleCheckmark(forTextField: textField)
+      //Это метод делегата, так что нужно роверять, является ли параметр VerifiableTextField
+      if textField is VerifiableTextField {
+         self.toggleCheckmark(forTextField: textField as! VerifiableTextField)
+      }
       
    }
    
@@ -134,12 +148,15 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //MARK: +++ IBActions of changing value
    
    //text-changed для каждого textField
-   @IBAction func anyTextFieldTextChanged(_ sender: UITextField) {
+   @objc func anyTextFieldTextChanged(_ sender: UITextField) {
       
+      /*
+       Использую именно кастомный метод как селектор для textField'ов вместо метода делегата shouldChangeCharactersIn, потому что в этом методе значение строки sender.text уже измененное после нажатия кнопки на клавиатуре
+       */
       
-      
-      self.toggleCheckmark(forTextField: sender)
-      
+      if sender is VerifiableTextField {
+         self.toggleCheckmark(forTextField: sender as! VerifiableTextField)
+      }
       
    }
    
@@ -158,12 +175,6 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForAppearingKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
       //            NotificationCenter.default.addObserver(self, selector: #selector(self.exampleSelector(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       
-      //Соединение textField'ов с primaryKeyTriggered, который меняет firstResponder
-//      emailTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
-//      passwordFirstInputTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
-//      passwordSecondInputTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
-//      nameTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
-//      surnameTextField.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
       
       //Устанавливаю textFieldCollection. Каждый ключ является тегом хранящегося под ним textField'a 
       self.textFieldCollection = [
@@ -173,10 +184,13 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          self.nameTextField.tag: self.nameTextField,
          self.surnameTextField.tag : self.surnameTextField
       ]
+      
       //Добавляю каждому
       for textField in self.textFieldCollection {
          textField.value.addTarget(self, action: #selector(self.primaryKeyTriggered(_:)), for: UIControlEvents.primaryActionTriggered)
+         textField.value.addTarget(self, action: #selector(self.anyTextFieldTextChanged(_:)), for: UIControlEvents.editingChanged)
          textField.value.delegate = self
+         textField.value.checkmark = self.checkmarks[textField.key - 1]
       }
       
       //Добавление tap recognizer'ов для фоновых view, чтобы при нажатии на них убиралась клавиатура
@@ -303,7 +317,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       performSegue(withIdentifier: "unwindToLoginViewControllerSegue", sender: self)
    }
    
-   var k = -1
+   
    
    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
       
@@ -326,19 +340,20 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    
    //
-   private func toggleCheckmark(forTextField textField: UITextField) {
+   private func toggleCheckmark(forTextField textField: VerifiableTextField) {
       DispatchQueue.main.async {
          
-         guard self.verifiableTextFieldTags.contains(textField.tag) else {
-            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
-            return
-         }
+//         guard self.verifiableTextFieldTags.contains(textField.tag) else {
+//            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
+//            return
+//         }
          
          //Zero-based индекс textField'a, считающийся сверху вниз
          let textFieldZeroBasedIndex = textField.tag - 1
          
          //Ссылка на checkmark, соответствующий данному textField
-         let checkmark = self.checkmarks[textFieldZeroBasedIndex]
+//         let checkmark = self.checkmarks[textFieldZeroBasedIndex]
+         let checkmark = textField.checkmark!
          
          //Гарантированно обнуляем все предыдущие анимации, так как мы сейчас будем их в любом случае обновлять
          //         print("textFieldTimers: \(self.textFieldTimers.count)")
@@ -382,7 +397,6 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          }
          
          if textField.isFirstResponder {
-            
             
             //Анимация происходит только в случае, если при textField ,  
             if !textFieldIsProperlyFilled && checkmark.image != nil {
