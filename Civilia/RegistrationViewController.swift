@@ -64,7 +64,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    private var lastSavedKeyboardHeight: CGFloat = 0
    
    //Инструкция для каждого массива в textFieldTimers: 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
-   private var textFieldTimers: [[Timer?]] = []
+   private var textFieldTimers: [Timer?] = []
    
    
    //MARK: +++ Computed Properties
@@ -90,17 +90,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       setupUI()
       
       //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
-      self.textFieldTimers = Array.init(repeating: [nil,nil], count: verifiableTextFieldTags.count)
-      
-      
+      self.textFieldTimers = Array.init(repeating: nil, count: verifiableTextFieldTags.count)
       
    }
    
-   override func viewDidAppear(_ animated: Bool) {
-      
-      print(self.emailTextField.checkmark ?? "nil checkmark")
-      
-   }
+   
    
    //MARK: +++ Overrides of Superclass
    
@@ -129,16 +123,16 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    func textFieldDidEndEditing(_ textField: UITextField) {
       
       //Это метод делегата, так что нужно роверять, является ли параметр VerifiableTextField
-      if textField is VerifiableTextField {
-         self.toggleCheckmark(forTextField: textField as! VerifiableTextField)
-      }
+//      if textField is VerifiableTextField {
+//         self.toggleCheckmark(forTextField: textField as! VerifiableTextField)
+//      }
       
    }
    
    //MARK: +++ IBActions of Tap
    
    @IBAction func registerButtonTouchUpInside(_ sender: UIButton) {
-      print("register button tapped")
+      //print("register button tapped")
    }
    
    
@@ -246,15 +240,15 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //метод, понимающий scrollView, адоптируясь под появляющуюся клавиатуру
    @objc func putUpScrollViewForAppearingKeyboard(_ notification: Notification?) {
-      print("putUpScrollViewForAppearingKeyboard performed")
+      //print("putUpScrollViewForAppearingKeyboard performed")
       
       guard let retrievedTextField = activeTextField else {
-         print("не смог извлечь activeTextField")
+         //print("не смог извлечь activeTextField")
          return
       }
       
       guard let endKeyboardRect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect) else {
-         print("не смог извлечь keyboardHeight")
+         //print("не смог извлечь keyboardHeight")
          return
       }
       
@@ -268,9 +262,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       //...после чего обновляю констрейнт
       self.scrollViewBottomConstraint.constant = (self.view.frame.size.height - (endKeyboardRect.origin.y - 64))
       
-//      print(self.view.frame.size.height)
-//      print(self.theScrollView.frame.maxY)
-//      print("constrant: ", self.scrollViewBottomConstraint.constant)
+//      //print(self.view.frame.size.height)
+//      //print(self.theScrollView.frame.maxY)
+//      //print("constrant: ", self.scrollViewBottomConstraint.constant)
        self.theScrollView.scrollRectToVisible(retrievedTextField.superview!.convert(retrievedTextField.frame, to: self.theScrollView), animated: true)
       
    }
@@ -323,13 +317,13 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       
       if let retrievedFrame = self.activeTextField?.frame {
          
-         print("scrollRect performed")
+         //print("scrollRect performed")
          
          self.theScrollView.scrollRectToVisible(retrievedFrame
             , animated: true)
          
       } else {
-         print("не удалось извлечь activeTextField")
+         //print("не удалось извлечь activeTextField")
       }
       
    }
@@ -338,13 +332,53 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ Custom functions
    
+   private func textFieldIsProperlyFilled(textField: VerifiableTextField) -> Bool? {
+      
+      var textFieldIsProperlyFilled: Bool!
+      
+      //В этой switch-конкструкции мы, собственно, и будем определять textFeildIsProperlyFilled
+      switch textField.tag {
+      case 1:
+         //print("кейс email'a")
+         textFieldIsProperlyFilled = textField.text!.isEmailAddress
+      case 2:
+         //print("кейс first password input")
+         textFieldIsProperlyFilled = textField.text!.isPassword
+      case 3:
+         //print("кейс second password input")
+         
+         //Здесь нужно проверить, правильно ли заполнен firstInput перед тем, как оценивать правильность secondInput'a
+         guard self.passwordFirstInputTextField.text!.isPassword else {
+            //print("Первое поля пароля не заполнено, чтобы оценивать второе")
+            
+            //Если прежде у secondInputTextField'a стоял какой-то checkmark, то убираем его
+            if textField.checkmark.image != nil {
+               textField.checkmark.animateDisappearing()
+            }
+            
+            return nil
+         }
+         
+         textFieldIsProperlyFilled = self.passwordSecondInputTextField.text! == self.passwordFirstInputTextField.text!
+      case 4:
+         //Кейс nameTextField, т.е. Given Name
+         textFieldIsProperlyFilled = textField.text!.isNameValid
+      case 5:
+         ////print("[case 5: Сделай имплементацию для фамилии!]")
+         //Пока что разделяю 4 и 5 кейсы, если вдруг захочу разделить правила
+         textFieldIsProperlyFilled = textField.text!.isNameValid
+      default:
+         fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
+      }
+      
+      return textFieldIsProperlyFilled
+   }
    
-   //
    private func toggleCheckmark(forTextField textField: VerifiableTextField) {
       DispatchQueue.main.async {
-         
+         print("toggleCheckmark performed")
 //         guard self.verifiableTextFieldTags.contains(textField.tag) else {
-//            print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
+//            //print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
 //            return
 //         }
          
@@ -356,64 +390,35 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          let checkmark = textField.checkmark!
          
          //Гарантированно обнуляем все предыдущие анимации, так как мы сейчас будем их в любом случае обновлять
-         //         print("textFieldTimers: \(self.textFieldTimers.count)")
-         //         print("textFieldTimers: \(self.textFieldTimers)")
+         //         //print("textFieldTimers: \(self.textFieldTimers.count)")
+         //         //print("textFieldTimers: \(self.textFieldTimers)")
          
-         self.textFieldTimers[textFieldZeroBasedIndex][0]?.invalidate()
-         self.textFieldTimers[textFieldZeroBasedIndex][1]?.invalidate()
+         self.textFieldTimers[textFieldZeroBasedIndex]?.invalidate()
+         self.textFieldTimers[textFieldZeroBasedIndex]?.invalidate()
          
          //по переменной textFieldIsProperlyFilled мы будем определять, правильно ли заполнен textField или нет. Для каждого textField будем делать свой кейс, определяющий, всё ли правильно 
-         var textFieldIsProperlyFilled: Bool!
          
-         //В этой switch-конкструкции мы, собственно, и будем определять textFeildIsProperlyFilled
-         switch textField.tag {
-         case 1:
-            print("кейс email'a")
-            textFieldIsProperlyFilled = textField.text!.isEmailAddress
-         case 2:
-            print("кейс first password input")
-            textFieldIsProperlyFilled = textField.text!.isPassword
-         case 3:
-            print("кейс second password input")
-            
-            //Здесь нужно проверить, правильно ли заполнен firstInput перед тем, как оценивать правильность secondInput'a
-            guard self.passwordFirstInputTextField.text!.isPassword else {
-               print("Первое поля пароля не заполнено, чтобы оценивать второе")
-               
-               //Если прежде у secondInputTextField'a стоял какой-то checkmark, то убираем его
-               if checkmark.image != nil {
-                  checkmark.animateDisappearing()
-               }
-               
-               return
-            }
-            
-            textFieldIsProperlyFilled = self.passwordSecondInputTextField.text! == self.passwordFirstInputTextField.text!
-         case 4:
-            //Кейс nameTextField, т.е. Given Name
-            textFieldIsProperlyFilled = textField.text!.isNameValid
-         case 5:
-            print("[case 5: Сделай имплементацию для фамилии!]")
+         
+         guard let textFieldIsProperlyFilled = self.textFieldIsProperlyFilled(textField: textField) else {
+            print("textFieldIsProperly filled = nil, return from the function")
             return
-         default:
-            fatalError("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: switch-конструкция попала в default при определении значения переменной textFieldIsProperlyFilled]")
          }
          
          if textField.isFirstResponder {
             
             //Анимация происходит только в случае, если при textField ,  
             if !textFieldIsProperlyFilled && checkmark.image != nil {
-               self.textFieldTimers[textFieldZeroBasedIndex][0] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
+               self.textFieldTimers[textFieldZeroBasedIndex] = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
                   DispatchQueue.main.async {
                      checkmark.animateDisappearing()
                   }
                })
                //else-if гарантирует, что эти блоки кода, отвечающие за анимацию, не запустятся одновременно (хотя они и так не будут стакаться, так как оба выражения - это конъюнкции, и они имеют противоположные значения)
                
-            } else if textFieldIsProperlyFilled && checkmark.image != #imageLiteral(resourceName: "checkmark") {
-               self.textFieldTimers[textFieldZeroBasedIndex][1] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+            } else if textFieldIsProperlyFilled && checkmark.status != CheckmarkView.CheckmarkStatus.positive {
+               self.textFieldTimers[textFieldZeroBasedIndex] = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
                   DispatchQueue.main.async {
-                     checkmark.animateEmergence(withImage: #imageLiteral(resourceName: "checkmark"))
+                     checkmark.animateEmergence(withStatus: CheckmarkView.CheckmarkStatus.positive)
                   }
                })
             }
@@ -425,7 +430,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             
             //If we resigned empty textField, it should assgin new image, describing, that user should fill it with a string
             guard textField.text != "" && textField.text != nil else {
-               print("Здесь нужно сделать другой image, показывающий, что нужно заполнить поле")
+               ////print("Здесь нужно сделать другой image, показывающий, что нужно заполнить поле")
                checkmark.animateDisappearing()
                return
             }
@@ -433,31 +438,25 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             
             //Здесь мы знаем, что checkmark'у точно нужно будет поставить какой-то image 
             
-            //В переменной properImage мы будем хранить релевантный image
-            var properImage : UIImage!
             
-            //Тринарный оператор, почему не работает. Выводит ошибку Segmentation Fault 11
+            //Используется properStatus, потому что если использовать тринарный оператор, вылетает ошибка Segmentation Fault 11
+            var properStatus: CheckmarkView.CheckmarkStatus!
             if textFieldIsProperlyFilled {
-               properImage = UIImage(named:"checkmark")
+               properStatus = CheckmarkView.CheckmarkStatus.positive
             } else {
-               properImage = UIImage(named:"exclamation_mark")
+               properStatus = CheckmarkView.CheckmarkStatus.negative
             }
             
-            //Если текущий checkmark.image пустой, то...
             if checkmark.image == nil {
-               //...то анимация появления
-               checkmark.animateEmergence(withImage: properImage)
-               
+               checkmark.animateEmergence(withStatus: properStatus)
             } else {
-               
-               //Если у newImage, который нам нужно поставить, отличается от текущего checkmark.image'a, то мутим анимацию
-               if checkmark.image != properImage {
-                  checkmark.animateChange(toImage: properImage)
+               //Если то, какой статус нужно применить НЕ совпадает с текущим статусом, то производится анимация замены
+               if checkmark.status != properStatus {
+                  checkmark.animateChange(toStatus: properStatus)
                }
             }
             
          }
-         //         print()
          
       }
    }
