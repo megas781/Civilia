@@ -451,6 +451,11 @@ extension String {
    //Подходит ли строка для русскоязычного имени. Также допускается тире, хз, зачем :D. Ну типа "Дарина-сан" ))
    var isNameValid: Bool {
       
+      //Условие 2-х символов
+      guard self.count >= 2 else {
+         return false
+      }
+      
       //Проверка на валидность символов
       for char in self {
          guard (String.russianCharacters.union(["-"]).contains(char)) else {
