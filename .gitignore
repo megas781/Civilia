@@ -17,6 +17,9 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 
+#Gleb options
+*.xcbkptlist
+
 ## Other
 *.moved-aside
 *.xccheckout
