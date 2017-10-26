@@ -7,7 +7,7 @@
 // 
 
 import UIKit
-//import FirebaseAuth
+import FirebaseAuth
 import FirebaseDatabase
 import Firebase
 
@@ -149,18 +149,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    @IBAction func registerButtonTouchUpInside(_ sender: UIButton) {
       
-      let dimView = UIView.init(frame: window.frame)
-      dimView.backgroundColor = .black
-      dimView.alpha = 0.3
       
-      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
-      activityIndecator.startAnimating()
-      activityIndecator.center = dimView.center
-      
-      print("activityFrame: \(activityIndecator.frame)")
-      dimView.addSubview(activityIndecator)
-      
-      window.addSubview(dimView)
       
       
       Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordSecondInputTextField.text!) { (user, error) in
