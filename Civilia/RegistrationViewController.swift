@@ -7,7 +7,9 @@
 // 
 
 import UIKit
-
+//import FirebaseAuth
+import FirebaseDatabase
+import Firebase
 
 let window = appDelegate.window!
 class RegistrationViewController: UIViewController,UITextFieldDelegate {
@@ -18,7 +20,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    @IBOutlet weak var theScrollView: UIScrollView!
    /*
     scrollViewBottomConstaint это vertical spacing scrollView к self.view . С помощью его константы мы будем поднимать нижную границу scroll'a.
- */
+    */
    @IBOutlet var scrollViewBottomConstraint: NSLayoutConstraint!
    
    
@@ -50,10 +52,6 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ Properties
    
-   //Свойство, показывающее, отображается ли клавиатура на экране (removed)
-//   private var keyboardIsDisplayed = false
-   
-   
    //В этом свойстве хрянятся теги textField'ов, напротив которых есть checkmark. Тупо? На всякий случай, если будет поле, которое 
    private let verifiableTextFieldTags: [Int] = [1,2,3,4,5]
    
@@ -66,6 +64,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    //Инструкция для каждого массива в textFieldTimers: 0-ой элемент - таймер исчезновения знака, 1-ый элемент - таймер появления positive sign'a, 2-ой элемент – резервный таймер для negative sign
    private var textFieldTimers: [Timer?] = []
    
+   //Firebase needed properties
+   var handler: AuthStateDidChangeListenerHandle?
    
    //MARK: +++ Computed Properties
    
@@ -87,6 +87,8 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+      
+      
       setupUI()
       
       //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
@@ -94,7 +96,21 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       
    }
    
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      
+      handler = Auth.auth().addStateDidChangeListener({ (auth, user) in
+         //Пока хз, что здесь делать
+      })
+      
+      self.updateRegistrationButtonActivity()
+      
+   }
    
+   
+   override func viewWillDisappear(_ animated: Bool) {
+      Auth.auth().removeStateDidChangeListener(handler!)
+   }
    
    //MARK: +++ Overrides of Superclass
    
@@ -123,16 +139,60 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    func textFieldDidEndEditing(_ textField: UITextField) {
       
       //Это метод делегата, так что нужно роверять, является ли параметр VerifiableTextField
-//      if textField is VerifiableTextField {
-//         self.toggleCheckmark(forTextField: textField as! VerifiableTextField)
-//      }
+      //      if textField is VerifiableTextField {
+      //         self.toggleCheckmark(forTextField: textField as! VerifiableTextField)
+      //      }
       
    }
    
    //MARK: +++ IBActions of Tap
    
    @IBAction func registerButtonTouchUpInside(_ sender: UIButton) {
-      //print("register button tapped")
+      
+      let dimView = UIView.init(frame: window.frame)
+      dimView.backgroundColor = .black
+      dimView.alpha = 0.3
+      
+      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
+      activityIndecator.startAnimating()
+      activityIndecator.center = dimView.center
+      
+      print("activityFrame: \(activityIndecator.frame)")
+      dimView.addSubview(activityIndecator)
+      
+      window.addSubview(dimView)
+      
+      
+      Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordSecondInputTextField.text!) { (user, error) in
+         //completion of auth
+         
+         //Если есть ошибка, то не нужно продолжать загружать
+         guard error == nil else {
+            
+            //Создаем errorEnum, котороый удобно использовать для switch-конструкции
+            guard let errorEnum = AuthErrorCode.init(rawValue: (error! as NSError).code) else {
+               fatalError("Ошибка извлечения имени ошибки")
+            }
+            
+            switch errorEnum {
+            case .emailAlreadyInUse:
+               self.showAlertController(withTitle: "Произошла ошибка", message: "Данная почта уже занята другим аккаунтом")
+            default:
+               self.showAlertController(withTitle: "Произошла ошибка", message: error!.localizedDescription)
+               break
+            }
+            
+            return
+         }
+         
+         DispatchQueue.main.async {
+            
+            
+            
+         }
+         
+      }
+      
    }
    
    
@@ -149,6 +209,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
        */
       
       if sender is VerifiableTextField {
+         self.updateRegistrationButtonActivity()
          self.toggleCheckmark(forTextField: sender as! VerifiableTextField)
       }
       
@@ -231,9 +292,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          fatalError("[ошибка тега]")
       }
       
-//      if verifiableTextFieldTags.contains(sender.tag) {
-//         self.toggleCheckmark(forTextField: sender)
-//      }
+      //      if verifiableTextFieldTags.contains(sender.tag) {
+      //         self.toggleCheckmark(forTextField: sender)
+      //      }
       
    }
    
@@ -262,10 +323,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       //...после чего обновляю констрейнт
       self.scrollViewBottomConstraint.constant = (self.view.frame.size.height - (endKeyboardRect.origin.y - 64))
       
-//      //print(self.view.frame.size.height)
-//      //print(self.theScrollView.frame.maxY)
-//      //print("constrant: ", self.scrollViewBottomConstraint.constant)
-       self.theScrollView.scrollRectToVisible(retrievedTextField.superview!.convert(retrievedTextField.frame, to: self.theScrollView), animated: true)
+      //      //print(self.view.frame.size.height)
+      //      //print(self.theScrollView.frame.maxY)
+      //      //print("constrant: ", self.scrollViewBottomConstraint.constant)
+      self.theScrollView.scrollRectToVisible(retrievedTextField.superview!.convert(retrievedTextField.frame, to: self.theScrollView), animated: true)
       
    }
    
@@ -281,7 +342,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.surnameTextField.resignFirstResponder()
       
       //Этому свойству присваивается ложь только здесь
-//      self.keyboardIsDisplayed = false
+      //      self.keyboardIsDisplayed = false
       
       if let textField = self.activeTextField {
          if verifiableTextFieldTags.contains(textField.tag) {
@@ -332,6 +393,36 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ Custom functions
    
+   //Это метод для обновления свойства isEnabled у registerButton. Исполняется в anyTextFieldValueChanged
+   private func updateRegistrationButtonActivity() {
+      
+      //Если хоть что-то здесь равно nil или false, то свойству isEnabled присваиваеся false
+      for textField in self.textFieldCollection.values {
+         guard let isProperlyFilled = self.textFieldIsProperlyFilled(textField: textField),isProperlyFilled == true else {
+            
+            //Если до этого registerButton  была доступна, то производим анимацию затухания
+            if self.registerButton.isEnabled {
+               UIView.animate(withDuration: 0.2, delay: 0.5, animations: { 
+                  self.registerButton.alpha = 0.4
+               })
+            }
+            
+            self.registerButton.isEnabled = false
+            return
+         }
+      }
+      
+      //Если до этого registerButon была недоступна, то производим анимацию проявления цвета
+      if !self.registerButton.isEnabled {
+         UIView.animate(withDuration: 0.2, delay: 0.5, animations: { 
+            self.registerButton.alpha = 1
+         })
+      }
+      
+      //На этом моменте все проверки пройдены, так что открываем registerButton
+      self.registerButton.isEnabled = true
+   }
+   
    private func textFieldIsProperlyFilled(textField: VerifiableTextField) -> Bool? {
       
       var textFieldIsProperlyFilled: Bool!
@@ -376,17 +467,17 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    private func toggleCheckmark(forTextField textField: VerifiableTextField) {
       DispatchQueue.main.async {
-         print("toggleCheckmark performed")
-//         guard self.verifiableTextFieldTags.contains(textField.tag) else {
-//            //print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
-//            return
-//         }
+         //         print("toggleCheckmark performed")
+         //         guard self.verifiableTextFieldTags.contains(textField.tag) else {
+         //            //print("[НЕКОРРЕКТНОСТЬ_ИНДЕКСА: тег textField'a (value: \(textField.tag)) вне релевантных значений verifiableTextFieldTags]")
+         //            return
+         //         }
          
          //Zero-based индекс textField'a, считающийся сверху вниз
          let textFieldZeroBasedIndex = textField.tag - 1
          
          //Ссылка на checkmark, соответствующий данному textField
-//         let checkmark = self.checkmarks[textFieldZeroBasedIndex]
+         //         let checkmark = self.checkmarks[textFieldZeroBasedIndex]
          let checkmark = textField.checkmark!
          
          //Гарантированно обнуляем все предыдущие анимации, так как мы сейчас будем их в любом случае обновлять
@@ -458,6 +549,18 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             
          }
          
+      }
+   }
+   
+   //Удобная функция для создания AlerController'a
+   private func showAlertController(withTitle title: String, message: String) {
+      let ac = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+      ac.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: { (action) in
+         //Пока ничего
+      }))
+      
+      self.present(ac, animated: true) { 
+         //Пока ничего
       }
    }
    

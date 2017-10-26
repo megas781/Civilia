@@ -726,11 +726,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwv-BH-HV4">
-                                <rect key="frame" x="0.0" y="-60" width="288" height="504"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q55-ox-WE2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
                                 <subviews>
@@ -752,7 +747,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-iz-2QU">
                                                                 <rect key="frame" x="0.0" y="26" width="284" height="34"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bku-V9-qPb" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="megas781@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bku-V9-qPb" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="34" id="wFa-DH-cHy"/>
@@ -786,7 +781,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4qe-7x-FFq">
                                                                 <rect key="frame" x="0.0" y="84.5" width="284" height="35.5"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-I8-8gX" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-I8-8gX" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="1" width="250" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="34" id="sVH-L3-K3x"/>
@@ -842,7 +837,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-aG-IXr">
                                                                 <rect key="frame" x="0.0" y="26" width="284" height="34"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AuH-bq-kMO" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AuH-bq-kMO" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="34" id="ODB-eN-azN"/>
@@ -902,7 +897,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TQw-yo-nxh">
                                                                 <rect key="frame" x="0.0" y="100" width="284" height="34"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hW3-ra-Nff" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Глеб" borderStyle="roundedRect" placeholder="Имя*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hW3-ra-Nff" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="34" id="mt5-2Q-IrN"/>
@@ -930,7 +925,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Xu-6Y-sbm">
                                                                 <rect key="frame" x="0.0" y="148" width="284" height="34"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-fi-cy1" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
+                                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Калачев" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-fi-cy1" customClass="VerifiableTextField" customModule="Civilia" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="34" id="NIe-Nj-nHe"/>
@@ -968,7 +963,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UEB-xO-f32">
                                                         <rect key="frame" x="0.0" y="504" width="304" height="72"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grG-wC-vdv" customClass="RoundedButton" customModule="Civilia" customModuleProvider="target">
+                                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grG-wC-vdv" customClass="RoundedButton" customModule="Civilia" customModuleProvider="target">
                                                                 <rect key="frame" x="49.5" y="19" width="206" height="34"/>
                                                                 <color key="backgroundColor" red="0.93119233850000005" green="0.6153244376" blue="0.0012780767870000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -983,6 +978,9 @@
                                                                         <real key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="registerButtonTouchUpInside:" destination="tux-ZL-tnd" eventType="touchUpInside" id="IkB-Wj-LI6"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
