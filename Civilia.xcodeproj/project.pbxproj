@@ -20,6 +20,7 @@
 		ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */; };
 		ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */; };
 		ED92AA001F9FF38A00BC1963 /* UIImageView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */; };
+		ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92AA011FA122F600BC1963 /* UIView+animations.swift */; };
 		EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */; };
 		EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; };
 		EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -67,6 +68,7 @@
 		ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableTextField.swift; sourceTree = "<group>"; };
 		ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+animations.swift"; sourceTree = "<group>"; };
+		ED92AA011FA122F600BC1963 /* UIView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EDDD946B1F7779BB00F89761 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		EDDD946C1F7779BE00F89761 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				EDDD94771F777DDD00F89761 /* Main.storyboard */,
 				EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */,
 				ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */,
+				ED92AA011FA122F600BC1963 /* UIView+animations.swift */,
 				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
 				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
@@ -272,12 +275,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Civilia/Pods-Civilia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -342,6 +347,7 @@
 				EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */,
 				ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */,
 				ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */,
+				ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */,
 				EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

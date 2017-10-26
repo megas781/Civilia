@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,17 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       
-      //      let realm = try! Realm()
-      //      
-      //      try! realm.write {
-      //         
-      //         realm.deleteAll()
-      //         
-      //         for i in 1...30 {
-      //            realm.add(Civilmaker.init(fullName: "Gleb Kalachev #\(i)", civilpoints: 20 - Int(arc4random_uniform(10)), dateOfCreation: Date(), image: nil, imageURL: nil))
-      //         }
-      //         
-      //      }
+      FirebaseApp.configure()
       
       
       let config = Realm.Configuration.init(schemaVersion: 7, migrationBlock: {
@@ -39,21 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
       Realm.Configuration.defaultConfiguration = config
       
-//      let realm = try! Realm()
-//      if realm.objects(Civilmaker.self).count == 0 {
-//         let stringToParse = """
-//Vadim Shemet – 11 цивилпоинтов
-//Gleb Kalachev – 5 цивилпоинтов
-//Kolya Koptilkin – 5 цивилпоинтов
-//Ksenya Bondorenko – 4 цивилпоинтов
-//Artem Mashkin – 4 цивилпоинтов
-//Lyubava Bakhmetova – 3 цивилпоинтов
-//Pavel Goncharov – 1 цивилпоинтов
-//Alexey Kalachev – 1 цивилпоинтов
-//"""
-//         parse(string: stringToParse)
-//      }
-//      
       return true
    }
       
