@@ -9,13 +9,13 @@
 import UIKit
 
 //Implementation of UITableViewDelegate
-extension MainViewController {
+extension OldMainViewController {
    
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
       
       if let index = tableView.indexPathForSelectedRow {
-         let cell = tableView.cellForRow(at: index) as! GeneralTableViewCell
+         let cell = tableView.cellForRow(at: index) as! OldGeneralTableViewCell
          
          print("civilmaker; source order: \(String(describing: cell.civilmaker.cellIndex))")
          
