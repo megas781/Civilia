@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		9A8D15C8E1302A1A50DB9FE3 /* Pods_Civilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F7A763D2F3B290AF1C89F3 /* Pods_Civilia.framework */; };
 		ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E831F18F7F4004CC420 /* AppDelegate.swift */; };
-		ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* MainViewController.swift */; };
+		ED191E861F18F7F4004CC420 /* OldMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E851F18F7F4004CC420 /* OldMainViewController.swift */; };
 		ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */; };
-		ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */; };
+		ED191E9A1F18F84D004CC420 /* OldGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E991F18F84D004CC420 /* OldGeneralTableViewCell.swift */; };
 		ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9D1F190B5E004CC420 /* +dataSource.swift */; };
 		ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */; };
 		ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EA11F195FC3004CC420 /* ColorSet.swift */; };
@@ -33,6 +33,9 @@
 		EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947B1F777E4C00F89761 /* LoginViewController.swift */; };
 		EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947C1F777E4C00F89761 /* RoundedView.swift */; };
 		EDDD94841F777F4700F89761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDD94771F777DDD00F89761 /* Main.storyboard */; };
+		EDE322421FA5CFBF006CEADE /* CivilmakerListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE322411FA5CFBF006CEADE /* CivilmakerListTableViewController.swift */; };
+		EDE322451FA5DA66006CEADE /* CivilmakerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE322441FA5DA66006CEADE /* CivilmakerListTableViewCell.swift */; };
+		EDE322481FA5DE4D006CEADE /* UIWindow+functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE322471FA5DE4D006CEADE /* UIWindow+functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,10 +59,10 @@
 		97F7A763D2F3B290AF1C89F3 /* Pods_Civilia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Civilia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED191E801F18F7F4004CC420 /* Civilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Civilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED191E831F18F7F4004CC420 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED191E851F18F7F4004CC420 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ED191E851F18F7F4004CC420 /* OldMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldMainViewController.swift; sourceTree = "<group>"; };
 		ED191E901F18F7F4004CC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED191E921F18F7F4004CC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTableViewCell.swift; sourceTree = "<group>"; };
+		ED191E991F18F84D004CC420 /* OldGeneralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldGeneralTableViewCell.swift; sourceTree = "<group>"; };
 		ED191E9D1F190B5E004CC420 /* +dataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+dataSource.swift"; sourceTree = "<group>"; };
 		ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+tableViewDelegate.swift"; sourceTree = "<group>"; };
 		ED191EA11F195FC3004CC420 /* ColorSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
@@ -79,6 +82,9 @@
 		EDDD947A1F777E4B00F89761 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EDDD947B1F777E4C00F89761 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EDDD947C1F777E4C00F89761 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		EDE322411FA5CFBF006CEADE /* CivilmakerListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilmakerListTableViewController.swift; sourceTree = "<group>"; };
+		EDE322441FA5DA66006CEADE /* CivilmakerListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilmakerListTableViewCell.swift; sourceTree = "<group>"; };
+		EDE322471FA5DE4D006CEADE /* UIWindow+functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+functions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +138,10 @@
 				ED191EA71F196761004CC420 /* AddCMViewCOntroller */,
 				EDDD94801F777E5500F89761 /* Login */,
 				EDDD94831F777E7100F89761 /* Registration Scene */,
+				EDE322431FA5D9FC006CEADE /* CivilmakerListViewController */,
 				EDDD94771F777DDD00F89761 /* Main.storyboard */,
 				EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */,
-				ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */,
-				ED92AA011FA122F600BC1963 /* UIView+animations.swift */,
-				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
+				EDE322461FA5DDDF006CEADE /* Global Extensions */,
 				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
 				ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */,
@@ -150,9 +155,9 @@
 		ED191E981F18F824004CC420 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ED191E851F18F7F4004CC420 /* MainViewController.swift */,
+				ED191E851F18F7F4004CC420 /* OldMainViewController.swift */,
 				ED191E9D1F190B5E004CC420 /* +dataSource.swift */,
-				ED191E991F18F84D004CC420 /* GeneralTableViewCell.swift */,
+				ED191E991F18F84D004CC420 /* OldGeneralTableViewCell.swift */,
 			);
 			name = MainViewController;
 			sourceTree = "<group>";
@@ -183,6 +188,26 @@
 				ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */,
 			);
 			name = "Registration Scene";
+			sourceTree = "<group>";
+		};
+		EDE322431FA5D9FC006CEADE /* CivilmakerListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EDE322411FA5CFBF006CEADE /* CivilmakerListTableViewController.swift */,
+				EDE322441FA5DA66006CEADE /* CivilmakerListTableViewCell.swift */,
+			);
+			path = CivilmakerListViewController;
+			sourceTree = "<group>";
+		};
+		EDE322461FA5DDDF006CEADE /* Global Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */,
+				EDE322471FA5DE4D006CEADE /* UIWindow+functions.swift */,
+				ED92AA011FA122F600BC1963 /* UIView+animations.swift */,
+				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
+			);
+			name = "Global Extensions";
 			sourceTree = "<group>";
 		};
 		F5D385F73C4B982EA67571B6 /* Frameworks */ = {
@@ -339,16 +364,19 @@
 				EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
 				EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */,
-				ED191E861F18F7F4004CC420 /* MainViewController.swift in Sources */,
+				ED191E861F18F7F4004CC420 /* OldMainViewController.swift in Sources */,
 				ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */,
 				ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */,
 				EDDD94761F777D0100F89761 /* CivilmakerDataModel.swift in Sources */,
-				ED191E9A1F18F84D004CC420 /* GeneralTableViewCell.swift in Sources */,
+				ED191E9A1F18F84D004CC420 /* OldGeneralTableViewCell.swift in Sources */,
 				EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */,
 				ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */,
 				ED191E841F18F7F4004CC420 /* AppDelegate.swift in Sources */,
 				ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */,
+				EDE322481FA5DE4D006CEADE /* UIWindow+functions.swift in Sources */,
+				EDE322421FA5CFBF006CEADE /* CivilmakerListTableViewController.swift in Sources */,
 				EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */,
+				EDE322451FA5DA66006CEADE /* CivilmakerListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

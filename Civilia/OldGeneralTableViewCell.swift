@@ -8,9 +8,9 @@
 
 import UIKit
 import RealmSwift
-class GeneralTableViewCell: UITableViewCell {
+class OldGeneralTableViewCell: UITableViewCell {
    
-   var viewController: MainViewController!
+   var viewController: OldMainViewController!
    var indexPath: IndexPath!
    var civilmaker: Civilmaker! {
       didSet {
@@ -59,7 +59,7 @@ class GeneralTableViewCell: UITableViewCell {
    }
    
    
-   func setup(with civilmaker: Civilmaker, viewController: MainViewController, indexPath: IndexPath) {
+   func setup(with civilmaker: Civilmaker, viewController: OldMainViewController, indexPath: IndexPath) {
       self.viewController = viewController
       self.indexPath = indexPath
       self.stepper.value = Double(civilmaker.civilpoints)

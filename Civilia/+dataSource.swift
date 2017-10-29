@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MainViewController {
+extension OldMainViewController {
    
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       //Когда выйдет Swift 4
@@ -17,7 +17,7 @@ extension MainViewController {
    
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
-      let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GeneralTableViewCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! OldGeneralTableViewCell
       
       cell.setup(with: self.inMemoryCivilmakers[indexPath.row], viewController: self, indexPath: indexPath)
       

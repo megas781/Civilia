@@ -149,11 +149,39 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    @IBAction func registerButtonTouchUpInside(_ sender: UIButton) {
       
+      let dimView = UIView.init(frame: window.frame)
+      dimView.backgroundColor = .black
+      dimView.alpha = 0.3
       
+      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
+      activityIndecator.startAnimating()
+      activityIndecator.center = dimView.center
+      
+      dimView.addSubview(activityIndecator)
+      window.addSubview(dimView)
       
       
       Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordSecondInputTextField.text!) { (user, error) in
          //completion of auth
+         
+         defer {
+            
+            DispatchQueue.main.async {
+               
+               
+               dimView.removeFromSuperview()
+//               UIView.animate(withDuration: 0.2, animations: { 
+//                  
+//                  dimView.alpha = 0.3
+//                  
+//               }) { (_) in
+//                  
+//                  dimView.removeFromSuperview()
+//               }
+               
+            }
+            
+         }
          
          //Если есть ошибка, то не нужно продолжать загружать
          guard error == nil else {
@@ -174,11 +202,10 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             return
          }
          
-         DispatchQueue.main.async {
-            
-            
-            
-         }
+         
+         //Here I know, that there are no any errors, so I can go to another scene
+         
+         self.performSegue(withIdentifier: "fromRegistrationToMainSceneSegueIdentifier", sender: self)
          
       }
       
@@ -551,6 +578,12 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       self.present(ac, animated: true) { 
          //Пока ничего
       }
+   }
+   
+   //MARK: Navigation Methods
+   
+   @IBAction func unwindToRegistrationViewController(withSegue: UIStoryboardSegue) {
+      print("unwind to registrationViewController preformed")
    }
    
 }
