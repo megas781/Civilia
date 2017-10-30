@@ -21,10 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       FirebaseApp.configure()
       
       
+      
       let config = Realm.Configuration.init(schemaVersion: 7, migrationBlock: {
          (migration,oldSchemaVersion) in 
          
-         migration.renameProperty(onType: Civilmaker.className(), from: "id", to: "uuid")
+         migration.renameProperty(onType: Civilmaker.className(), from: "id", to: "uid")
          
       })
       
@@ -88,7 +89,7 @@ fileprivate func parse(string: String) {
       //Here we have right data
       
       try! realm.write {
-         realm.add(Civilmaker.init(fullName: fullName, civilpoints: civilpoints))
+         realm.add(Civilmaker.init(name: "[name]", surname: "[surname]", civilpoints: 228322))
       }
       
    }

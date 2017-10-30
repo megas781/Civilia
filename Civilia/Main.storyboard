@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="V0a-mO-6ZP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RxM-Er-9VR">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -67,7 +67,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="KM2-xJ-8UU" customClass="OldGeneralTableViewCell" customModule="Civilia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="KM2-xJ-8UU" customClass="OldGeneralTableViewCell" customModule="Civilia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM2-xJ-8UU" id="djY-fS-3Yh">
@@ -1088,7 +1088,7 @@
                         <outletCollection property="primeViews" destination="abt-NP-bPm" collectionClass="NSMutableArray" id="Ggg-Y6-RXO"/>
                         <outletCollection property="primeViews" destination="hoH-41-J86" collectionClass="NSMutableArray" id="TQN-fr-wIq"/>
                         <segue destination="zGh-B9-nvx" kind="unwind" identifier="unwindToLoginViewControllerSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="A1m-yE-rkz"/>
-                        <segue destination="RxM-Er-9VR" kind="presentation" identifier="fromRegistrationToMainSceneSegueIdentifier" id="3VG-yF-v9a"/>
+                        <segue destination="RxM-Er-9VR" kind="presentation" identifier="fromRegistrationToMainSceneSegueIdentifier" modalTransitionStyle="flipHorizontal" id="3VG-yF-v9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhQ-fK-B71" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1141,7 +1141,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="twC-k6-2Rn" customClass="CivilmakerListTableViewCell" customModule="Civilia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="civilmakerListTableViewCell" rowHeight="80" id="twC-k6-2Rn" customClass="CivilmakerListTableViewCell" customModule="Civilia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="twC-k6-2Rn" id="MXa-bP-a1P">
@@ -1225,6 +1225,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add CM" id="bSF-xE-i92">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addCMButtonTapped:" destination="ohd-IA-TSY" id="vD9-YI-hIf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1234,7 +1237,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN7-U6-6G3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EUM-fZ-lRz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4678" y="-1068"/>
+            <point key="canvasLocation" x="4350" y="-977"/>
         </scene>
         <!--Civilmakers-->
         <scene sceneID="gJH-YU-mUS">
@@ -1257,7 +1260,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxG-En-w2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3956" y="-1068"/>
+            <point key="canvasLocation" x="3623" y="-977"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FEQ-5u-q2Y">
@@ -1265,6 +1268,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RxM-Er-9VR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dat-WL-m6U">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1276,7 +1280,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygJ-XK-gNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3133" y="-842"/>
+            <point key="canvasLocation" x="2867" y="-977"/>
         </scene>
     </scenes>
     <resources>

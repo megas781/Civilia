@@ -80,6 +80,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       }
    }
    
+   //MARK: Firebase needed properties
+   
+   //Reference to the firebase database
+   var ref: DatabaseReference!
+   
    
    
    //MARK: +++ Overrides of Appearance
@@ -89,7 +94,7 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
       
       
       
-      setupUI()
+      setupViewController()
       
       //Здесь я задаю память для массива таймеров массивами из nil. На этот случай в toggleCheckmark метод .invalidate() я вызываю опционально. Это очень удобно))
       self.textFieldTimers = Array.init(repeating: nil, count: verifiableTextFieldTags.count)
@@ -165,22 +170,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
          //completion of auth
          
          defer {
-            
             DispatchQueue.main.async {
-               
-               
                dimView.removeFromSuperview()
-//               UIView.animate(withDuration: 0.2, animations: { 
-//                  
-//                  dimView.alpha = 0.3
-//                  
-//               }) { (_) in
-//                  
-//                  dimView.removeFromSuperview()
-//               }
-               
             }
-            
          }
          
          //Если есть ошибка, то не нужно продолжать загружать
@@ -201,6 +193,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             
             return
          }
+         
+         let newUser = Civilmaker.init(name: self.nameTextField!.text!, surname: self.surnameTextField!.text!, civilpoints: 0, dateOfCreation: Date(), image: nil, imageURL: nil)
+         self.ref.child("uids").setValue(newUser.getDictionary())
          
          
          //Here I know, that there are no any errors, so I can go to another scene
@@ -236,9 +231,11 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    //MARK: +++ Updating UI Functions
    
-   func setupUI() {
+   func setupViewController() {
       
       registerButton.isEnabled = false
+      
+      self.ref = Database.database().reference()
       
       //      self.navigationItem.titleView!.frame.size.width = self.view.frame.width
       
