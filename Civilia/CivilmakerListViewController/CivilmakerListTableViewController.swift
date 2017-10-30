@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import FirebaseDatabase
 
 class CivilmakerListTableViewController: UITableViewController {
    
@@ -21,6 +21,7 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Properties
    
+   var tempoCollection: [Civilmaker] = []
    
    
    
@@ -31,7 +32,19 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Overrides of Appearance
    
-   
+   override func viewDidLoad() {
+      
+      tempoCollection.append(Civilmaker.init(name: "Gleb", surname: "Kalachev"))
+      tempoCollection.append(Civilmaker.init(name: "Alexey", surname: "Kalachev"))
+      
+      for cm in tempoCollection {
+//         Database.database().reference().child(FIRPrimeKeys.users).childByAutoId().setValue(cm.getDictionary())
+      }
+      
+      NotificationCenter.default.addObserver(self, selector: #selector(self.observeChanges(notification:)), name: NSNotification.Name.init("a civilmaker's data changed"), object: nil)
+      
+      
+   }
    
    
    //MARK: +++ Overrides of Superclass
@@ -41,7 +54,29 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Implementation of protocols
    
+   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return tempoCollection.count
+   }
    
+   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "civilmakerListTableViewCell", for: indexPath) as! CivilmakerListTableViewCell
+      
+      cell.setupOutlets(withCivilmaker: self.tempoCollection[indexPath.row])
+      cell.viewController = self
+      cell.indexPath = indexPath
+      
+      //Configuring constraints of theStack
+      do {
+         cell.theStack.widthAnchor.constraint(equalToConstant: cell.theStack.frame.width).isActive = true
+         for constraint in cell.contentView.constraints {
+            if constraint.identifier == "betweenStackAndStepper" {
+               NSLayoutConstraint.deactivate([constraint])
+            }
+         }
+      }
+      
+      return cell
+   }
    
    
    //MARK: +++ Implementation of custom protocols
@@ -74,6 +109,11 @@ class CivilmakerListTableViewController: UITableViewController {
    
    }
    
+   @IBAction func addCMButtonTapped(_ sender: UIBarButtonItem) {
+      
+      
+      
+   }
    
    
    //MARK: +++ IBActions of changing value
@@ -88,11 +128,24 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
-   
+   @objc func observeChanges(notification: Notification) {
+      
+      print("observeChanges performed")
+      DispatchQueue.main.async {
+         self.tableView.reloadData()
+      }
+      
+   }
    
    
    //MARK: +++ Custom functions
    
+   
+   func setupTestWithData() {
+      
+      
+      
+   }
    
    
    

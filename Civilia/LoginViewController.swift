@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
    
    override func viewDidLoad() {
       
-      setupUI()
+      setupViewController()
       
       NotificationCenter.default.addObserver(self, selector: #selector(self.putUpScrollViewForKeyboardAppearing(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
       NotificationCenter.default.addObserver(self, selector: #selector(self.putDownScrollViewForKeyboardDisappearing), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
    
    //MARK: +++ Updating UI Functions
    
-   func setupUI() {
+   func setupViewController() {
       
       for view in primeViews {
          let gr = UITapGestureRecognizer.init(target: self, action: #selector(self.resignAnyFirstResponder))

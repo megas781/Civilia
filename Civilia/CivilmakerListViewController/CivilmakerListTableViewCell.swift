@@ -10,9 +10,8 @@ import UIKit
 
 class CivilmakerListTableViewCell: UITableViewCell {
    
-   var viewController: CivilmakerListTableViewController!
-   var indexPath: IndexPath!
    
+   //Outlets
    @IBOutlet weak var theImageView: UIImageView!
    @IBOutlet weak var nameLabel: UILabel!
    
@@ -21,5 +20,20 @@ class CivilmakerListTableViewCell: UITableViewCell {
    
    @IBOutlet weak var stepper: UIStepper!
    
+   
+   //Properties
+   var viewController: CivilmakerListTableViewController!
+   var indexPath: IndexPath!
+   
+   func setupOutlets(withCivilmaker civilmaker: Civilmaker) {
+      
+      /*This method sets only and only outlets. Things such as viewController and indexPath are set separately in cellForRowAtIndexPath method */
+      
+      //setting civilmaker
+      self.nameLabel.text = civilmaker.getFullName()
+      self.civilpointsLabel.text = String(civilmaker.civilpoints)
+      self.stepper.value = Double(civilmaker.civilpoints)
+      
+   }
    
 }
