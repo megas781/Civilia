@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
 class CivilmakerListTableViewController: UITableViewController {
    
    
@@ -34,15 +35,14 @@ class CivilmakerListTableViewController: UITableViewController {
    
    override func viewDidLoad() {
       
-      tempoCollection.append(Civilmaker.init(name: "Gleb", surname: "Kalachev"))
-      tempoCollection.append(Civilmaker.init(name: "Alexey", surname: "Kalachev"))
+      self.setupViewController()
       
-      for cm in tempoCollection {
-//         Database.database().reference().child(FIRPrimeKeys.users).childByAutoId().setValue(cm.getDictionary())
-      }
+      tempoCollection.append(Civilmaker.new(name: "Gleb", surname: "Kalachev"))
+      tempoCollection.append(Civilmaker.new(name: "Vadim", surname: "Shemet"))
+      tempoCollection.append(Civilmaker.new(name: "Alexey", surname: "Kalachev"))
       
-      NotificationCenter.default.addObserver(self, selector: #selector(self.observeChanges(notification:)), name: NSNotification.Name.init("a civilmaker's data changed"), object: nil)
       
+      NotificationCenter.default.addObserver(self, selector: #selector(self.observeUserChange(notification:)), name: userDataChangedNotificationName, object: nil)
       
    }
    
@@ -62,8 +62,10 @@ class CivilmakerListTableViewController: UITableViewController {
       let cell = tableView.dequeueReusableCell(withIdentifier: "civilmakerListTableViewCell", for: indexPath) as! CivilmakerListTableViewCell
       
       cell.setupOutlets(withCivilmaker: self.tempoCollection[indexPath.row])
+      self.tempoCollection[indexPath.row].cellIndex = indexPath.row
       cell.viewController = self
       cell.indexPath = indexPath
+      
       
       //Configuring constraints of theStack
       do {
@@ -86,33 +88,25 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
+   
    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-   
       
-      //Пока что при нажатии на back button пользователь удаляется
-      Auth.auth().currentUser?.delete(completion: { (error) in
-         
-         guard error == nil else {
-            
-            print("error occured: \(error!.localizedDescription)")
-            
-            return
-         }
-         
-         DispatchQueue.main.async {
-            
-            self.performSegue(withIdentifier: "unwindFromMainCivilmakerListSceneToRegistrationSceneSegueIdentifier", sender: self)
-            
-         }
-      })
+      print("print of in-memory civilmakers:")
+      for pair in self.tempoCollection.enumerated() {
+         print("civilmaker#\(pair.offset).cellIndex: \(pair.element.cellIndex) ")
+      }
       
-   
    }
    
    @IBAction func addCMButtonTapped(_ sender: UIBarButtonItem) {
       
-      
-      
+      CivilmakerDataManager.fetchCivilmakers { (fetchedCollection)  in
+         
+         self.tempoCollection = fetchedCollection
+         DispatchQueue.main.async {
+            self.tableView.reloadData()
+         }
+      }
    }
    
    
@@ -128,9 +122,10 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
-   @objc func observeChanges(notification: Notification) {
+   @objc func observeUserChange(notification: Notification) {
       
-      print("observeChanges performed")
+      print("tempoCollection before reloading: \(self.tempoCollection)")
+      
       DispatchQueue.main.async {
          self.tableView.reloadData()
       }
@@ -141,8 +136,9 @@ class CivilmakerListTableViewController: UITableViewController {
    //MARK: +++ Custom functions
    
    
-   func setupTestWithData() {
+   func setupViewController() {
       
+      //Добавляем наблюдателя за изменением пользователей
       
       
    }

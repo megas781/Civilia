@@ -62,39 +62,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
 }
 
-fileprivate func parse(string: String) {
-   
-   let realm = try! Realm()
-   
-   try! realm.write {
-      realm.deleteAll()
-   }
-   
-   let lines = string.characters.split(separator: "\n").map({String($0)})
-   
-   for i in lines {
-      
-      //Делаю это, чтобы изменять line
-      var line = i
-      
-      var fullName = ""
-      fullName = line.getPrefixWithFirstFoundSymbol("–")
-      fullName.removeLast()
-      
-      line.removePrefixWithFirstFoundSymbol("–")
-      line.removePrefixWithLength(2)
-      
-      let civilpoints = Int(line.getPrefixWithFirstFoundSymbol(" "))!
-      
-      //Here we have right data
-      
-      try! realm.write {
-         realm.add(Civilmaker.init(name: "[name]", surname: "[surname]", civilpoints: 228322))
-      }
-      
-   }
-   
-}
+//fileprivate func parse(string: String) {
+//   
+//   let realm = try! Realm()
+//   
+//   try! realm.write {
+//      realm.deleteAll()
+//   }
+//   
+//   let lines = string.characters.split(separator: "\n").map({String($0)})
+//   
+//   for i in lines {
+//      
+//      //Делаю это, чтобы изменять line
+//      var line = i
+//      
+//      var fullName = ""
+//      fullName = line.getPrefixWithFirstFoundSymbol("–")
+//      fullName.removeLast()
+//      
+//      line.removePrefixWithFirstFoundSymbol("–")
+//      line.removePrefixWithLength(2)
+//      
+//      let civilpoints = Int(line.getPrefixWithFirstFoundSymbol(" "))!
+//      
+//      //Here we have right data
+//      
+//      try! realm.write {
+////         realm.add(Civilmaker.init(name: "[name]", surname: "[surname]", civilpoints: 228322))
+//      }
+//      
+//   }
+//   
+//}
 
 //AppDelegate, к свойству window которого я буду обращаться
 let appDelegate = UIApplication.shared.delegate as! AppDelegate

@@ -12,20 +12,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-struct FIRPrimeKeys {
-//   static let allProfiles = "allProfiles"
-   static let users = "users"
-}
 
-//these keys must be the same as Civilmaker's property names
-struct FirebaseKeys {
-//   static let fullName = "fullName"
-   static let name = "name"
-   static let surname = "surname"
-   static let civilpoints = "civilpoints"
-   static let dateOfCreationSinceReferenceDate = "dateOfCreationSinceReferenceDate"
-   static let uid = "uid"
-}
 
 class Civilmaker: Object {
    
@@ -49,6 +36,8 @@ class Civilmaker: Object {
    
    @objc private dynamic var uid : String = ""
    
+   var customServerReference: DatabaseReference!
+   
    
    //Index of the cell, the Civilmaker belongs to
    var cellIndex: Int?
@@ -63,7 +52,7 @@ class Civilmaker: Object {
       return "uid"
    }
    override class func ignoredProperties() -> [String] {
-      return ["image","imageURL","cellIndex","fullName"]
+      return ["image","imageURL","cellIndex","fullName","customServerReference"]
    }
    
 }
@@ -138,8 +127,8 @@ extension Civilmaker {
 //Initializators
 extension Civilmaker {
    
-   
-   convenience init(name: String, surname: String, civilpoints: Int = 0, dateOfCreation: Date = Date(), image: UIImage? = nil, imageURL: URL? = nil, uid: String? = nil) {
+   //Создание уже хранящегося на сервере civilmaker'a осуществляется этим инициализатором. Обязательно нужно передать параметр uid, который, в свою очередь, должен быть сгенерирован самим Firebase
+   convenience init(name: String, surname: String, uid: String, civilpoints: Int = 0, dateOfCreation: Date = Date(), image: UIImage? = nil, imageURL: URL? = nil) {
       
       //Здесь использую инициализатор, чтобы установить id, так как в этом расширении у меня нет доступа к этому свойству
       self.init()
@@ -151,31 +140,49 @@ extension Civilmaker {
       self.image = image
       self.storedImageURLString = imageURL?.absoluteString
       
+      //Соединение объекта с референсом
+      self.customServerReference = Database.database().reference().child(FIRPrimeKey.users).child(uid)
       
-      //Adding observers
-         let customRef = Database.database().reference().child(FIRPrimeKeys.users).childByAutoId()
-      //ВАЖНО: Если в функцию не передан uid, то присваиваем uid, сгенерированный Firebase'ом с помощью .childByAutoId()
-      if uid != nil {
-         self.uid = uid!
-      } else {
-         self.uid = customRef.key
-      }
-      customRef.setValue(self.getDictionary())
-      customRef.observe(.childChanged, with: { (snapshot) in
-         //the block
-         
-         print("snapshot      : \(snapshot)")
-         print("snapshot.value: \(snapshot.value)")
-         print("children      : \(snapshot.children)"); 
-         
-         self.setValue(snapshot.value, forKey: snapshot.key)
-         
-         NotificationCenter.default.post(name: NSNotification.Name.init("a civilmaker's data changed"), object: self)
-         
-      }) { (error) in
-         //on cancel
+      //Adding observer
+      
+   }
+   
+   //Создание нового civilmaker'a, не хранящегося на сервере
+   @discardableResult static func new(name: String, surname: String, civilpoints: Int = 0, dateOfCreation: Date = Date(), image: UIImage? = nil, imageURL: URL? = nil) -> Civilmaker {
+      
+      let newCivilmaker = Civilmaker()
+      
+      newCivilmaker.name = name
+      newCivilmaker.surname = surname
+      newCivilmaker.civilpoints = civilpoints
+      //Устанавливаю именно timeinterval, а не dateOfCreation, потому что менять dateOfCreation нельзя, а timeIntervalOfCreationSinceReferenceDate - приватный, что уберегает от изменения данных.
+      newCivilmaker.timeIntervalOfCreationSinceReferenceDate = dateOfCreation.timeIntervalSinceReferenceDate
+      newCivilmaker.image = image
+      newCivilmaker.storedImageURLString = imageURL?.absoluteString
+      
+      //Ниже будет установка сгенерированного Firebase'ом uid
+      
+      //Uploading to the server
+      
+      //Создал референс на объект...
+      newCivilmaker.customServerReference = Database.database().reference().child(FIRPrimeKey.users).childByAutoId()
+      //...и установил uid со сгенерированным уникальным ключем с помощью .childByAutoId()
+      newCivilmaker.uid = newCivilmaker.customServerReference.key
+      //Теперь устанавливаем всё остальное
+      newCivilmaker.customServerReference.setValue(newCivilmaker.getDictionary())
+      
+      //Adding obverver, which will post notification, if its value changed
+      newCivilmaker.customServerReference.observe(DataEventType.childChanged) { (snapshot) in
+//         guard let value = snapshot.value as? String else {
+//            print("Не мог извлечь словарь свойств. Snapshot: \(snapshot)")
+//            return
+//         }
+         newCivilmaker.setValue(snapshot.value, forKey: snapshot.key)
+         NotificationCenter.default.post(name: userDataChangedNotificationName, object: newCivilmaker, userInfo: nil)
       }
       
+      
+      return newCivilmaker
    }
 }
 
@@ -184,10 +191,10 @@ extension Civilmaker {
    
    //Functions for Firebase
    func getDictionary() -> [String: Any] {
-      return [FirebaseKeys.name:self.name,FirebaseKeys.surname: self.surname,
-              FirebaseKeys.civilpoints: self.civilpoints,
-              FirebaseKeys.dateOfCreationSinceReferenceDate: self.dateOfCreation.timeIntervalSinceReferenceDate,
-              FirebaseKeys.uid: self.uid]
+      return [CMPropertyKey.name:self.name,CMPropertyKey.surname: self.surname,
+              CMPropertyKey.civilpoints: self.civilpoints,
+              CMPropertyKey.timeIntervalOfCreationSinceReferenceDate: self.dateOfCreation.timeIntervalSinceReferenceDate,
+              CMPropertyKey.uid: self.uid]
    }
    
 }

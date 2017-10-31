@@ -1,5 +1,5 @@
 //
-//  FirebaseDataModel.swift
+//  global_variables.swift
 //  Civilia
 //
 //  Created by Gleb Kalachev on 10/30/17.
@@ -7,9 +7,5 @@
 //
 
 import Foundation
-import FirebaseAuth
-
-
-//var FIRcurrentUser = Auth.auth().currentUser
-//var currentUser: Civilmaker!
-
+//Notifications
+let userDataChangedNotificationName = Notification.Name.init("userDataChangedNotificationName")
