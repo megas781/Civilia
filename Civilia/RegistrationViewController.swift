@@ -194,8 +194,13 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
             return
          }
          
-         let newUser = Civilmaker.init(name: self.nameTextField!.text!, surname: self.surnameTextField!.text!, civilpoints: 0, dateOfCreation: Date(), image: nil, imageURL: nil)
-         self.ref.child("uids").setValue(newUser.getDictionary())
+         guard let user = user else {
+            print("user: nil, therefore unexpected return")
+            return
+         }
+         
+         let newUser = Civilmaker.init(name: self.nameTextField!.text!, surname: self.surnameTextField!.text!, uid: user.uid, civilpoints: 0, dateOfCreation: Date(), image: nil, imageURL: nil)
+         self.ref.child(FIRPrimeKey.users).setValue(newUser.getDictionary())
          
          
          //Here I know, that there are no any errors, so I can go to another scene

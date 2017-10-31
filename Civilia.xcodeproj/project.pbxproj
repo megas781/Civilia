@@ -21,7 +21,8 @@
 		ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */; };
 		ED92AA001F9FF38A00BC1963 /* UIImageView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */; };
 		ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92AA011FA122F600BC1963 /* UIView+animations.swift */; };
-		EDB589E81FA6E2DA003AC094 /* FirebaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB589E71FA6E2DA003AC094 /* FirebaseDataModel.swift */; };
+		EDB589E81FA6E2DA003AC094 /* CivilmakerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */; };
+		EDB589EA1FA7ACA9003AC094 /* global_variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB589E91FA7ACA9003AC094 /* global_variables.swift */; };
 		EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */; };
 		EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; };
 		EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -73,7 +74,8 @@
 		ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+animations.swift"; sourceTree = "<group>"; };
 		ED92AA011FA122F600BC1963 /* UIView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
-		EDB589E71FA6E2DA003AC094 /* FirebaseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataModel.swift; sourceTree = "<group>"; };
+		EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilmakerDataManager.swift; sourceTree = "<group>"; };
+		EDB589E91FA7ACA9003AC094 /* global_variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global_variables.swift; sourceTree = "<group>"; };
 		EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EDDD946B1F7779BB00F89761 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		EDDD946C1F7779BE00F89761 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 				EDDD94831F777E7100F89761 /* Registration Scene */,
 				EDE322431FA5D9FC006CEADE /* CivilmakerListViewController */,
 				EDDD94771F777DDD00F89761 /* Main.storyboard */,
-				EDB589E71FA6E2DA003AC094 /* FirebaseDataModel.swift */,
+				EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */,
 				EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */,
 				EDE322461FA5DDDF006CEADE /* Global Extensions */,
 				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
@@ -205,6 +207,7 @@
 		EDE322461FA5DDDF006CEADE /* Global Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EDB589E91FA7ACA9003AC094 /* global_variables.swift */,
 				ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */,
 				EDE322471FA5DE4D006CEADE /* UIWindow+functions.swift */,
 				ED92AA011FA122F600BC1963 /* UIView+animations.swift */,
@@ -365,7 +368,8 @@
 				ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */,
 				ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */,
 				EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */,
-				EDB589E81FA6E2DA003AC094 /* FirebaseDataModel.swift in Sources */,
+				EDB589E81FA6E2DA003AC094 /* CivilmakerDataManager.swift in Sources */,
+				EDB589EA1FA7ACA9003AC094 /* global_variables.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
 				EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */,
 				ED191E861F18F7F4004CC420 /* OldMainViewController.swift in Sources */,
