@@ -11,4 +11,6 @@ target 'Civilia' do
 pod ‘Firebase/Database’
 pod ‘Firebase/Auth‘
 
+pod 'RealmSwift'
+
 end

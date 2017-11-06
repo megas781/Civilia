@@ -7,5 +7,5 @@
 //
 
 import Foundation
-//Notifications
+//Notification Names
 let userDataChangedNotificationName = Notification.Name.init("userDataChangedNotificationName")

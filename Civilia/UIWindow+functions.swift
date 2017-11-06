@@ -8,21 +8,31 @@
 
 import UIKit
 
-extension UIWindow {
-   
-   func dimAndShowLoading() {
-      let dimView = UIView.init(frame: self.frame)
-      dimView.backgroundColor = .black
-      dimView.alpha = 0.3
-      
-      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
-      activityIndecator.startAnimating()
-      activityIndecator.center = dimView.center
-      
-      dimView.addSubview(activityIndecator)
-      self.addSubview(dimView)
-      
-      
-   }
-   
-}
+//extension UIWindow {
+//   
+//   //Константа, отделяющая dimView от всех остальных. Этот способ error prone, но пока что первое, что пришло в голову
+//   private var dimViewUniqueTag: Int { return 228322 }
+//   
+//   func dimAndShowLoading() {
+//      
+//      let dimView = UIView.init(frame: self.frame)
+//      dimView.backgroundColor = .black
+//      dimView.alpha = 0.3
+//      dimView.tag = self.dimViewUniqueTag
+//      
+//      
+//      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
+//      activityIndecator.startAnimating()
+//      activityIndecator.center = dimView.center
+//      
+//      dimView.addSubview(activityIndecator)
+//      self.addSubview(dimView)
+//      
+//   }
+//   
+//   func removeDimView() {
+//      self.viewWithTag(self.dimViewUniqueTag)?.removeFromSuperview()
+//   }
+//   
+//}
+

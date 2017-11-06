@@ -37,13 +37,23 @@ class CivilmakerListTableViewController: UITableViewController {
       
       self.setupViewController()
       
-      tempoCollection.append(Civilmaker.new(name: "Gleb", surname: "Kalachev"))
-      tempoCollection.append(Civilmaker.new(name: "Vadim", surname: "Shemet"))
-      tempoCollection.append(Civilmaker.new(name: "Alexey", surname: "Kalachev"))
-      
-      
       NotificationCenter.default.addObserver(self, selector: #selector(self.observeUserChange(notification:)), name: userDataChangedNotificationName, object: nil)
       
+   }
+   
+   override func viewWillAppear(_ animated: Bool) {
+      
+      //Загрузка списка цивилмейкеров при появлении CivilmakerList Scene
+      CivilmakerDataManager.fetchCivilmakers { (fetched) in
+         self.tempoCollection = fetched
+         DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            for i in 0..<self.tempoCollection.count {
+               self.tableView.insertRows(at: [IndexPath.init(row: i, section: 0)], with: UITableViewRowAnimation.top)
+            }
+            self.tableView.endUpdates()
+         }
+      }
    }
    
    
@@ -88,25 +98,27 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ IBActions of Tap
    
-   
+   var k = 0
    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
       
-      print("print of in-memory civilmakers:")
-      for pair in self.tempoCollection.enumerated() {
-         print("civilmaker#\(pair.offset).cellIndex: \(pair.element.cellIndex) ")
-      }
+      print("back unwind tapped")
+      self.performSegue(withIdentifier: "unwindFromCivilmakerListSceneToRegistrationSceneIdentifier", sender: self)
       
    }
    
    @IBAction func addCMButtonTapped(_ sender: UIBarButtonItem) {
       
-      CivilmakerDataManager.fetchCivilmakers { (fetchedCollection)  in
+      
+      
+   }
+   @IBAction func publishButtonTapped(_ sender: UIButton) {
+      
+      Auth.auth().currentUser?.delete(completion: { (error) in
          
-         self.tempoCollection = fetchedCollection
-         DispatchQueue.main.async {
-            self.tableView.reloadData()
-         }
-      }
+         Database.database().reference().child(FIRPrimeKey.users).setValue(nil)
+         
+      })
+      
    }
    
    
@@ -122,12 +134,16 @@ class CivilmakerListTableViewController: UITableViewController {
    
    //MARK: +++ Selectors
    
+   //Метод, исполняющийся при изменении свойств у какого-либо из civilmaker'ов 
    @objc func observeUserChange(notification: Notification) {
       
-      print("tempoCollection before reloading: \(self.tempoCollection)")
-      
+      //Извлечение индекса ячейки, которую нужно перезагрузить
+      guard let rowOfCellToReload = (notification.object as? Civilmaker)?.cellIndex else {
+         print("couldn't retrieve rowOfCellToReload")
+         return
+      }
       DispatchQueue.main.async {
-         self.tableView.reloadData()
+         self.tableView.reloadRows(at: [IndexPath.init(row: rowOfCellToReload, section: 0)], with: .left)
       }
       
    }

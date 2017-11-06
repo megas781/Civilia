@@ -35,11 +35,11 @@ final class CivilmakerDataManager {
    static let appServerRef = Database.database().reference()
    
    static func fetchCivilmakers(completion: @escaping ([Civilmaker]) -> Void) {
-      
+      print("begin fetching")
       appServerRef.child(FIRPrimeKey.users).observeSingleEvent(of: .value) { (snapshot) in
          
          guard let dictOfCivilmakers = (snapshot.value as? Dictionary<String,Dictionary<String, Any>>) else {
-            print("не смог извлечь словарь цивилмейкеров. snapshot.value: \(snapshot.value)")
+            print("не смог извлечь словарь цивилмейкеров. snapshot: \(snapshot)")
             
             //Completion without civilmakers
             completion([])
@@ -51,10 +51,18 @@ final class CivilmakerDataManager {
          
          //Добавление цивилмейкеров в массив civilmakerArray
          for pair in dictOfCivilmakers {
-            let cm = Civilmaker()
-            cm.setValuesForKeys(pair.value)
+            
+//            print("pair: \(pair)")
+            
+            guard let cm = Civilmaker.init(withDictionary: pair.value) else {
+               print("не смог инициализировать civilmaker'a из словарая в методе fetchCivilmakers")
+               continue
+            }
+            
             civilmakerArray.append(cm)
+            
          }
+         
          civilmakerArray.sort(by: { $0.timeIntervalOfCreationSinceReferenceDate < $1.timeIntervalOfCreationSinceReferenceDate })
          
          //Completion implementation

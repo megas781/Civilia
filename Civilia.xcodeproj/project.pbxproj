@@ -19,18 +19,20 @@
 		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
 		ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */; };
 		ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */; };
+		ED5E8CC51FAF342600868217 /* Civilmaker+Inits.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC41FAF342600868217 /* Civilmaker+Inits.swift */; };
+		ED5E8CC71FAF347200868217 /* Civilmaker+CustomFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC61FAF347200868217 /* Civilmaker+CustomFuncs.swift */; };
+		ED5E8CC91FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC81FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift */; };
+		ED65AFE41FA99A0C0067D01B /* UIViewController+functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65AFE31FA99A0C0067D01B /* UIViewController+functions.swift */; };
 		ED92AA001F9FF38A00BC1963 /* UIImageView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */; };
 		ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED92AA011FA122F600BC1963 /* UIView+animations.swift */; };
 		EDB589E81FA6E2DA003AC094 /* CivilmakerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */; };
 		EDB589EA1FA7ACA9003AC094 /* global_variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB589E91FA7ACA9003AC094 /* global_variables.swift */; };
+		EDC942EE1FAF1E0500A09F4E /* deeds_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDC942ED1FAF1E0500A09F4E /* deeds_icons.xcassets */; };
 		EDDC59EA1F7DAFBF00C5D78C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */; };
-		EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; };
-		EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946B1F7779BB00F89761 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EDDD946F1F7779BE00F89761 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946C1F7779BE00F89761 /* Realm.framework */; };
-		EDDD94701F7779BE00F89761 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDDD946C1F7779BE00F89761 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EDDCF8771FAC5B5D00A2E7A2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDCF8761FAC5B5D00A2E7A2 /* ProfileViewController.swift */; };
 		EDDD94721F777B6A00F89761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDDD94711F777B5400F89761 /* GoogleService-Info.plist */; };
 		EDDD94741F777BCF00F89761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDD94731F777BCD00F89761 /* Assets.xcassets */; };
-		EDDD94761F777D0100F89761 /* CivilmakerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */; };
+		EDDD94761F777D0100F89761 /* Civilmaker+RealmImplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD94751F777D0100F89761 /* Civilmaker+RealmImplement.swift */; };
 		EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947A1F777E4B00F89761 /* RoundedButton.swift */; };
 		EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947B1F777E4C00F89761 /* LoginViewController.swift */; };
 		EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDD947C1F777E4C00F89761 /* RoundedView.swift */; };
@@ -41,14 +43,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ED78C12D1F3EE518000F77A1 /* Embed Frameworks */ = {
+		ED5E8CD01FAF967700868217 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EDDD94701F7779BE00F89761 /* Realm.framework in Embed Frameworks */,
-				EDDD946E1F7779BE00F89761 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,16 +72,20 @@
 		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
 		ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableTextField.swift; sourceTree = "<group>"; };
 		ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		ED5E8CC41FAF342600868217 /* Civilmaker+Inits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+Inits.swift"; sourceTree = "<group>"; };
+		ED5E8CC61FAF347200868217 /* Civilmaker+CustomFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+CustomFuncs.swift"; sourceTree = "<group>"; };
+		ED5E8CC81FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+ConvenienceProperties.swift"; sourceTree = "<group>"; };
+		ED65AFE31FA99A0C0067D01B /* UIViewController+functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+functions.swift"; sourceTree = "<group>"; };
 		ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+animations.swift"; sourceTree = "<group>"; };
 		ED92AA011FA122F600BC1963 /* UIView+animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+animations.swift"; sourceTree = "<group>"; };
 		EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilmakerDataManager.swift; sourceTree = "<group>"; };
 		EDB589E91FA7ACA9003AC094 /* global_variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global_variables.swift; sourceTree = "<group>"; };
+		EDC942ED1FAF1E0500A09F4E /* deeds_icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = deeds_icons.xcassets; sourceTree = "<group>"; };
 		EDDC59E91F7DAFBF00C5D78C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		EDDD946B1F7779BB00F89761 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		EDDD946C1F7779BE00F89761 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		EDDCF8761FAC5B5D00A2E7A2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EDDD94711F777B5400F89761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EDDD94731F777BCD00F89761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilmakerDataModel.swift; sourceTree = "<group>"; };
+		EDDD94751F777D0100F89761 /* Civilmaker+RealmImplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+RealmImplement.swift"; sourceTree = "<group>"; };
 		EDDD94771F777DDD00F89761 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EDDD947A1F777E4B00F89761 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EDDD947B1F777E4C00F89761 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDDD946F1F7779BE00F89761 /* Realm.framework in Frameworks */,
-				EDDD946D1F7779BE00F89761 /* RealmSwift.framework in Frameworks */,
 				9A8D15C8E1302A1A50DB9FE3 /* Pods_Civilia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,8 +119,6 @@
 		ED191E771F18F7F4004CC420 = {
 			isa = PBXGroup;
 			children = (
-				EDDD946C1F7779BE00F89761 /* Realm.framework */,
-				EDDD946B1F7779BB00F89761 /* RealmSwift.framework */,
 				ED191E821F18F7F4004CC420 /* Civilia */,
 				ED191E811F18F7F4004CC420 /* Products */,
 				E37035F2AD69DE2499D10ED3 /* Pods */,
@@ -143,11 +143,12 @@
 				EDDD94801F777E5500F89761 /* Login */,
 				EDDD94831F777E7100F89761 /* Registration Scene */,
 				EDE322431FA5D9FC006CEADE /* CivilmakerListViewController */,
+				EDDCF8761FAC5B5D00A2E7A2 /* ProfileViewController.swift */,
 				EDDD94771F777DDD00F89761 /* Main.storyboard */,
-				EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */,
-				EDDD94751F777D0100F89761 /* CivilmakerDataModel.swift */,
+				EDDCF8751FAC5B1600A2E7A2 /* Data Model */,
 				EDE322461FA5DDDF006CEADE /* Global Extensions */,
 				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
+				EDC942ED1FAF1E0500A09F4E /* deeds_icons.xcassets */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
 				ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */,
 				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
@@ -175,12 +176,39 @@
 			name = AddCMViewCOntroller;
 			sourceTree = "<group>";
 		};
+		ED5E8CC31FAF33FE00868217 /* Civilmaker Class */ = {
+			isa = PBXGroup;
+			children = (
+				EDDD94751F777D0100F89761 /* Civilmaker+RealmImplement.swift */,
+				ED5E8CC41FAF342600868217 /* Civilmaker+Inits.swift */,
+				ED5E8CC61FAF347200868217 /* Civilmaker+CustomFuncs.swift */,
+				ED5E8CC81FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift */,
+			);
+			name = "Civilmaker Class";
+			sourceTree = "<group>";
+		};
+		EDB589EB1FA838B2003AC094 /* Rounded Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDDD947A1F777E4B00F89761 /* RoundedButton.swift */,
+				EDDD947C1F777E4C00F89761 /* RoundedView.swift */,
+			);
+			name = "Rounded Views";
+			sourceTree = "<group>";
+		};
+		EDDCF8751FAC5B1600A2E7A2 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDB589E71FA6E2DA003AC094 /* CivilmakerDataManager.swift */,
+				ED5E8CC31FAF33FE00868217 /* Civilmaker Class */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
 		EDDD94801F777E5500F89761 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				EDDD947B1F777E4C00F89761 /* LoginViewController.swift */,
-				EDDD947A1F777E4B00F89761 /* RoundedButton.swift */,
-				EDDD947C1F777E4C00F89761 /* RoundedView.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -211,6 +239,8 @@
 				ED92A9FF1F9FF38A00BC1963 /* UIImageView+animations.swift */,
 				EDE322471FA5DE4D006CEADE /* UIWindow+functions.swift */,
 				ED92AA011FA122F600BC1963 /* UIView+animations.swift */,
+				ED65AFE31FA99A0C0067D01B /* UIViewController+functions.swift */,
+				EDB589EB1FA838B2003AC094 /* Rounded Views */,
 				ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */,
 			);
 			name = "Global Extensions";
@@ -235,9 +265,9 @@
 				ED191E7C1F18F7F4004CC420 /* Sources */,
 				ED191E7D1F18F7F4004CC420 /* Frameworks */,
 				ED191E7E1F18F7F4004CC420 /* Resources */,
-				ED78C12D1F3EE518000F77A1 /* Embed Frameworks */,
 				3CFD14E0D2685312550BE5B9 /* [CP] Embed Pods Frameworks */,
 				B98C4F71DDCE9831AA965B13 /* [CP] Copy Pods Resources */,
+				ED5E8CD01FAF967700868217 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDC942EE1FAF1E0500A09F4E /* deeds_icons.xcassets in Resources */,
 				ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */,
 				EDDD94721F777B6A00F89761 /* GoogleService-Info.plist in Resources */,
 				EDDD94741F777BCF00F89761 /* Assets.xcassets in Resources */,
@@ -308,6 +339,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Civilia/Pods-Civilia-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -315,6 +348,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -366,8 +401,12 @@
 				ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */,
 				ED92AA001F9FF38A00BC1963 /* UIImageView+animations.swift in Sources */,
 				ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */,
+				ED5E8CC71FAF347200868217 /* Civilmaker+CustomFuncs.swift in Sources */,
+				ED5E8CC91FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift in Sources */,
 				ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */,
+				ED65AFE41FA99A0C0067D01B /* UIViewController+functions.swift in Sources */,
 				EDDD947D1F777E4C00F89761 /* RoundedButton.swift in Sources */,
+				EDDCF8771FAC5B5D00A2E7A2 /* ProfileViewController.swift in Sources */,
 				EDB589E81FA6E2DA003AC094 /* CivilmakerDataManager.swift in Sources */,
 				EDB589EA1FA7ACA9003AC094 /* global_variables.swift in Sources */,
 				ED191EA01F191F6B004CC420 /* +tableViewDelegate.swift in Sources */,
@@ -375,7 +414,7 @@
 				ED191E861F18F7F4004CC420 /* OldMainViewController.swift in Sources */,
 				ED191EA61F196758004CC420 /* AddCMViewController.swift in Sources */,
 				ED191EA21F195FC3004CC420 /* ColorSet.swift in Sources */,
-				EDDD94761F777D0100F89761 /* CivilmakerDataModel.swift in Sources */,
+				EDDD94761F777D0100F89761 /* Civilmaker+RealmImplement.swift in Sources */,
 				ED191E9A1F18F84D004CC420 /* OldGeneralTableViewCell.swift in Sources */,
 				EDDD947F1F777E4C00F89761 /* RoundedView.swift in Sources */,
 				ED191E9E1F190B5E004CC420 /* +dataSource.swift in Sources */,
@@ -383,6 +422,7 @@
 				ED92AA021FA122F600BC1963 /* UIView+animations.swift in Sources */,
 				EDE322481FA5DE4D006CEADE /* UIWindow+functions.swift in Sources */,
 				EDE322421FA5CFBF006CEADE /* CivilmakerListTableViewController.swift in Sources */,
+				ED5E8CC51FAF342600868217 /* Civilmaker+Inits.swift in Sources */,
 				EDDD947E1F777E4C00F89761 /* LoginViewController.swift in Sources */,
 				EDE322451FA5DA66006CEADE /* CivilmakerListTableViewCell.swift in Sources */,
 			);

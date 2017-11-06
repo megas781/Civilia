@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import Firebase
 
+
 let window = appDelegate.window!
 class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
@@ -116,7 +117,9 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    override func viewWillDisappear(_ animated: Bool) {
       Auth.auth().removeStateDidChangeListener(handler!)
    }
-   
+   override func viewDidDisappear(_ animated: Bool) {
+      self.navigationController?.brightenAndResignLoading()
+   }
    //MARK: +++ Overrides of Superclass
    
    
@@ -154,26 +157,21 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
    
    @IBAction func registerButtonTouchUpInside(_ sender: UIButton) {
       
-      let dimView = UIView.init(frame: window.frame)
-      dimView.backgroundColor = .black
-      dimView.alpha = 0.3
       
-      let activityIndecator = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
-      activityIndecator.startAnimating()
-      activityIndecator.center = dimView.center
-      
-      dimView.addSubview(activityIndecator)
-      window.addSubview(dimView)
+      self.navigationController?.dimAndDisplayLoading()
       
       
+      
+      
+      //registration with email
       Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordSecondInputTextField.text!) { (user, error) in
          //completion of auth
          
-         defer {
-            DispatchQueue.main.async {
-               dimView.removeFromSuperview()
-            }
-         }
+//         defer {
+//            DispatchQueue.main.async {
+//               window.removeDimView()
+//            }
+//         }
          
          //Если есть ошибка, то не нужно продолжать загружать
          guard error == nil else {
@@ -191,22 +189,40 @@ class RegistrationViewController: UIViewController,UITextFieldDelegate {
                break
             }
             
+            DispatchQueue.main.async {
+               self.navigationController?.brightenAndResignLoading()
+            }
+            
             return
          }
          
+         //просто извлекаю опциональный user
          guard let user = user else {
             print("user: nil, therefore unexpected return")
+            DispatchQueue.main.async {
+               self.navigationController?.brightenAndResignLoading()
+            }
             return
          }
          
-         let newUser = Civilmaker.init(name: self.nameTextField!.text!, surname: self.surnameTextField!.text!, uid: user.uid, civilpoints: 0, dateOfCreation: Date(), image: nil, imageURL: nil)
-         self.ref.child(FIRPrimeKey.users).setValue(newUser.getDictionary())
          
          
-         //Here I know, that there are no any errors, so I can go to another scene
+         //Here I know, that there is no any error, so I can go to CivilmakerList scene
          
-         self.performSegue(withIdentifier: "fromRegistrationToMainSceneSegueIdentifier", sender: self)
-         
+         Civilmaker.new(name: self.nameTextField.text!, surname: self.surnameTextField.text!, completion: { (error, civilmaker) in
+            
+            guard error == nil else {
+               self.showAlertController(withTitle: "Error during uploading data", message: error!.localizedDescription)
+               DispatchQueue.main.async {
+                  self.navigationController?.brightenAndResignLoading()
+               }
+               return
+            }
+            
+            DispatchQueue.main.async {
+               self.performSegue(withIdentifier: "fromRegistrationToMainSceneSegueIdentifier", sender: self)
+            }
+         })
       }
       
    }
