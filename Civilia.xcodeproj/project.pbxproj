@@ -19,6 +19,7 @@
 		ED191EAB1F199DAC004CC420 /* ExtensionForString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */; };
 		ED2DF62A1F8DD3CC00EA10AD /* VerifiableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */; };
 		ED2DF62C1F8DD3F600EA10AD /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */; };
+		ED2FF1A31FB3AE9600747F83 /* Additional_Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2FF1A21FB3AE9600747F83 /* Additional_Images.xcassets */; };
 		ED5E8CC51FAF342600868217 /* Civilmaker+Inits.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC41FAF342600868217 /* Civilmaker+Inits.swift */; };
 		ED5E8CC71FAF347200868217 /* Civilmaker+CustomFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC61FAF347200868217 /* Civilmaker+CustomFuncs.swift */; };
 		ED5E8CC91FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5E8CC81FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift */; };
@@ -72,6 +73,7 @@
 		ED191EAA1F199DAC004CC420 /* ExtensionForString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForString.swift; sourceTree = "<group>"; };
 		ED2DF6291F8DD3CC00EA10AD /* VerifiableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiableTextField.swift; sourceTree = "<group>"; };
 		ED2DF62B1F8DD3F600EA10AD /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		ED2FF1A21FB3AE9600747F83 /* Additional_Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Additional_Images.xcassets; sourceTree = "<group>"; };
 		ED5E8CC41FAF342600868217 /* Civilmaker+Inits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+Inits.swift"; sourceTree = "<group>"; };
 		ED5E8CC61FAF347200868217 /* Civilmaker+CustomFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+CustomFuncs.swift"; sourceTree = "<group>"; };
 		ED5E8CC81FAF34C900868217 /* Civilmaker+ConvenienceProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Civilmaker+ConvenienceProperties.swift"; sourceTree = "<group>"; };
@@ -147,8 +149,7 @@
 				EDDD94771F777DDD00F89761 /* Main.storyboard */,
 				EDDCF8751FAC5B1600A2E7A2 /* Data Model */,
 				EDE322461FA5DDDF006CEADE /* Global Extensions */,
-				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
-				EDC942ED1FAF1E0500A09F4E /* deeds_icons.xcassets */,
+				ED2FF19E1FB3AE2900747F83 /* All Assets */,
 				ED191EA11F195FC3004CC420 /* ColorSet.swift */,
 				ED191E9F1F191F6B004CC420 /* +tableViewDelegate.swift */,
 				ED191E8F1F18F7F4004CC420 /* LaunchScreen.storyboard */,
@@ -174,6 +175,16 @@
 				ED191EA51F196758004CC420 /* AddCMViewController.swift */,
 			);
 			name = AddCMViewCOntroller;
+			sourceTree = "<group>";
+		};
+		ED2FF19E1FB3AE2900747F83 /* All Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EDDD94731F777BCD00F89761 /* Assets.xcassets */,
+				EDC942ED1FAF1E0500A09F4E /* deeds_icons.xcassets */,
+				ED2FF1A21FB3AE9600747F83 /* Additional_Images.xcassets */,
+			);
+			name = "All Assets";
 			sourceTree = "<group>";
 		};
 		ED5E8CC31FAF33FE00868217 /* Civilmaker Class */ = {
@@ -319,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2FF1A31FB3AE9600747F83 /* Additional_Images.xcassets in Resources */,
 				EDC942EE1FAF1E0500A09F4E /* deeds_icons.xcassets in Resources */,
 				ED191E911F18F7F4004CC420 /* LaunchScreen.storyboard in Resources */,
 				EDDD94721F777B6A00F89761 /* GoogleService-Info.plist in Resources */,
