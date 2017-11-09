@@ -1475,7 +1475,7 @@
                                                                     <rect key="frame" x="0.0" y="19" width="126" height="41"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mDR-Aj-fgj">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="123" height="41"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="122" height="41"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="251" image="promise_deed_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9Xf-V6-VKT">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
@@ -1500,7 +1500,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Твердое слово" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8I-fI-pQN">
-                                                                    <rect key="frame" x="2" y="4" width="123" height="15"/>
+                                                                    <rect key="frame" x="2" y="4" width="122" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="awE-vV-SaP"/>
                                                                     </constraints>

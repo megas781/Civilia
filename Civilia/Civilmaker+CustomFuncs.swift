@@ -12,6 +12,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
 //MARK: REALM_VERSION_ISSUE
 ////Needed functions
 //extension Civilmaker {
